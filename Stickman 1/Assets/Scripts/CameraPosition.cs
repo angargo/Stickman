@@ -25,7 +25,7 @@ public class CameraPosition : MonoBehaviour {
 	}
 
   void initializeOffset(){
-  	offset = new Vector3(0,0,-10);
+  	offset = new Vector3(0,0, -7.5f);
   	this.transform.position = player.transform.position + offset;
   	correctPosition();
   }
@@ -51,6 +51,7 @@ public class CameraPosition : MonoBehaviour {
     if (Input.GetMouseButtonDown(0)) OnMouseLeftDown();
     if (Input.GetMouseButton(0)) OnMouseLeftDrag();
     if (Input.GetMouseButtonUp(0)) OnMouseLeftUp();
+	player.changeSprite();
     
   }
   

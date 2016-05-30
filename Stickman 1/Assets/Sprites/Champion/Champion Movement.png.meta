@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0b1fac216803b9748a58cd720488b4ec
-timeCreated: 1464517060
+timeCreated: 1464564879
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -97,14 +97,14 @@ TextureImporter:
         y: 416
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_1
       rect:
         serializedVersion: 2
@@ -112,14 +112,14 @@ TextureImporter:
         y: 416
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_2
       rect:
         serializedVersion: 2
@@ -127,14 +127,14 @@ TextureImporter:
         y: 416
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_3
       rect:
         serializedVersion: 2
@@ -142,14 +142,14 @@ TextureImporter:
         y: 416
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_4
       rect:
         serializedVersion: 2
@@ -157,14 +157,14 @@ TextureImporter:
         y: 416
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_5
       rect:
         serializedVersion: 2
@@ -172,14 +172,14 @@ TextureImporter:
         y: 416
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_6
       rect:
         serializedVersion: 2
@@ -187,14 +187,14 @@ TextureImporter:
         y: 416
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_7
       rect:
         serializedVersion: 2
@@ -202,14 +202,14 @@ TextureImporter:
         y: 416
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_8
       rect:
         serializedVersion: 2
@@ -217,14 +217,14 @@ TextureImporter:
         y: 312
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_9
       rect:
         serializedVersion: 2
@@ -232,14 +232,14 @@ TextureImporter:
         y: 312
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_10
       rect:
         serializedVersion: 2
@@ -247,14 +247,14 @@ TextureImporter:
         y: 312
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_11
       rect:
         serializedVersion: 2
@@ -262,14 +262,14 @@ TextureImporter:
         y: 312
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_12
       rect:
         serializedVersion: 2
@@ -277,14 +277,14 @@ TextureImporter:
         y: 312
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_13
       rect:
         serializedVersion: 2
@@ -292,14 +292,14 @@ TextureImporter:
         y: 312
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_14
       rect:
         serializedVersion: 2
@@ -307,14 +307,14 @@ TextureImporter:
         y: 312
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_15
       rect:
         serializedVersion: 2
@@ -322,14 +322,14 @@ TextureImporter:
         y: 312
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_16
       rect:
         serializedVersion: 2
@@ -337,14 +337,14 @@ TextureImporter:
         y: 208
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_17
       rect:
         serializedVersion: 2
@@ -352,14 +352,14 @@ TextureImporter:
         y: 208
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_18
       rect:
         serializedVersion: 2
@@ -367,14 +367,14 @@ TextureImporter:
         y: 208
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_19
       rect:
         serializedVersion: 2
@@ -382,14 +382,14 @@ TextureImporter:
         y: 208
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_20
       rect:
         serializedVersion: 2
@@ -397,14 +397,14 @@ TextureImporter:
         y: 208
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_21
       rect:
         serializedVersion: 2
@@ -412,14 +412,14 @@ TextureImporter:
         y: 208
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_22
       rect:
         serializedVersion: 2
@@ -427,29 +427,29 @@ TextureImporter:
         y: 208
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_23
       rect:
         serializedVersion: 2
         x: 504
-        y: 208
+        y: 209
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.399994}
+        - {x: -36, y: -15.600006}
+        - {x: 36, y: -15.600006}
+        - {x: 36, y: 88.399994}
     - name: Champion Movement_24
       rect:
         serializedVersion: 2
@@ -457,14 +457,14 @@ TextureImporter:
         y: 104
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_25
       rect:
         serializedVersion: 2
@@ -472,14 +472,14 @@ TextureImporter:
         y: 104
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_26
       rect:
         serializedVersion: 2
@@ -487,14 +487,14 @@ TextureImporter:
         y: 104
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_27
       rect:
         serializedVersion: 2
@@ -502,14 +502,14 @@ TextureImporter:
         y: 104
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_28
       rect:
         serializedVersion: 2
@@ -517,14 +517,14 @@ TextureImporter:
         y: 104
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_29
       rect:
         serializedVersion: 2
@@ -532,14 +532,14 @@ TextureImporter:
         y: 104
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_30
       rect:
         serializedVersion: 2
@@ -547,14 +547,14 @@ TextureImporter:
         y: 104
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_31
       rect:
         serializedVersion: 2
@@ -562,14 +562,14 @@ TextureImporter:
         y: 104
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_32
       rect:
         serializedVersion: 2
@@ -577,14 +577,14 @@ TextureImporter:
         y: 0
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_33
       rect:
         serializedVersion: 2
@@ -592,14 +592,14 @@ TextureImporter:
         y: 0
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_34
       rect:
         serializedVersion: 2
@@ -607,14 +607,14 @@ TextureImporter:
         y: 0
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_35
       rect:
         serializedVersion: 2
@@ -622,14 +622,14 @@ TextureImporter:
         y: 0
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_36
       rect:
         serializedVersion: 2
@@ -637,14 +637,14 @@ TextureImporter:
         y: 0
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_37
       rect:
         serializedVersion: 2
@@ -652,14 +652,14 @@ TextureImporter:
         y: 0
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_38
       rect:
         serializedVersion: 2
@@ -667,14 +667,14 @@ TextureImporter:
         y: 0
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     - name: Champion Movement_39
       rect:
         serializedVersion: 2
@@ -682,14 +682,14 @@ TextureImporter:
         y: 0
         width: 72
         height: 104
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -36, y: 52}
-        - {x: -36, y: -52}
-        - {x: 36, y: -52}
-        - {x: 36, y: 52}
+      - - {x: -36, y: 88.4}
+        - {x: -36, y: -15.599998}
+        - {x: 36, y: -15.599998}
+        - {x: 36, y: 88.4}
     outline: []
   spritePackingTag: 
   userData: 
