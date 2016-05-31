@@ -1,4 +1,4 @@
 + Hacer el networking
 + Crear 2D simple pathfinding
-+ Conseguir las animaciones de ataque la de un Poring.
-+ Hacer que el script Player lea todos los sprites del spritesheet y los guarde en el vector, sin tener que pasarlos por el inspector.
++ Conseguir TODAS las animaciones del champ y del poring.
++ Hacer skills simples.
