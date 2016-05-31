@@ -51,8 +51,7 @@ public class CameraPosition : MonoBehaviour {
     if (Input.GetMouseButtonDown(0)) OnMouseLeftDown();
     if (Input.GetMouseButton(0)) OnMouseLeftDrag();
     if (Input.GetMouseButtonUp(0)) OnMouseLeftUp();
-	player.changeSprite();
-    
+	//player.changeSprite();
   }
   
   void OnMouseLeftDrag() {
