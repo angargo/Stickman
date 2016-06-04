@@ -6,7 +6,7 @@ public class Character : MonoBehaviour {
   public string myFolder;
   
   public float speed;
-  public int directions;
+  public int[] directions;
   public float spriteIndex;
   private int spriteDirection;
   private SpritePosition spritePosition;
@@ -21,8 +21,8 @@ public class Character : MonoBehaviour {
 
   private const int idle = 0;
   private const int walking = 1;
-  private const int attacking = 2;
-  private const int beinghit = 3;
+	private const int beinghit = 2;
+  private const int attacking = 3;
   private const int dying = 4;
   private int currentState;
 
@@ -52,19 +52,19 @@ public class Character : MonoBehaviour {
 	  		int cont = 0;
 	  		spriteMatrix = new Sprite [totalStates][][];
 	  		for (int i = 0; i < totalStates; ++i){
-	  			spriteMatrix[i] = new Sprite[directions][];
-	  			for (int j = 0; j < directions; ++j){
+	  			spriteMatrix[i] = new Sprite[directions[i]][];
+	  			for (int j = 0; j < directions[i]; ++j){
 					spriteMatrix[i][j] = new Sprite[stateLengths[i]];
 					//Patch for players!!!
-					if (i == 1){
+					if (i > 0){
 		  				for (int k = 0; k < stateLengths[i]; ++k){
 		  					spriteMatrix[i][j][k] = sprites[cont];
 		  					++cont;
 		  				}
 		  			}
-	  				if (i == 2){
+	  				if (i == 1){
 	  					spriteMatrix[0][j][0] = spriteMatrix[1][j][0];
-	  					spriteMatrix[2][j][0] = spriteMatrix[1][j][0];
+	  					//spriteMatrix[2][j][0] = spriteMatrix[1][j][0];
 
 	  					//Debug.Log(spriteMatrix[0][0][0]);
 	  				}
@@ -76,9 +76,9 @@ public class Character : MonoBehaviour {
 			int cont = 0;
 	  		spriteMatrix = new Sprite [totalStates][][];
 	  		for (int i = 0; i < totalStates; ++i){
-	  			spriteMatrix[i] = new Sprite[directions][];
-	  			if (i <= 1){
-		  			for (int j = 0; j < directions; ++j){
+	  			spriteMatrix[i] = new Sprite[directions[i]][];
+	  			if (i != 3){
+		  			for (int j = 0; j < directions[i]; ++j){
 						spriteMatrix[i][j] = new Sprite[stateLengths[i]];
 		  				for (int k = 0; k < stateLengths[i]; ++k){
 		  					spriteMatrix[i][j][k] = sprites[cont];
@@ -88,10 +88,10 @@ public class Character : MonoBehaviour {
 		  			}
 		  		}
 		  		else {
-					for (int j = 0; j < directions; ++j){
+					for (int j = 0; j < directions[i]; ++j){
 						spriteMatrix[i][j] = new Sprite[stateLengths[i]];
 		  				for (int k = 0; k < stateLengths[i]; ++k){
-		  					spriteMatrix[i][j][k] = spriteMatrix[i-1][j][k];
+		  					spriteMatrix[i][j][k] = spriteMatrix[1][j][k];
 		  				}
 		  			}
 		  		}
@@ -144,18 +144,13 @@ public class Character : MonoBehaviour {
 	}
 
 	public void setAttacking (int a){
-		Debug.Log ("Set Attacking: " + a);
+		//Debug.Log ("Set Attacking: " + a);
 		SetCurrentState (attacking, a == 1);
 	}
 
 	public void setBeingHit (int a){
-		Debug.Log ("Set Being Hit: " + a);
+		//Debug.Log ("Set Being Hit: " + a);
 		SetCurrentState (beinghit, a == 1);
-	}
-
-	public void setAttackingBool (bool b){
-		Debug.Log ("Set Attacking: " + b);
-		SetCurrentState (attacking, b);
 	}
 
 	public void autoAttack(){
@@ -173,20 +168,23 @@ public class Character : MonoBehaviour {
 		Vector3 normalVector = Vector3.forward;
 		playerToCam.z = 0;
 		float angle = Vector3.Angle(playerToCam, direction);
-		if (directions == 5){
+		if (directions[currentState] == 5){
 			if (angle < 22.5) spriteDirection = 4;
 			else if (angle < 67.5) spriteDirection = 3;
 			else if (angle < 112.5) spriteDirection = 2;
 			else if (angle < 157.5) spriteDirection = 1;
 			else spriteDirection = 0;
 		}
-		else if (directions == 2){
+		else if (directions[currentState] == 2){
 			if (angle < 90) spriteDirection = 1;
 			else spriteDirection = 0;
 		}
 		float sign = Vector3.Dot(normalVector, Vector3.Cross(playerToCam, direction));
-		if (sign < 0 && (directions == 2 || (spriteDirection > 0 && spriteDirection < 4))) spritePosition.transform.localScale = new Vector3(-1,1,1);
+		if (sign < 0 && (directions[currentState] == 2 || (spriteDirection > 0 && spriteDirection < 4))) spritePosition.transform.localScale = new Vector3(-1,1,1);
 		else spritePosition.transform.localScale = new Vector3(1,1,1);
+		//HARDCODE: ERASE THIS!!!!
+		float troll = spritePosition.transform.localScale.x;
+		if (currentState == 3 && this.GetComponent<Player>() != null) spritePosition.transform.localScale = new Vector3(-troll, 1,1);
 		int j = (int) Mathf.Floor (spriteIndex);
 		j %= stateLengths[currentState];
 
@@ -203,13 +201,14 @@ public class Character : MonoBehaviour {
 
 	void UpdateCurrentState() {
 		if (isChasing) {
-			if (enemy == null) {
+			if (enemy == null || enemy.isDead()) {
 				// If the enemy disappears, cry.
 				isChasing = false;
 				targetPosition = transform.position;
 				SetCurrentState (attacking, false);
 				SetCurrentState (walking, false);
 			} else if (IsObjectInRange (enemy.gameObject)) {
+				SetCurrentState(walking, false);
 				SetCurrentState (attacking);
 			} else if (currentState != attacking) {
 				SetTargetPosition (enemy.transform.position);
@@ -228,7 +227,7 @@ public class Character : MonoBehaviour {
 		if (!b && state == currentState)
 			currentState = idle;
 		if (b) {
-			if (state > currentState || (currentState == attacking && state == walking)) {
+			if (state > currentState || (currentState == attacking && state == walking && !isChasing)) {
 				currentState = state;
 				//change animator? probably not
 			}
@@ -259,6 +258,7 @@ public class Character : MonoBehaviour {
 	public void chaseEnemy(Character givenEnemy){
 		isChasing = true;
 		enemy = givenEnemy;
+		SetTargetPosition(givenEnemy.transform.position);
 	}
 
 	public void stopChasing() {
@@ -267,6 +267,18 @@ public class Character : MonoBehaviour {
 
 	public void isHit(){
 		SetCurrentState (beinghit);
+	}
+
+	public void die(){
+		SetCurrentState (dying);
+	}
+
+	public void selfDestruct(){
+		Destroy(this.gameObject);
+	}
+
+	public bool isDead(){
+		return currentState == dying;
 	}
 
 }

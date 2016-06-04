@@ -1,0 +1,160 @@
+fileFormatVersion: 2
+guid: 60838299091f9bd43a2dd8d9cf7f8ff4
+timeCreated: 1465035362
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: 0-2 GoldenPoring 60x60_0
+    21300002: 0-2 GoldenPoring 60x60_1
+    21300004: 0-2 GoldenPoring 60x60_2
+    21300006: 0-2 GoldenPoring 60x60_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 72
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: 0-2 GoldenPoring 60x60_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 60
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: 34.2}
+        - {x: -14, y: 34.2}
+        - {x: -21, y: 26.2}
+        - {x: -21, y: 8.200001}
+        - {x: -17, y: -0.79999924}
+        - {x: 15, y: -0.79999924}
+        - {x: 20, y: 7.200001}
+        - {x: 20, y: 28.2}
+        - {x: 15, y: 33.2}
+      - - {x: 13, y: 39.2}
+        - {x: 10, y: 36.2}
+        - {x: 10, y: 34.2}
+        - {x: 13, y: 31.2}
+        - {x: 15, y: 31.2}
+        - {x: 18, y: 34.2}
+        - {x: 18, y: 36.2}
+        - {x: 15, y: 39.2}
+    - name: 0-2 GoldenPoring 60x60_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 60
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 33.2}
+        - {x: -17, y: 33.2}
+        - {x: -22, y: 22.2}
+        - {x: -22, y: 2.2000008}
+        - {x: -17, y: -0.79999924}
+        - {x: 15, y: -0.79999924}
+        - {x: 20, y: 4.200001}
+        - {x: 21, y: 10.200001}
+        - {x: 21, y: 20.2}
+      - - {x: 16, y: 40.2}
+        - {x: 13, y: 37.2}
+        - {x: 13, y: 36.2}
+        - {x: 16, y: 33.2}
+        - {x: 18, y: 33.2}
+        - {x: 20, y: 35.2}
+        - {x: 20, y: 38.2}
+        - {x: 18, y: 40.2}
+    - name: 0-2 GoldenPoring 60x60_2
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 60
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4, y: 32.2}
+        - {x: -23, y: 25.2}
+        - {x: -23, y: 5.200001}
+        - {x: -18, y: -1.7999992}
+        - {x: 17, y: -1.7999992}
+        - {x: 22, y: 4.200001}
+        - {x: 22, y: 18.2}
+        - {x: 17, y: 32.2}
+      - - {x: 18, y: 41.2}
+        - {x: 15, y: 38.2}
+        - {x: 15, y: 37.2}
+        - {x: 17, y: 35.2}
+        - {x: 19, y: 35.2}
+        - {x: 21, y: 37.2}
+        - {x: 21, y: 39.2}
+        - {x: 19, y: 41.2}
+    - name: 0-2 GoldenPoring 60x60_3
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 60
+        height: 60
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 38.2}
+        - {x: -22, y: 30.2}
+        - {x: -22, y: 1.2000008}
+        - {x: 21, y: 1.2000008}
+        - {x: 21, y: 38.2}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

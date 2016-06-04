@@ -12,7 +12,8 @@ public class Health : MonoBehaviour {
 		if (a > 0)
 			myCharacter.isHit ();
 		if (enemy != null && HP <= 0){ //now player is immortal!
-			Destroy(this.gameObject);
+			myCharacter.die();
+			//Destroy(this.gameObject);
 		}
 		if (enemy != null){
 			enemy.beingAttacked(character);

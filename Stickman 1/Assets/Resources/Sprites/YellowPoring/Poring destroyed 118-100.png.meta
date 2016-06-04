@@ -1,0 +1,410 @@
+fileFormatVersion: 2
+guid: 9cfb3b0ab24f1dc4ea29477fc980c76a
+timeCreated: 1465042514
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Poring destroyed 118-100_0
+    21300002: Poring destroyed 118-100_1
+    21300004: Poring destroyed 118-100_2
+    21300006: Poring destroyed 118-100_3
+    21300008: Poring destroyed 118-100_4
+    21300010: Poring destroyed 118-100_5
+    21300012: Poring destroyed 118-100_6
+    21300014: Poring destroyed 118-100_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 72
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Poring destroyed 118-100_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 100
+        width: 118
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 1, y: 58}
+        - {x: -28, y: 58}
+        - {x: -28, y: 31}
+        - {x: -24, y: 15}
+        - {x: -9, y: 9}
+        - {x: 16, y: 9}
+        - {x: 30, y: 22}
+        - {x: 30, y: 41}
+        - {x: 13, y: 53}
+      - - {x: -33, y: 36}
+        - {x: -36, y: 33}
+        - {x: -36, y: 31}
+        - {x: -32, y: 25}
+        - {x: -24, y: 25}
+        - {x: -20, y: 26}
+        - {x: -20, y: 32}
+        - {x: -26, y: 36}
+      - - {x: 7, y: 61}
+        - {x: -1, y: 49}
+        - {x: -1, y: 41}
+        - {x: 1, y: 39}
+        - {x: 6, y: 35}
+        - {x: 16, y: 35}
+        - {x: 22, y: 42}
+        - {x: 22, y: 54}
+        - {x: 15, y: 61}
+    - name: Poring destroyed 118-100_1
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 100
+        width: 118
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 23}
+        - {x: -10, y: 16}
+        - {x: -10, y: 9}
+        - {x: -9, y: 3}
+        - {x: -6, y: 0}
+        - {x: 17, y: 0}
+        - {x: 21, y: 5}
+        - {x: 21, y: 22}
+        - {x: 15, y: 23}
+      - - {x: -40, y: 29}
+        - {x: -44, y: 27}
+        - {x: -44, y: 14}
+        - {x: -39, y: 12}
+        - {x: -29, y: 12}
+        - {x: -29, y: 24}
+        - {x: -31, y: 29}
+      - - {x: -26, y: 46}
+        - {x: -29, y: 41}
+        - {x: -29, y: 26}
+        - {x: -28, y: 25}
+        - {x: -18, y: 25}
+        - {x: -11, y: 27}
+        - {x: -7, y: 29}
+        - {x: -7, y: 41}
+        - {x: -8, y: 46}
+      - - {x: 21, y: 59}
+        - {x: 19, y: 57}
+        - {x: 19, y: 49}
+        - {x: 21, y: 41}
+        - {x: 23, y: 37}
+        - {x: 35, y: 37}
+        - {x: 40, y: 38}
+        - {x: 40, y: 53}
+        - {x: 36, y: 59}
+      - - {x: -2, y: 70}
+        - {x: -6, y: 70}
+        - {x: -8, y: 66}
+        - {x: -8, y: 53}
+        - {x: -7, y: 45}
+        - {x: -4, y: 43}
+        - {x: 1, y: 43}
+        - {x: 4, y: 50}
+        - {x: 4, y: 58}
+        - {x: 2, y: 68}
+    - name: Poring destroyed 118-100_2
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 100
+        width: 118
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -43, y: 6}
+        - {x: -34, y: -2}
+        - {x: -13, y: -2}
+        - {x: -8, y: 0}
+        - {x: -8, y: 15}
+        - {x: -10, y: 19}
+        - {x: -39, y: 19}
+        - {x: -43, y: 16}
+      - - {x: 28, y: 19}
+        - {x: 24, y: 16}
+        - {x: 24, y: 1}
+        - {x: 30, y: -2}
+        - {x: 46, y: -2}
+        - {x: 46, y: 13}
+        - {x: 44, y: 19}
+      - - {x: 22, y: 23}
+        - {x: 16, y: 30}
+        - {x: 3, y: 30}
+        - {x: -6, y: 25}
+        - {x: -6, y: 14}
+        - {x: -5, y: 12}
+        - {x: 0, y: 9}
+        - {x: 11, y: 9}
+        - {x: 18, y: 11}
+        - {x: 22, y: 14}
+      - - {x: 2, y: 67}
+        - {x: -2, y: 67}
+        - {x: -4, y: 63}
+        - {x: -4, y: 50}
+        - {x: -3, y: 42}
+        - {x: -1, y: 40}
+        - {x: 7, y: 40}
+        - {x: 8, y: 45}
+        - {x: 8, y: 62}
+        - {x: 6, y: 65}
+    - name: Poring destroyed 118-100_3
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 100
+        width: 118
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -42, y: 33}
+        - {x: -42, y: 24}
+        - {x: -38, y: 21}
+        - {x: -31, y: 16}
+        - {x: -16, y: 16}
+        - {x: -7, y: 19}
+        - {x: -7, y: 34}
+        - {x: -8, y: 37}
+        - {x: -36, y: 37}
+      - - {x: 25, y: 38}
+        - {x: 25, y: 25}
+        - {x: 27, y: 20}
+        - {x: 32, y: 16}
+        - {x: 43, y: 16}
+        - {x: 46, y: 18}
+        - {x: 46, y: 33}
+        - {x: 43, y: 38}
+      - - {x: 2, y: 48}
+        - {x: -5, y: 42}
+        - {x: -5, y: 33}
+        - {x: -2, y: 24}
+        - {x: 6, y: 19}
+        - {x: 16, y: 19}
+        - {x: 21, y: 21}
+        - {x: 23, y: 29}
+        - {x: 23, y: 43}
+        - {x: 13, y: 48}
+    - name: Poring destroyed 118-100_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 118
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 51}
+        - {x: -38, y: 45}
+        - {x: -38, y: 23}
+        - {x: -29, y: 8}
+        - {x: -19, y: 2}
+        - {x: 8, y: 2}
+        - {x: 20, y: 33}
+        - {x: 20, y: 51}
+      - - {x: 16, y: 29}
+        - {x: 15, y: 28}
+        - {x: 12, y: 23}
+        - {x: 12, y: 18}
+        - {x: 23, y: 18}
+        - {x: 28, y: 21}
+        - {x: 28, y: 28}
+        - {x: 25, y: 29}
+      - - {x: -23, y: 54}
+        - {x: -30, y: 44}
+        - {x: -30, y: 36}
+        - {x: -27, y: 32}
+        - {x: -23, y: 28}
+        - {x: -16, y: 28}
+        - {x: -7, y: 33}
+        - {x: -7, y: 41}
+        - {x: -15, y: 54}
+    - name: Poring destroyed 118-100_5
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 0
+        width: 118
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 18}
+        - {x: -27, y: 13}
+        - {x: -27, y: 0}
+        - {x: -26, y: -3}
+        - {x: -22, y: -5}
+        - {x: -2, y: -5}
+        - {x: 4, y: -3}
+        - {x: 4, y: 11}
+        - {x: -5, y: 18}
+      - - {x: 24, y: 24}
+        - {x: 23, y: 23}
+        - {x: 23, y: 7}
+        - {x: 33, y: 7}
+        - {x: 38, y: 9}
+        - {x: 38, y: 22}
+        - {x: 32, y: 24}
+      - - {x: 2, y: 41}
+        - {x: 1, y: 38}
+        - {x: 1, y: 24}
+        - {x: 9, y: 20}
+        - {x: 20, y: 20}
+        - {x: 23, y: 21}
+        - {x: 23, y: 34}
+        - {x: 19, y: 41}
+      - - {x: -30, y: 54}
+        - {x: -41, y: 54}
+        - {x: -46, y: 50}
+        - {x: -46, y: 33}
+        - {x: -43, y: 32}
+        - {x: -29, y: 32}
+        - {x: -26, y: 39}
+        - {x: -25, y: 42}
+        - {x: -25, y: 52}
+      - - {x: -7, y: 62}
+        - {x: -10, y: 54}
+        - {x: -10, y: 43}
+        - {x: -7, y: 38}
+        - {x: -2, y: 38}
+        - {x: 1, y: 40}
+        - {x: 2, y: 41}
+        - {x: 2, y: 62}
+    - name: Poring destroyed 118-100_6
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 0
+        width: 118
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -39, y: 15}
+        - {x: -43, y: 13}
+        - {x: -43, y: -2}
+        - {x: -41, y: -6}
+        - {x: -24, y: -6}
+        - {x: -21, y: 1}
+        - {x: -21, y: 14}
+        - {x: -24, y: 15}
+      - - {x: 16, y: 15}
+        - {x: 11, y: 10}
+        - {x: 11, y: -1}
+        - {x: 16, y: -6}
+        - {x: 33, y: -6}
+        - {x: 45, y: -5}
+        - {x: 46, y: -3}
+        - {x: 46, y: 15}
+      - - {x: -19, y: 26}
+        - {x: -19, y: 7}
+        - {x: -15, y: 5}
+        - {x: 3, y: 5}
+        - {x: 9, y: 6}
+        - {x: 9, y: 20}
+        - {x: 4, y: 26}
+      - - {x: 1, y: 63}
+        - {x: -3, y: 61}
+        - {x: -5, y: 52}
+        - {x: -5, y: 42}
+        - {x: -2, y: 36}
+        - {x: 4, y: 36}
+        - {x: 7, y: 40}
+        - {x: 7, y: 58}
+        - {x: 6, y: 63}
+    - name: Poring destroyed 118-100_7
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 0
+        width: 118
+        height: 100
+      alignment: 9
+      pivot: {x: 0.5, y: 0.18}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -33, y: 31}
+        - {x: -38, y: 26}
+        - {x: -38, y: 10}
+        - {x: -35, y: 9}
+        - {x: -20, y: 9}
+        - {x: -17, y: 17}
+        - {x: -17, y: 28}
+        - {x: -18, y: 31}
+      - - {x: 44, y: 30}
+        - {x: 16, y: 30}
+        - {x: 15, y: 27}
+        - {x: 15, y: 11}
+        - {x: 17, y: 9}
+        - {x: 47, y: 9}
+        - {x: 50, y: 17}
+        - {x: 50, y: 27}
+      - - {x: 9, y: 41}
+        - {x: -5, y: 41}
+        - {x: -11, y: 37}
+        - {x: -15, y: 33}
+        - {x: -15, y: 23}
+        - {x: -13, y: 14}
+        - {x: -7, y: 12}
+        - {x: 2, y: 12}
+        - {x: 10, y: 17}
+        - {x: 13, y: 22}
+        - {x: 13, y: 34}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
