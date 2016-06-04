@@ -23,11 +23,12 @@ public class Enemy : MonoBehaviour {
 		float angle = Mathf.Sqrt(Random.value)*360.0f;
 		Vector3 direction = new Vector3(moveRad*Mathf.Cos(angle), moveRad*Mathf.Sin(angle),0);
 		Vector3 targetPosition = this.transform.position + direction;
-		myCharacter.MoveToPosition(targetPosition, false);
+		myCharacter.SetTargetPosition(targetPosition);
 	}
 
+	// Unimportant
 	void decideIfMoving(){
-		if (myCharacter.isIdle()){
+		if (myCharacter.IsIdle()){
 			if (Random.value < Time.deltaTime/expectedMoveTime){
 				setNewTarget();
 			}
@@ -35,14 +36,14 @@ public class Enemy : MonoBehaviour {
 	}
 
 	public void beingAttacked(Character character){
-		myCharacter.attackEnemy(character);
+		myCharacter.chaseEnemy(character);
 		myTarget = character;
 	}
 
 	void checkIfStopPursuing(){
 		if (myTarget != null){
 			Vector3 diff = myTarget.transform.position - this.transform.position;
-			if (diff.sqrMagnitude > maxPursueRadius*maxPursueRadius) myCharacter.setIdle();
+			//if (diff.sqrMagnitude > maxPursueRadius*maxPursueRadius) myCharacter.setIdle();
 		}
 	}
 

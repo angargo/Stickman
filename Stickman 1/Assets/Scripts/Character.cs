@@ -22,10 +22,11 @@ public class Character : MonoBehaviour {
   private const int idle = 0;
   private const int walking = 1;
   private const int attacking = 2;
+  private const int beinghit = 3;
+  private const int dying = 4;
   private int currentState;
 
-  private bool isMovingToAttack;
-  private bool isAttacking;
+  private bool isChasing;
   private Character enemy;
 
   public int minAttack = 7;
@@ -109,8 +110,7 @@ public class Character : MonoBehaviour {
 	    spritePosition = this.GetComponentInChildren<SpritePosition>();
 
 	    currentState = idle;
-	    isMovingToAttack = false;
-	    isAttacking = false;
+	    isChasing = false;
 
 		sprites = (Sprite[]) Resources.LoadAll<Sprite>("Sprites/" + myFolder);
 		audioClips = (AudioClip[]) Resources.LoadAll<AudioClip> ("Audio/" + myFolder);
@@ -118,15 +118,9 @@ public class Character : MonoBehaviour {
 		createSpriteMatrix();
 	}
 
-	void changePosition(){ //Solo funciona para suelo plano, else flota por ahi! [se puede arreglar 'ez']
-	  //Debug.Log ("Change Position!!!");
-	  if (enemy != null && isMovingToAttack) {
-	  	MoveToPosition(enemy.transform.position, true);
-		if ((this.transform.position - targetPosition).magnitude < 0.5f){
-			startAttacking();
+	void UpdatePosition(){
+		if (currentState > walking)
 			return;
-		}
-	  }
 	  Vector3 newPosition;
 	  if ((this.transform.position - targetPosition).magnitude <= speed * Time.deltaTime) newPosition = targetPosition;
       else  newPosition = this.transform.position + direction * speed * Time.deltaTime;
@@ -140,49 +134,41 @@ public class Character : MonoBehaviour {
       }
       if (!collision) this.transform.position = newPosition;
       if (collision || Vector3.Dot(targetPosition - this.transform.position, direction) < Mathf.Epsilon) {
-        currentState = idle;
-        animator.SetInteger("currentState", idle);
+			targetPosition = transform.position;
+			SetCurrentState (walking, false);
       }
-	  if (this.GetComponent<Player>() != null) cameraPosition.FollowPlayer(transform.position);
 	}
 
-	void startAttacking(){
-		if (currentState != attacking){
-			currentState = attacking;
-			animator.SetInteger("currentState", attacking);
-			//Debug.Log("I'm Attacking!!!");
-		}
+	void UpdateCamera() {
+		if (this.GetComponent<Player>() != null) cameraPosition.FollowPlayer(transform.position);
 	}
 
 	public void setAttacking (int a){
 		Debug.Log ("Set Attacking: " + a);
-		if (a > 0) isAttacking = true;
-		else isAttacking = false;
+		SetCurrentState (attacking, a == 1);
+	}
+
+	public void setBeingHit (int a){
+		Debug.Log ("Set Being Hit: " + a);
+		SetCurrentState (beinghit, a == 1);
+	}
+
+	public void setAttackingBool (bool b){
+		Debug.Log ("Set Attacking: " + b);
+		SetCurrentState (attacking, b);
 	}
 
 	public void autoAttack(){
-		if (enemy == null){
-			Debug.Log("No enemy!!!");
-			return;
-		}
+		Debug.Assert (enemy != null);
+		Health health = enemy.gameObject.GetComponent<Health>();
+		Debug.Assert (health != null);
 		int extraAttack = (int) Mathf.Floor(Random.value * (float)(maxAttack - minAttack + 1));
 		int attack = minAttack + extraAttack;
-		Health health = enemy.gameObject.GetComponent<Health>();
-		if (health == null){
-			Debug.Log ("No health component!!!!");
-			return;
-		}
 		health.decreaseHealth(attack, this);
-		if (enemy == null){
-			isMovingToAttack = false;
-			isAttacking = false;
-			currentState = idle;
-			animator.SetInteger("currentState", idle);
-		}
 	}
 		
 
-	public void changeSprite(){ //Again, solo funciona para suelo plano de momento
+	public void UpdateSprite(){ //Again, solo funciona para suelo plano de momento
 		Vector3 playerToCam = transform.position - cameraPosition.transform.position;
 		Vector3 normalVector = Vector3.forward;
 		playerToCam.z = 0;
@@ -209,55 +195,78 @@ public class Character : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	//Debug.Log(currentState);
-	  if (isMovingToAttack && !isAttacking && enemy == null){
-	  	isMovingToAttack = false;
-	  	isAttacking = false;
-	  	currentState = idle;
-	  	animator.SetInteger("currentState", idle);
-	  }
-	  if (this.GetComponent<Player>() == null && enemy != null){
-	  	//Debug.Log(enemy + " " + isMovingToAttack + " " + isAttacking);
-	  }
-	  if (!isAttacking && (currentState == walking || isMovingToAttack)) changePosition();
-	  changeSprite();
-	  //if (this.GetComponent<Player>() == null && enemy != null) Debug.Log(enemy);
+		UpdateCurrentState ();
+		UpdateSprite();
+	    UpdatePosition(); // Consider moving this to FixedUpdate
+		UpdateCamera ();
+	}
+
+	void UpdateCurrentState() {
+		if (isChasing) {
+			if (enemy == null) {
+				// If the enemy disappears, cry.
+				isChasing = false;
+				targetPosition = transform.position;
+				SetCurrentState (attacking, false);
+				SetCurrentState (walking, false);
+			} else if (IsObjectInRange (enemy.gameObject)) {
+				SetCurrentState (attacking);
+			} else if (currentState != attacking) {
+				SetTargetPosition (enemy.transform.position);
+			}
+		}
+		if (HasTargetPosition())
+			SetCurrentState (walking);
+		animator.SetInteger("currentState", currentState);
+	}
+
+	bool IsObjectInRange(GameObject obj) {
+		return (obj.transform.position - transform.position).magnitude <= 0.5f;
+	}
+
+	void SetCurrentState(int state, bool b = true) {
+		if (!b && state == currentState)
+			currentState = idle;
+		if (b) {
+			if (state > currentState || (currentState == attacking && state == walking)) {
+				currentState = state;
+				//change animator? probably not
+			}
+		}
+	}
+
+	bool HasTargetPosition() {
+		return transform.position != targetPosition;
 	}
   
   void FixedUpdate () {
     
 	}
   
-	  public void MoveToPosition(Vector3 position, bool attack) {
+	  public void SetTargetPosition(Vector3 position) {
 	  	//Debug.Log (position);
 	  	if (position != targetPosition){
 		    targetPosition = position;
 		    direction = (targetPosition - this.transform.position);
 		    direction.Normalize();
 		}
-		if (!attack) {
-			isMovingToAttack = false;
-			isAttacking = false;
-			enemy = null;
-		}
-	    currentState = walking;
-	    animator.SetInteger("currentState", walking);
 	  }
 
-	public void attackEnemy(Character givenEnemy){
-		isMovingToAttack = true;
-		enemy = givenEnemy;
-	}
-
-	public bool isIdle(){
+	public bool IsIdle() {
 		return currentState == idle;
 	}
 
-	public void setIdle(){
-		isMovingToAttack = false;
-		isAttacking = false;
-		currentState = idle;
-		animator.SetInteger("currentState", idle);
+	public void chaseEnemy(Character givenEnemy){
+		isChasing = true;
+		enemy = givenEnemy;
+	}
+
+	public void stopChasing() {
+		isChasing = false;
+	}
+
+	public void isHit(){
+		SetCurrentState (beinghit);
 	}
 
 }

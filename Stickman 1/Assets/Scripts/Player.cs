@@ -14,12 +14,13 @@ public class Player : MonoBehaviour {
 
 	}
   
-  	public void MoveToPosition(Vector3 position, bool attack) {
-  		myCharacter.MoveToPosition(position, attack);
+  	public void MoveToPosition(Vector3 position) {
+		myCharacter.stopChasing ();
+  		myCharacter.SetTargetPosition(position);
   	}
 
 	public void attackEnemy(Character givenEnemy){
-		myCharacter.attackEnemy(givenEnemy);
+		myCharacter.chaseEnemy(givenEnemy);
 	}
 }
 

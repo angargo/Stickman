@@ -34,8 +34,11 @@ public class Cursor : MonoBehaviour {
     		floorFound = true;
     	}
     }
-    if (enemy != null) player.attackEnemy(enemy.GetComponent<Character>());
-    else if (floorFound) player.MoveToPosition(point, false);
+	if (floorFound) {
+		player.MoveToPosition (point);
+	}
+	if (enemy != null)
+		player.attackEnemy (enemy.GetComponent<Character> ());
   }
 
 }
