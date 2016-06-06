@@ -32,6 +32,12 @@ public class Character : MonoBehaviour {
   public int minAttack = 7;
   public int maxAttack = 10;
 
+  //Ignore this
+  private Character auxEnemy;
+  //
+
+
+
 
   public int[] stateLengths;
 
@@ -41,133 +47,94 @@ public class Character : MonoBehaviour {
 	private AudioSource audioSource;
 	private AudioClip[] audioClips;
 
-	public void playClip(int a){
-  		audioSource.clip = audioClips[a];
-  		audioSource.Play();
-  	}
 
-	void createSpriteMatrix(){
-		if (this.GetComponent<Player>() != null){
-			//Debug.Log("Hola!!" + this);
-	  		int cont = 0;
-	  		spriteMatrix = new Sprite [totalStates][][];
-	  		for (int i = 0; i < totalStates; ++i){
-	  			spriteMatrix[i] = new Sprite[directions[i]][];
-	  			for (int j = 0; j < directions[i]; ++j){
-					spriteMatrix[i][j] = new Sprite[stateLengths[i]];
-					//Patch for players!!!
-					if (i > 0){
-		  				for (int k = 0; k < stateLengths[i]; ++k){
-		  					spriteMatrix[i][j][k] = sprites[cont];
-		  					++cont;
-		  				}
-		  			}
-	  				if (i == 1){
-	  					spriteMatrix[0][j][0] = spriteMatrix[1][j][0];
-	  					//spriteMatrix[2][j][0] = spriteMatrix[1][j][0];
 
-	  					//Debug.Log(spriteMatrix[0][0][0]);
-	  				}
-	  			}
-	  		}
-	  	}
-	  	else{
-			//Debug.Log("Deww!!" + this);
-			int cont = 0;
-	  		spriteMatrix = new Sprite [totalStates][][];
-	  		for (int i = 0; i < totalStates; ++i){
-	  			spriteMatrix[i] = new Sprite[directions[i]][];
-	  			if (i != 3){
-		  			for (int j = 0; j < directions[i]; ++j){
-						spriteMatrix[i][j] = new Sprite[stateLengths[i]];
-		  				for (int k = 0; k < stateLengths[i]; ++k){
-		  					spriteMatrix[i][j][k] = sprites[cont];
-							//Debug.Log(spriteMatrix[0][0][0]);
-		  					++cont;
-		  				}
-		  			}
-		  		}
-		  		else {
-					for (int j = 0; j < directions[i]; ++j){
-						spriteMatrix[i][j] = new Sprite[stateLengths[i]];
-		  				for (int k = 0; k < stateLengths[i]; ++k){
-		  					spriteMatrix[i][j][k] = spriteMatrix[1][j][k];
-		  				}
-		  			}
-		  		}
+	//START FUNCTIONS!!
 
-	  		}
-	  	}
-  	}
-
-	// Use this for initialization
 	void Start () {
-	    spriteIndex = 0;
-	    spriteDirection = 0;
-	    direction = Vector3.down;
-	    animator = this.GetComponent<Animator>();
-	    cameraPosition = GameObject.FindObjectOfType<CameraPosition>();
-	    spritePosition = this.GetComponentInChildren<SpritePosition>();
-
-	    currentState = idle;
-	    isChasing = false;
-
-		sprites = (Sprite[]) Resources.LoadAll<Sprite>("Sprites/" + myFolder);
-		audioClips = (AudioClip[]) Resources.LoadAll<AudioClip> ("Audio/" + myFolder);
-		audioSource = this.GetComponent<AudioSource>();
+		initializeVariables();
 		createSpriteMatrix();
 	}
 
-	void UpdatePosition(){
-		if (currentState > walking)
-			return;
-	  Vector3 newPosition;
-	  if ((this.transform.position - targetPosition).magnitude <= speed * Time.deltaTime) newPosition = targetPosition;
-      else  newPosition = this.transform.position + direction * speed * Time.deltaTime;
-      RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(newPosition)));
-      bool collision = false;
-      foreach (RaycastHit2D hit in hits) {
-        if (hit.collider.gameObject.tag == "Obstacle") {
-          collision = true;
-          break;
-        }
-      }
-      if (!collision) this.transform.position = newPosition;
-      if (collision || Vector3.Dot(targetPosition - this.transform.position, direction) < Mathf.Epsilon) {
-			targetPosition = transform.position;
-			SetCurrentState (walking, false);
-      }
+	void initializeVariables(){
+
+		//Get components
+		animator = this.GetComponent<Animator>();
+	    cameraPosition = GameObject.FindObjectOfType<CameraPosition>();
+	    spritePosition = this.GetComponentInChildren<SpritePosition>();
+		audioSource = this.GetComponent<AudioSource>();
+
+	    //Read sprites and audio
+		sprites = (Sprite[]) Resources.LoadAll<Sprite>("Sprites/" + myFolder);
+		audioClips = (AudioClip[]) Resources.LoadAll<AudioClip> ("Audio/" + myFolder);
+
+		//Initial frame
+		spriteIndex = 0;
+	    spriteDirection = 0;
+
+	    //Current status
+	    direction = Vector3.down;
+	    currentState = idle;
+	    isChasing = false;
 	}
 
-	void UpdateCamera() {
-		if (this.GetComponent<Player>() != null) cameraPosition.FollowPlayer(transform.position);
+	void createSpriteMatrix(){ //read all sprites and arrange them in a matrix [state][direction][frame]
+		int cont = 0;
+  		spriteMatrix = new Sprite [totalStates][][];
+  		for (int i = 0; i < totalStates; ++i){
+  			spriteMatrix[i] = new Sprite[directions[i]][];
+	  		for (int j = 0; j < directions[i]; ++j){
+				spriteMatrix[i][j] = new Sprite[stateLengths[i]];
+  				for (int k = 0; k < stateLengths[i]; ++k){
+  					spriteMatrix[i][j][k] = sprites[cont];
+  					++cont;
+  				}
+  			}
+  		}
+  	}
+
+  	//UPDATE FUNCTIONS!!!
+
+	void Update () {
+		UpdateCurrentState ();
+		UpdateSprite();
+	    UpdatePosition(); // Consider moving this to FixedUpdate
+		UpdateCamera ();
 	}
 
-	public void setAttacking (int a){
-		//Debug.Log ("Set Attacking: " + a);
-		SetCurrentState (attacking, a == 1);
+
+	void UpdateCurrentState() {
+		if (isChasing) {
+			if (enemy == null || enemy.isDead()) {
+				// If the enemy disappears, cry.
+				isChasing = false;
+				targetPosition = transform.position;
+				SetCurrentState (attacking, false);
+				SetCurrentState (walking, false);
+			} else if (IsObjectInRange (enemy.gameObject)) {
+				// Close enough to attack.
+				SetCurrentState(walking, false);
+				SetCurrentState (attacking);
+			} else if (currentState != attacking) {
+				// Update our target position to our enemy.
+				SetTargetPosition (enemy.transform.position);
+			}
+		}
+		//Update state to walking if needed and update animator.
+		if (HasTargetPosition()) SetCurrentState (walking);
+		animator.SetInteger("currentState", currentState);
 	}
 
-	public void setBeingHit (int a){
-		//Debug.Log ("Set Being Hit: " + a);
-		SetCurrentState (beinghit, a == 1);
-	}
 
-	public void autoAttack(){
-		Debug.Assert (enemy != null);
-		Health health = enemy.gameObject.GetComponent<Health>();
-		Debug.Assert (health != null);
-		int extraAttack = (int) Mathf.Floor(Random.value * (float)(maxAttack - minAttack + 1));
-		int attack = minAttack + extraAttack;
-		health.decreaseHealth(attack, this);
-	}
+	public void UpdateSprite(){ //Updates the sprite in the renderer. Only works for plain surfaces!
 		
+		Vector3 camToPlayer = transform.position - cameraPosition.transform.position; //Cam --> Player
+		Vector3 normalVector = Vector3.forward; //(0,0,1) [only for plain surfaces]
+		camToPlayer.z = 0; // we project it to z = 0.
 
-	public void UpdateSprite(){ //Again, solo funciona para suelo plano de momento
-		Vector3 playerToCam = transform.position - cameraPosition.transform.position;
-		Vector3 normalVector = Vector3.forward;
-		playerToCam.z = 0;
-		float angle = Vector3.Angle(playerToCam, direction);
+		float angle = Vector3.Angle(camToPlayer, direction); //shortest angle
+
+		//Check the sprite direction depending on the angle and the total number of directions the sprite has.
 		if (directions[currentState] == 5){
 			if (angle < 22.5) spriteDirection = 4;
 			else if (angle < 67.5) spriteDirection = 3;
@@ -179,80 +146,81 @@ public class Character : MonoBehaviour {
 			if (angle < 90) spriteDirection = 1;
 			else spriteDirection = 0;
 		}
-		float sign = Vector3.Dot(normalVector, Vector3.Cross(playerToCam, direction));
+
+		//Check if we have to apply symmetry!
+		float sign = Vector3.Dot(normalVector, Vector3.Cross(camToPlayer, direction));
 		if (sign < 0 && (directions[currentState] == 2 || (spriteDirection > 0 && spriteDirection < 4))) spritePosition.transform.localScale = new Vector3(-1,1,1);
 		else spritePosition.transform.localScale = new Vector3(1,1,1);
-		//HARDCODE: ERASE THIS!!!!
-		float troll = spritePosition.transform.localScale.x;
-		if (currentState == 3 && this.GetComponent<Player>() != null) spritePosition.transform.localScale = new Vector3(-troll, 1,1);
+
+		//Get the correct frame from the animator
 		int j = (int) Mathf.Floor (spriteIndex);
 		j %= stateLengths[currentState];
 
+		//Put all together.
 		spritePosition.setSprite(spriteMatrix[currentState][spriteDirection][j]);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		UpdateCurrentState ();
-		UpdateSprite();
-	    UpdatePosition(); // Consider moving this to FixedUpdate
-		UpdateCamera ();
+
+
+	void UpdatePosition(){
+
+	  if (currentState > walking) return; //We have to be walking!
+
+	  Vector3 newPosition;
+	  //if we are close enough to our target or not
+	  if ((this.transform.position - targetPosition).magnitude <= speed * Time.deltaTime) newPosition = targetPosition;
+      else  newPosition = this.transform.position + direction * speed * Time.deltaTime;
+
+      //finding obstacles (collisions).
+      RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(newPosition)));
+      bool collision = false;
+      foreach (RaycastHit2D hit in hits) {
+        if (hit.collider.gameObject.tag == "Obstacle") {
+          collision = true;
+          break;
+        }
+      }
+      if (!collision) this.transform.position = newPosition; //Everything goes smoothly.
+
+      //Stop if collision of close enough to target.
+      if (collision || Vector3.Dot(targetPosition - this.transform.position, direction) < Mathf.Epsilon) {
+			targetPosition = transform.position;
+			SetCurrentState (walking, false);
+      }
 	}
 
-	void UpdateCurrentState() {
-		if (isChasing) {
-			if (enemy == null || enemy.isDead()) {
-				// If the enemy disappears, cry.
-				isChasing = false;
-				targetPosition = transform.position;
-				SetCurrentState (attacking, false);
-				SetCurrentState (walking, false);
-			} else if (IsObjectInRange (enemy.gameObject)) {
-				SetCurrentState(walking, false);
-				SetCurrentState (attacking);
-			} else if (currentState != attacking) {
-				SetTargetPosition (enemy.transform.position);
-			}
-		}
-		if (HasTargetPosition())
-			SetCurrentState (walking);
-		animator.SetInteger("currentState", currentState);
+	void UpdateCamera() { //Player always perpendicular to camera!
+		if (this.GetComponent<Player>() != null) cameraPosition.FollowPlayer(transform.position);
 	}
 
-	bool IsObjectInRange(GameObject obj) {
-		return (obj.transform.position - transform.position).magnitude <= 0.5f;
-	}
+	//STATUS FUNCTIONS!!
 
 	void SetCurrentState(int state, bool b = true) {
 		if (!b && state == currentState)
+			// If we stop what we are doing --> idle.
 			currentState = idle;
 		if (b) {
+			//Order: '>' except walking > attacking
 			if (state > currentState || (currentState == attacking && state == walking && !isChasing)) {
 				currentState = state;
-				//change animator? probably not
 			}
 		}
+		animator.SetInteger("currentState", currentState); //There are functions called in the animator!
 	}
 
-	bool HasTargetPosition() {
-		return transform.position != targetPosition;
-	}
-  
-  void FixedUpdate () {
-    
-	}
-  
-	  public void SetTargetPosition(Vector3 position) {
-	  	//Debug.Log (position);
-	  	if (position != targetPosition){
+	public void SetTargetPosition(Vector3 position) {
+	  	if (position != targetPosition){ //We don't want to compute everything again
 		    targetPosition = position;
 		    direction = (targetPosition - this.transform.position);
 		    direction.Normalize();
 		}
-	  }
+	}
 
-	public bool IsIdle() {
-		return currentState == idle;
+	public void setAttacking (int a){ //1 = attacking, 0 = not attacking
+		SetCurrentState (attacking, a == 1);
+	}
+
+	public void setBeingHit (int a){ //1 = being hit, 0 = else
+		SetCurrentState (beinghit, a == 1);
 	}
 
 	public void chaseEnemy(Character givenEnemy){
@@ -261,8 +229,41 @@ public class Character : MonoBehaviour {
 		SetTargetPosition(givenEnemy.transform.position);
 	}
 
+	public void chaseEnemyWithDelay(Character givenEnemy, float t){
+		auxEnemy = givenEnemy;
+		Invoke("setAuxEnemy", t);
+	}
+
+	void setAuxEnemy(){
+		if (auxEnemy != null){
+			isChasing = true;
+			enemy = auxEnemy;
+			SetTargetPosition(enemy.transform.position);
+		}
+	}
+
 	public void stopChasing() {
 		isChasing = false;
+		targetPosition = this.transform.position;
+	}
+
+	//Other functions
+
+	public void autoAttack(){ //compute a value between minAttack and maxAttack, and tell the enemy that it is being hurt!
+		Debug.Assert (enemy != null);
+		Health health = enemy.gameObject.GetComponent<Health>();
+		Debug.Assert (health != null);
+		int extraAttack = (int) Mathf.Floor(Random.value * (float)(maxAttack - minAttack + 1));
+		int attack = minAttack + extraAttack;
+		health.decreaseHealth(attack, this);
+	}
+
+	bool HasTargetPosition() {
+		return transform.position != targetPosition;
+	}
+
+	public bool IsIdle() {
+		return currentState == idle;
 	}
 
 	public void isHit(){
@@ -280,5 +281,14 @@ public class Character : MonoBehaviour {
 	public bool isDead(){
 		return currentState == dying;
 	}
+
+	public bool IsObjectInRange(GameObject obj) {
+		return (obj.transform.position - transform.position).magnitude <= 0.5f;
+	}
+
+	public void playClip(int a){
+  		audioSource.clip = audioClips[a];
+  		audioSource.Play();
+  	}
 
 }

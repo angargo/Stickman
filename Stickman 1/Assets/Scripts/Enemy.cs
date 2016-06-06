@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour {
 		myCharacter = this.GetComponent<Character>();
 	}
 
-	void setNewTarget(){
+	void setNewTarget(){ //Choose uniformely a poing inside a circle of radius r.
 		float r = moveRadius*moveRadius;
 		r *= Random.value;
 		float moveRad = Mathf.Sqrt(r);
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	// Unimportant
-	void decideIfMoving(){
+	void decideIfMoving(){ //If I'm not doing shit, we may move
 		if (myCharacter.IsIdle()){
 			if (Random.value < Time.deltaTime/expectedMoveTime){
 				setNewTarget();
@@ -35,15 +35,21 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	public void beingAttacked(Character character){
-		myCharacter.chaseEnemy(character);
+
+
+	public void beingAttacked(Character character){  //If I'm hit let's teach this guy a lesson! (It takes 0.25s to react)
+		if (character.Equals(myTarget)) return;
+		myCharacter.chaseEnemyWithDelay(character, 0.25f);
 		myTarget = character;
 	}
 
-	void checkIfStopPursuing(){
+	void checkIfStopPursuing(){ //If enemy is too far let's give up
 		if (myTarget != null){
 			Vector3 diff = myTarget.transform.position - this.transform.position;
-			//if (diff.sqrMagnitude > maxPursueRadius*maxPursueRadius) myCharacter.setIdle();
+			if (diff.sqrMagnitude > maxPursueRadius*maxPursueRadius){
+				myCharacter.stopChasing();
+				myTarget = null;
+			}
 		}
 	}
 

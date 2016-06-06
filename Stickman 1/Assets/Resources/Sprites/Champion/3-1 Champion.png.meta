@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 3fb4215114f976c42aa3b85d9446d480
-timeCreated: 1465036704
+guid: 00d30f7d2dbb8364d9be323e01173be6
+timeCreated: 1465152489
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: 2-1 Champion_0
-    21300002: 2-1 Champion_1
-    21300004: 2-1 Champion_2
-    21300006: 2-1 Champion_3
+    21300000: 3-1 Champion_0
+    21300002: 3-1 Champion_1
+    21300004: 3-1 Champion_2
+    21300006: 3-1 Champion_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,7 +54,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: 2-1 Champion_0
+    - name: 3-1 Champion_0
       rect:
         serializedVersion: 2
         x: 0
@@ -62,17 +62,19 @@ TextureImporter:
         width: 91
         height: 110
       alignment: 9
-      pivot: {x: 0.5, y: 0.19}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -24.5, y: 75.1}
-        - {x: -24.5, y: -5.9000015}
-        - {x: -4.5, y: -5.9000015}
-        - {x: 9.5, y: -2.9000015}
-        - {x: 20.5, y: 3.0999985}
-        - {x: 20.5, y: 62.1}
-        - {x: 4.5, y: 75.1}
-    - name: 2-1 Champion_1
+      - - {x: -7.5, y: 77}
+        - {x: -20.5, y: 54}
+        - {x: -20.5, y: 4}
+        - {x: -4.5, y: -2}
+        - {x: 1.5, y: -4}
+        - {x: 20.5, y: -4}
+        - {x: 24.5, y: -3}
+        - {x: 24.5, y: 73}
+        - {x: 16.5, y: 77}
+    - name: 3-1 Champion_1
       rect:
         serializedVersion: 2
         x: 91
@@ -80,20 +82,19 @@ TextureImporter:
         width: 91
         height: 110
       alignment: 9
-      pivot: {x: 0.5, y: 0.19}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 17.5, y: 54.1}
-        - {x: 2.5, y: 74.1}
-        - {x: -20.5, y: 74.1}
-        - {x: -25.5, y: 66.1}
-        - {x: -25.5, y: -3.9000015}
-        - {x: -21.5, y: -5.9000015}
-        - {x: 4.5, y: -5.9000015}
-        - {x: 19.5, y: -1.9000015}
-        - {x: 20.5, y: 2.0999985}
-        - {x: 20.5, y: 47.1}
-    - name: 2-1 Champion_2
+      - - {x: -6.5, y: 76}
+        - {x: -16.5, y: 55}
+        - {x: -20.5, y: 37}
+        - {x: -20.5, y: 6}
+        - {x: -0.5, y: -4}
+        - {x: 23.5, y: -4}
+        - {x: 25.5, y: -3}
+        - {x: 25.5, y: 71}
+        - {x: 15.5, y: 76}
+    - name: 3-1 Champion_2
       rect:
         serializedVersion: 2
         x: 182
@@ -101,27 +102,18 @@ TextureImporter:
         width: 91
         height: 110
       alignment: 9
-      pivot: {x: 0.5, y: 0.19}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -3.5, y: 32.1}
-        - {x: -2.5, y: 31.099998}
-        - {x: -3.5, y: 30.099998}
-        - {x: -3.5, y: 15.099998}
-        - {x: 1.5, y: 10.099998}
-        - {x: 7.5, y: 5.0999985}
-        - {x: 19.5, y: 8.099998}
-        - {x: 19.5, y: 50.1}
-        - {x: 17.5, y: 71.1}
-        - {x: 4.5, y: 75.1}
-        - {x: -24.5, y: 75.1}
-        - {x: -27.5, y: 69.1}
-        - {x: -27.5, y: -5.9000015}
-        - {x: -8.5, y: -5.9000015}
-        - {x: -5.5, y: 0.099998474}
-        - {x: -4.5, y: 29.099998}
-        - {x: -2.5, y: 32.1}
-    - name: 2-1 Champion_3
+      - - {x: -3.5, y: 77}
+        - {x: -16.5, y: 56}
+        - {x: -19.5, y: 47}
+        - {x: -19.5, y: 2}
+        - {x: -12.5, y: -4}
+        - {x: 27.5, y: -4}
+        - {x: 27.5, y: 73}
+        - {x: 22.5, y: 77}
+    - name: 3-1 Champion_3
       rect:
         serializedVersion: 2
         x: 273
@@ -129,16 +121,17 @@ TextureImporter:
         width: 91
         height: 110
       alignment: 9
-      pivot: {x: 0.5, y: 0.19}
+      pivot: {x: 0.5, y: 0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 1.5, y: 69.1}
-        - {x: -9.5, y: 69.1}
-        - {x: -34.5, y: 42.1}
-        - {x: -34.5, y: 0.099998474}
-        - {x: 24.5, y: 0.099998474}
-        - {x: 24.5, y: 54.1}
-        - {x: 5.5, y: 67.1}
+      - - {x: -6.5, y: 71}
+        - {x: -24.5, y: 68}
+        - {x: -24.5, y: 4}
+        - {x: -12.5, y: 2}
+        - {x: 30.5, y: 2}
+        - {x: 34.5, y: 4}
+        - {x: 34.5, y: 43}
+        - {x: 7.5, y: 71}
     outline: []
   spritePackingTag: 
   userData: 
