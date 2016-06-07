@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: 97f3e7f7c6b5cb94fba07e7165a973fc
+timeCreated: 1465308193
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: 3-A-1 91-110_0
+    21300002: 3-A-1 91-110_1
+    21300004: 3-A-1 91-110_2
+    21300006: 3-A-1 91-110_3
+    21300008: 3-1 Champion_0
+    21300010: 3-1 Champion_1
+    21300012: 3-1 Champion_2
+    21300014: 3-1 Champion_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 72
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: 3-1 Champion_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 91
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5, y: 0.13}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7.5, y: 73.7}
+        - {x: -21.5, y: 64.7}
+        - {x: -21.5, y: -6.299999}
+        - {x: -20.5, y: -7.299999}
+        - {x: 8.5, y: -7.299999}
+        - {x: 24.5, y: 5.700001}
+        - {x: 24.5, y: 63.7}
+        - {x: 13.5, y: 73.7}
+    - name: 3-1 Champion_1
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 0
+        width: 91
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5, y: 0.13}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6.5, y: 72.7}
+        - {x: -12.5, y: 72.7}
+        - {x: -23.5, y: 51.7}
+        - {x: -23.5, y: 1.7000008}
+        - {x: -22.5, y: -4.299999}
+        - {x: -18.5, y: -7.299999}
+        - {x: 27.5, y: -7.299999}
+        - {x: 28.5, y: -6.299999}
+        - {x: 28.5, y: 24.7}
+        - {x: 14.5, y: 68.7}
+    - name: 3-1 Champion_2
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 0
+        width: 91
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5, y: 0.13}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.5, y: 69.7}
+        - {x: -26.5, y: 48.7}
+        - {x: -26.5, y: -3.2999992}
+        - {x: 19.5, y: -3.2999992}
+        - {x: 33.5, y: 5.700001}
+        - {x: 33.5, y: 56.7}
+        - {x: 16.5, y: 69.7}
+    - name: 3-1 Champion_3
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 0
+        width: 91
+        height: 110
+      alignment: 9
+      pivot: {x: 0.5, y: 0.13}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9.5, y: 67.7}
+        - {x: -23.5, y: 49.7}
+        - {x: -23.5, y: -2.2999992}
+        - {x: 32.5, y: -2.2999992}
+        - {x: 32.5, y: 62.7}
+        - {x: 22.5, y: 67.7}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
