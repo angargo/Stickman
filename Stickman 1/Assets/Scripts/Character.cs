@@ -194,6 +194,10 @@ public class Character : MonoBehaviour {
 				SetTargetPosition (enemy.transform.position);
 			}
 		}
+
+		if (currentState == attacking && enemy != null){
+			direction = enemy.transform.position - this.transform.position;
+		}
 		//Update state to walking if needed and update animator.
 		if (HasTargetPosition()) SetCurrentState (walking);
 		animator.SetInteger("currentState", currentState);
@@ -203,7 +207,6 @@ public class Character : MonoBehaviour {
 		if (state == currentState && state == casting){
 			animator.SetTrigger("newCast");
 			direction = targetSkill - this.transform.position;
-			direction.Normalize();
 		}
 		if (!b && state == currentState){
 			// If we stop what we are doing --> idle.
@@ -221,7 +224,6 @@ public class Character : MonoBehaviour {
 				}
 				if (state == casting && (targetSkill - this.transform.position).magnitude > Mathf.Epsilon){
 					direction = targetSkill - this.transform.position;
-					direction.Normalize();
 				}
 			}
 		}

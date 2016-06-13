@@ -7,7 +7,7 @@ public class Cursor : MonoBehaviour {
   
 	// Use this for initialization
 	void Start () {
-    player = GameObject.FindObjectOfType<Player>();
+    	player = GameObject.FindObjectOfType<Player>();
 	}
 	
 	// Update is called once per frame
