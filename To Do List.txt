@@ -1,4 +1,0 @@
-+ Hacer el networking
-+ Crear 2D simple pathfinding
-+ Conseguir TODAS las animaciones del champ y del poring.
-+ Hacer skills simples.
