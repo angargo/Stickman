@@ -284,6 +284,7 @@ public class Character : MonoBehaviour {
 	}
 
 	public void performSkill (int skill, Vector3 target){ //Performing skill
+		if (status[waitingForSkill] > 0 && skill != currentSkill) return;
 		//Which skill and where
 		currentSkill = skill;
 		targetSkill = target;

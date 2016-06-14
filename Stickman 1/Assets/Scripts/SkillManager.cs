@@ -10,7 +10,7 @@ public class SkillManager : MonoBehaviour {
 
 
 
-	//some skills need to be used more than once [for instance 'smokeTeleport']
+	//clickNumber: some skills need to be used more than once [for instance 'smokeTeleport']
 	public void performSkill(Character character, int skill, bool finishedCasting, int clickNumber, Vector3 mousePos){
 		if (skill == fireball){
 			if (!finishedCasting){
@@ -26,6 +26,7 @@ public class SkillManager : MonoBehaviour {
 		else if (skill == smokeTeleport){
 			SpriteRenderer sr = character.GetComponentInChildren<SpriteRenderer>();
 			if (clickNumber == 0){
+				//We set 3 seconds to wait for the second click, also we gain invulnerability [not fully implemented yet]
 				character.setStatus(0,3);
 				character.setStatus(1,3);
 				sr.enabled = false;
@@ -34,6 +35,7 @@ public class SkillManager : MonoBehaviour {
 
 			}
 			else if (clickNumber == 1){
+				//We finish waiting for clicks
 				character.setStatus(0,0);
 				character.setStatus(1,0);
 				character.gameObject.transform.position = mousePos;
@@ -41,9 +43,9 @@ public class SkillManager : MonoBehaviour {
 				GameObject smoke = Instantiate(smokePrefab, character.transform.position, Quaternion.identity) as GameObject;
 			}
 			else { //clickNumber == -1
+				//We finish waiting for clicks
 				character.setStatus(0,0);
 				character.setStatus(1,0);
-				//character.gameObject.transform.position = mousePos;
 				sr.enabled = true;
 				GameObject smoke = Instantiate(smokePrefab, character.transform.position, Quaternion.identity) as GameObject;
 			}
