@@ -35,12 +35,15 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-
+	void startChasing(){
+		if (myTarget == null) return;
+		myCharacter.chaseEnemy(myTarget);
+	}
 
 	public void beingAttacked(Character character){  //If I'm hit let's teach this guy a lesson! (It takes 0.25s to react)
 		if (character.Equals(myTarget)) return;
-		myCharacter.chaseEnemyWithDelay(character, 0.25f);
 		myTarget = character;
+		Invoke ("startChasing", 0.25f); //Reaction time = 0.25s, not xploitable.
 	}
 
 	void checkIfStopPursuing(){ //If enemy is too far let's give up

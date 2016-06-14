@@ -15,15 +15,6 @@ public class Cursor : MonoBehaviour {
 	    if (Input.GetMouseButton(1)) {
 	        OnMouseRightDown();
 	    }
-	    if (Input.GetKeyDown(KeyCode.Space)){
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
-		    foreach (RaycastHit2D rc in rcArray){
-		    	if (isFloor(rc)){
-		    		player.castSkill(rc.point);
-		    	}
-		    }
-		}
 	}
 
   

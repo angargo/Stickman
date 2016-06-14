@@ -37,11 +37,12 @@ public class Character : MonoBehaviour {
   private Vector3 targetSkill;
   public GameObject fireball;
 
-  //Ignore this
-  private Character auxEnemy;
-  //
 
+  private float[] status; //test
+  const int waitingForSkill = 0;
+  const int invulnerability = 1;
 
+  private int currentSkill;
 
 
   public int[] stateLengths;
@@ -49,8 +50,9 @@ public class Character : MonoBehaviour {
   private Animator animator;
   private CameraPosition cameraPosition;
 
-	private AudioSource audioSource;
-	private AudioClip[] audioClips;
+  private AudioSource audioSource;
+  private AudioClip[] audioClips;
+  private SkillManager skillManager;
 
 
 
@@ -68,6 +70,7 @@ public class Character : MonoBehaviour {
 	    cameraPosition = GameObject.FindObjectOfType<CameraPosition>();
 	    spritePosition = this.GetComponentInChildren<SpritePosition>();
 		audioSource = this.GetComponent<AudioSource>();
+		skillManager = GameObject.FindObjectOfType<SkillManager>();
 
 	    //Read sprites and audio
 		sprites = (Sprite[]) Resources.LoadAll<Sprite>("Sprites/" + myFolder);
@@ -77,10 +80,13 @@ public class Character : MonoBehaviour {
 		spriteIndex = 0;
 	    spriteDirection = 0;
 
-	    //Current status
+	    //Current state
 	    direction = Vector3.down;
 	    currentState = idle;
 	    isChasing = false;
+
+	    //Status
+	    status = new float[2];
 	}
 
 	void createSpriteMatrix(){ //read all sprites and arrange them in a matrix [state][direction][frame]
@@ -105,6 +111,7 @@ public class Character : MonoBehaviour {
 		UpdateSprite();
 	    UpdatePosition(); // Consider moving this to FixedUpdate
 		UpdateCamera ();
+		UpdateStatus ();
 	}
 
 
@@ -174,6 +181,20 @@ public class Character : MonoBehaviour {
 		if (this.GetComponent<Player>() != null) cameraPosition.FollowPlayer(transform.position);
 	}
 
+	void UpdateStatus() { //waitingForSkill, poison, sleep, etc.
+		for (int i = 0; i < status.Length; ++i){
+			if (status[i] > 0){
+				status[i] -= Time.deltaTime;
+				if (status[i] <= 0){ //if some status finishes
+					status[i] = 0;
+					if (i == waitingForSkill){
+						skillManager.performSkill(this, currentSkill, false, -1, this.transform.position);
+					}
+				}
+			}
+		}
+	}
+
 	//STATUS FUNCTIONS!!
 
 
@@ -204,6 +225,9 @@ public class Character : MonoBehaviour {
 	}
 
 	void SetCurrentState(int state, bool b = true) {
+		if (b && status[waitingForSkill] > 0){
+			skillManager.performSkill(this, currentSkill, false, -1, this.transform.position); 
+		}
 		if (state == currentState && state == casting){
 			animator.SetTrigger("newCast");
 			direction = targetSkill - this.transform.position;
@@ -214,7 +238,7 @@ public class Character : MonoBehaviour {
 			currentState = idle;
 		}
 		if (b) {
-			//Order: '>' except walking > attacking
+			//Order: '>' except walking, > attacking and casting
 			if (state > currentState || ((currentState == attacking || currentState == casting) && state == walking)) {
 				currentState = state;
 				if (state == casting){
@@ -250,28 +274,34 @@ public class Character : MonoBehaviour {
 		SetCurrentState (casting, a == 1);
 	}
 
+	public void setStatus (int stat, float t){
+		status[stat] = t; //ToDo maybe some stuff is revoked by other sources!
+	}	
+
+	public void finishCasting(){
+		setCasting(0);
+		skillManager.performSkill(this, currentSkill, true, 0, targetSkill);
+	}
+
 	public void performDefaultSkill (Vector3 target){
 		targetSkill = target;
 		SetCurrentState(casting);
+	}
+
+	public void performSkill (int skill, Vector3 target){
+		currentSkill = skill;
+		targetSkill = target;
+		if (status[waitingForSkill] == 0) skillManager.performSkill(this, currentSkill, false, 0, targetSkill);
+		else skillManager.performSkill(this, currentSkill, false, 1, targetSkill); //can be done better
+		enemy = null;
+		targetPosition = transform.position;
+		isChasing = false;
 	}
 
 	public void chaseEnemy(Character givenEnemy){
 		isChasing = true;
 		enemy = givenEnemy;
 		SetTargetPosition(givenEnemy.transform.position);
-	}
-
-	public void chaseEnemyWithDelay(Character givenEnemy, float t){
-		auxEnemy = givenEnemy;
-		Invoke("setAuxEnemy", t);
-	}
-
-	void setAuxEnemy(){
-		if (auxEnemy != null){
-			isChasing = true;
-			enemy = auxEnemy;
-			SetTargetPosition(enemy.transform.position);
-		}
 	}
 
 	public void stopChasing() {

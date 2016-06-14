@@ -3,11 +3,13 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-  private Character myCharacter;
+  	private Character myCharacter;
+  	//private SkillManager skillManager;
 
 	// Use this for initialization
 	void Start () {
 		myCharacter = this.GetComponent<Character>();
+		//skillManager = GameObject.FindObjectOfType<SkillManager>();
 	}
 
 	void Update () {
@@ -23,8 +25,9 @@ public class Player : MonoBehaviour {
 		myCharacter.chaseEnemy(givenEnemy);
 	}
 
-	public void castSkill(Vector3 position){
-		myCharacter.performDefaultSkill(position);
+	public void castSkill(int skill, Vector3 position){
+		//myCharacter.performDefaultSkill(position);
+		myCharacter.performSkill(skill , position);
 	}
 }
 
