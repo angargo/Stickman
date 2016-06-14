@@ -225,7 +225,7 @@ public class Character : MonoBehaviour {
 	}
 
 	void SetCurrentState(int state, bool b = true) {
-		if (b && status[waitingForSkill] > 0){
+		if (b && status[waitingForSkill] > 0){ //if we interrupt a skill we send -1
 			skillManager.performSkill(this, currentSkill, false, -1, this.transform.position); 
 		}
 		if (state == currentState && state == casting){
@@ -274,7 +274,7 @@ public class Character : MonoBehaviour {
 		SetCurrentState (casting, a == 1);
 	}
 
-	public void setStatus (int stat, float t){
+	public void setStatus (int stat, float t){ //set the status timer to t
 		status[stat] = t; //ToDo maybe some stuff is revoked by other sources!
 	}	
 
@@ -283,16 +283,14 @@ public class Character : MonoBehaviour {
 		skillManager.performSkill(this, currentSkill, true, 0, targetSkill);
 	}
 
-	public void performDefaultSkill (Vector3 target){
-		targetSkill = target;
-		SetCurrentState(casting);
-	}
-
-	public void performSkill (int skill, Vector3 target){
+	public void performSkill (int skill, Vector3 target){ //Performing skill
+		//Which skill and where
 		currentSkill = skill;
 		targetSkill = target;
+		//Depending if we were waiting for the click or it was the first one
 		if (status[waitingForSkill] == 0) skillManager.performSkill(this, currentSkill, false, 0, targetSkill);
 		else skillManager.performSkill(this, currentSkill, false, 1, targetSkill); //can be done better
+		//Stop doing other stuff [same as casting]
 		enemy = null;
 		targetPosition = transform.position;
 		isChasing = false;
@@ -331,12 +329,6 @@ public class Character : MonoBehaviour {
 		int extraAttack = (int) Mathf.Floor(Random.value * (float)(maxAttack - minAttack + 1));
 		int attack = minAttack + extraAttack;
 		health.decreaseHealth(attack, this);
-	}
-
-	public void LaunchFireBall(){
-		GameObject fire = Instantiate(fireball, this.transform.position, Quaternion.identity) as GameObject;
-		Fireball fball = fire.GetComponent<Fireball>();
-		if (fball != null) fball.setTarget(targetSkill, this);
 	}
 
 	bool HasTargetPosition() {
