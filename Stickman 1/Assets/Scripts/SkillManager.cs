@@ -11,18 +11,14 @@ public class SkillManager : MonoBehaviour {
 
 
 	//clickNumber: some skills need to be used more than once [for instance 'smokeTeleport']
-	public void performSkill(Character character, int skill, bool finishedCasting, int clickNumber, Vector3 mousePos){
+	public void performSkill(Character character, int skill, Vector3 mousePos){
 		if (skill == fireball){
-			if (!finishedCasting){
-				character.setCasting(1);
-			}
-			else {
-				GameObject fireb = Instantiate(fireballPrefab, character.transform.position, Quaternion.identity) as GameObject;
-				Fireball fire = fireb.GetComponent<Fireball>();
-				fire.setTarget(mousePos, character);
-			}
+			GameObject newFireball = Instantiate(fireballPrefab, character.transform.position, Quaternion.identity) as GameObject;
+			newFireball.transform.parent = character.transform;
+			FireballSkill fireb = newFireball.GetComponent<FireballSkill>();
+			fireb.setParameters(character, mousePos);
+			fireb.startSkill();
 		}
-
 		else if (skill == smokeTeleport){
 			SmokeTeleport smoke = character.GetComponentInChildren<SmokeTeleport>();
 			if (smoke == null){
@@ -35,42 +31,28 @@ public class SkillManager : MonoBehaviour {
 			else{
 				smoke.setParameters(character, mousePos);
 				smoke.secondCast();
-				//smoke.secondCast();
 			}
-			/*SpriteRenderer sr = character.GetComponentInChildren<SpriteRenderer>();
-			if (clickNumber == 0){
-				//We set 3 seconds to wait for the second click, also we gain invulnerability [not fully implemented yet]
-				character.setStatus(0,3);
-				character.setStatus(1,3);
-				sr.enabled = false;
-				GameObject smoke = Instantiate(smokePrefab, character.transform.position, Quaternion.identity) as GameObject;
-
-
-			}
-			else if (clickNumber == 1){
-				//We finish waiting for clicks
-				character.setStatus(0,0);
-				character.setStatus(1,0);
-				character.gameObject.transform.position = mousePos;
-				sr.enabled = true;
-				GameObject smoke = Instantiate(smokePrefab, character.transform.position, Quaternion.identity) as GameObject;
-			}
-			else { //clickNumber == -1
-				//We finish waiting for clicks
-				character.setStatus(0,0);
-				character.setStatus(1,0);
-				sr.enabled = true;
-				GameObject smoke = Instantiate(smokePrefab, character.transform.position, Quaternion.identity) as GameObject;
-			}*/
 		}
 	}
 
 	public void cancelSkill(Skill skill){
 		int n = skill.getSkillNumber();
-		if (n == fireball) return;
+		if (n == fireball){
+			FireballSkill fireb = skill.GetComponent<FireballSkill>();
+			fireb.cancelSkill();
+		}
 		if (n == smokeTeleport){
 			SmokeTeleport smoke = skill.GetComponent<SmokeTeleport>();
 			smoke.cancelSkill();
 		}
+	}
+
+	public void finishSkill(Skill skill){
+		int n = skill.getSkillNumber();
+		if (n == fireball){
+			FireballSkill fireb = skill.GetComponent<FireballSkill>();
+			fireb.finishSkill();
+		}
+		if (n == smokeTeleport) return;
 	}
 }

@@ -36,7 +36,11 @@ public class Character : MonoBehaviour {
   private Character enemy;
   private Vector3 targetSkill;
   private int currentSkill;
-  private bool canMove; //not being moved by a skill
+  private bool canMove; //not being moved by an exterior source
+
+  //Status
+  private bool invulnerable;
+  private bool invisible;
 
 
   //Autoattacks
@@ -191,9 +195,9 @@ public class Character : MonoBehaviour {
 				status[i] -= Time.deltaTime;
 				if (status[i] <= 0){ //if some status finishes
 					status[i] = 0;
-					if (i == waitingForSkill){
-						skillManager.performSkill(this, currentSkill, false, -1, this.transform.position);
-					}
+					/*if (i == waitingForSkill){
+						skillManager.performSkill(this, currentSkill, this.transform.position);
+					}*/
 				}
 			}
 		}
@@ -284,8 +288,9 @@ public class Character : MonoBehaviour {
 	}	
 
 	public void finishCasting(){
+		castAllSkills();
 		setCasting(0);
-		skillManager.performSkill(this, currentSkill, true, 0, targetSkill);
+		//skillManager.performSkill(this, currentSkill, true, 0, targetSkill);
 	}
 
 	public void performSkill (int skill, Vector3 target){ //Performing skill
@@ -301,8 +306,7 @@ public class Character : MonoBehaviour {
 		SetCurrentState(currentState, false);
 
 		//Depending if we were waiting for the click or it was the first one
-		if (status[waitingForSkill] == 0) skillManager.performSkill(this, currentSkill, false, 0, targetSkill);
-		else skillManager.performSkill(this, currentSkill, false, 1, targetSkill); //can be done better
+		skillManager.performSkill(this, currentSkill, targetSkill);
 	}
 
 	public void chaseEnemy(Character givenEnemy){
@@ -370,10 +374,19 @@ public class Character : MonoBehaviour {
   		}
   	}
 
+  	private void castAllSkills(){
+		Skill[] S = GetComponentsInChildren<Skill>();
+  		foreach (Skill skill in S){
+  			if (skill.isCasting()){
+  				skillManager.finishSkill(skill);
+  			}
+  		}
+  	}
+
   	public void moveTo (Vector3 v){
   		bool b = HasTargetPosition();
   		this.transform.position = v;
-  		this.targetPosition = this.transform.position;
+  		if (!b) this.targetPosition = this.transform.position;
   		UpdateCamera();
   	}
 

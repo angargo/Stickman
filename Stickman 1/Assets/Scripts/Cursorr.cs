@@ -29,7 +29,6 @@ public class Cursorr : MonoBehaviour
         player = GameObject.FindObjectOfType<Player>();
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
         enemy = null;
         floorFound = false;
         point = Vector3.zero;

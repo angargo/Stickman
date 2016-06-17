@@ -15,10 +15,10 @@ public class SmokeTeleport : MonoBehaviour {
 
 	public void cancelSkill(){
 		SpriteRenderer sr = myCharacter.GetComponentInChildren<SpriteRenderer>();
-		myCharacter.setStatus(0,0);
-		myCharacter.setStatus(1,0);
+		//myCharacter.setStatus(0,0);
+		//myCharacter.setStatus(1,0);
 		sr.enabled = true;
-		GameObject smoke = Instantiate(smokePrefab, myCharacter.transform.position, Quaternion.identity) as GameObject;
+		Instantiate(smokePrefab, myCharacter.transform.position, Quaternion.identity);
 		myCharacter.setMove(true);
 		Destroy(this.gameObject);
 	}
@@ -26,31 +26,18 @@ public class SmokeTeleport : MonoBehaviour {
 	public void startSkill(){
 		moving = false;
 		SpriteRenderer sr = myCharacter.GetComponentInChildren<SpriteRenderer>();
-		myCharacter.setStatus(0,3);
-		myCharacter.setStatus(1,3);
-		//sr.enabled = false;
-		GameObject smoke = Instantiate(smokePrefab, myCharacter.transform.position, Quaternion.identity) as GameObject;
+		//myCharacter.setStatus(0,3);
+		//myCharacter.setStatus(1,3);
+		sr.enabled = false;
+		Instantiate(smokePrefab, myCharacter.transform.position, Quaternion.identity);
 		mySkill.setCancel(true);
 	}
 
 	public void secondCast(){
-		//if (moving) return;
 		moving = true;
 		mySkill.setCancel(false);
 		myCharacter.setMove(false);
 		myCharacter.SetTargetPosition(targetPosition);
-
-
-
-
-		/*SpriteRenderer sr = myCharacter.GetComponentInChildren<SpriteRenderer>();
-		myCharacter.setStatus(0,0);
-		myCharacter.setStatus(1,0);
-		myCharacter.gameObject.transform.position = targetPosition;
-		sr.enabled = true;
-		GameObject smoke = Instantiate(smokePrefab, myCharacter.transform.position, Quaternion.identity) as GameObject;
-		mySkill.setCancel(false);
-		Destroy(this.gameObject);*/
 	}
 
 	private void moveCharacter(){
