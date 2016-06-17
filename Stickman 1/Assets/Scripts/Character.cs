@@ -3,56 +3,59 @@ using System.Collections;
 
 public class Character : MonoBehaviour {
 
+  //Input given
   public string myFolder;
-  
   public float speed;
   public int[] directions;
-  public float spriteIndex;
-  private int spriteDirection;
-  private SpritePosition spritePosition;
-  
+  public int[] stateLengths;
+  public int totalStates;
+
+  //Movement stuff
   private Vector3 direction;
   private Vector3 targetPosition;
   private int dir;
-  public Sprite[] sprites;
+
+  //Sprite stuff
+  private Sprite[] sprites;
   private Sprite[][][] spriteMatrix;
+  public float spriteIndex;
+  private int spriteDirection;
 
-  public int totalStates;
 
+  //States
   private const int idle = 0;
   private const int walking = 1;
   private const int casting = 2;
   private const int beinghit = 3;
   private const int attacking = 4;
   private const int dying = 5;
-
   private int currentState;
 
+  //State conditioners
   private bool isChasing;
   private Character enemy;
+  private Vector3 targetSkill;
+  private int currentSkill;
+  private bool canMove; //not being moved by a skill
 
+
+  //Autoattacks
   public int minAttack = 7;
   public int maxAttack = 10;
 
-  private Vector3 targetSkill;
-  public GameObject fireball;
 
-
-  private float[] status; //test
-  const int waitingForSkill = 0;
-  const int invulnerability = 1;
-
-  private int currentSkill;
-
-
-  public int[] stateLengths;
-
+  //Other components
   private Animator animator;
   private CameraPosition cameraPosition;
-
   private AudioSource audioSource;
   private AudioClip[] audioClips;
   private SkillManager skillManager;
+  private SpritePosition spritePosition;
+
+  //Status, ignore by now...
+  private float[] status; //test
+  const int waitingForSkill = 0;
+  const int invulnerability = 1;
 
 
 
@@ -84,6 +87,7 @@ public class Character : MonoBehaviour {
 	    direction = Vector3.down;
 	    currentState = idle;
 	    isChasing = false;
+	    canMove = true;
 
 	    //Status
 	    status = new float[2];
@@ -107,11 +111,11 @@ public class Character : MonoBehaviour {
   	//UPDATE FUNCTIONS!!!
 
 	void Update () {
-		UpdateCurrentState ();
+		if (canMove) UpdateCurrentState ();
 		UpdateSprite();
-	    UpdatePosition(); // Consider moving this to FixedUpdate
+	    if (canMove) UpdatePosition(); // Consider moving this to FixedUpdate
 		UpdateCamera ();
-		UpdateStatus ();
+		//UpdateStatus ();
 	}
 
 
@@ -225,9 +229,10 @@ public class Character : MonoBehaviour {
 	}
 
 	void SetCurrentState(int state, bool b = true) {
-		if (b && status[waitingForSkill] > 0){ //if we interrupt a skill we send -1
+		/*if (b && status[waitingForSkill] > 0){ //if we interrupt a skill we send -1
 			skillManager.performSkill(this, currentSkill, false, -1, this.transform.position); 
-		}
+		}*/
+		if (b) cancelAllSkills();
 		if (state == currentState && state == casting){
 			animator.SetTrigger("newCast");
 			direction = targetSkill - this.transform.position;
@@ -288,13 +293,16 @@ public class Character : MonoBehaviour {
 		//Which skill and where
 		currentSkill = skill;
 		targetSkill = target;
-		//Depending if we were waiting for the click or it was the first one
-		if (status[waitingForSkill] == 0) skillManager.performSkill(this, currentSkill, false, 0, targetSkill);
-		else skillManager.performSkill(this, currentSkill, false, 1, targetSkill); //can be done better
+
 		//Stop doing other stuff [same as casting]
 		enemy = null;
 		targetPosition = transform.position;
 		isChasing = false;
+		SetCurrentState(currentState, false);
+
+		//Depending if we were waiting for the click or it was the first one
+		if (status[waitingForSkill] == 0) skillManager.performSkill(this, currentSkill, false, 0, targetSkill);
+		else skillManager.performSkill(this, currentSkill, false, 1, targetSkill); //can be done better
 	}
 
 	public void chaseEnemy(Character givenEnemy){
@@ -351,6 +359,26 @@ public class Character : MonoBehaviour {
 	public void playClip(int a){
   		audioSource.clip = audioClips[a];
   		audioSource.Play();
+  	}
+
+  	private void cancelAllSkills(){
+  		Skill[] S = GetComponentsInChildren<Skill>();
+  		foreach (Skill skill in S){
+  			if (skill.canCancel()){
+  				skillManager.cancelSkill(skill);
+  			}
+  		}
+  	}
+
+  	public void moveTo (Vector3 v){
+  		bool b = HasTargetPosition();
+  		this.transform.position = v;
+  		this.targetPosition = this.transform.position;
+  		UpdateCamera();
+  	}
+
+  	public void setMove(bool b){
+  		canMove = b;
   	}
 
 }

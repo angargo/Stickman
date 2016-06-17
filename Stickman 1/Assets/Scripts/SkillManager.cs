@@ -24,7 +24,20 @@ public class SkillManager : MonoBehaviour {
 		}
 
 		else if (skill == smokeTeleport){
-			SpriteRenderer sr = character.GetComponentInChildren<SpriteRenderer>();
+			SmokeTeleport smoke = character.GetComponentInChildren<SmokeTeleport>();
+			if (smoke == null){
+				GameObject newSmoke = Instantiate(smokePrefab, character.transform.position, Quaternion.identity) as GameObject;
+				newSmoke.transform.parent = character.transform;
+				smoke = newSmoke.GetComponent<SmokeTeleport>();
+				smoke.setParameters(character, mousePos);
+				smoke.startSkill();
+			}
+			else{
+				smoke.setParameters(character, mousePos);
+				smoke.secondCast();
+				//smoke.secondCast();
+			}
+			/*SpriteRenderer sr = character.GetComponentInChildren<SpriteRenderer>();
 			if (clickNumber == 0){
 				//We set 3 seconds to wait for the second click, also we gain invulnerability [not fully implemented yet]
 				character.setStatus(0,3);
@@ -48,9 +61,16 @@ public class SkillManager : MonoBehaviour {
 				character.setStatus(1,0);
 				sr.enabled = true;
 				GameObject smoke = Instantiate(smokePrefab, character.transform.position, Quaternion.identity) as GameObject;
-			}
+			}*/
 		}
-
 	}
 
+	public void cancelSkill(Skill skill){
+		int n = skill.getSkillNumber();
+		if (n == fireball) return;
+		if (n == smokeTeleport){
+			SmokeTeleport smoke = skill.GetComponent<SmokeTeleport>();
+			smoke.cancelSkill();
+		}
+	}
 }
