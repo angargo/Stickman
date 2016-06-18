@@ -39,8 +39,10 @@ public class Character : MonoBehaviour {
   private bool canMove; //not being moved by an exterior source
 
   //Status
-  private bool invulnerable;
-  private bool invisible;
+  private const int statusNumber = 2;
+  private bool[] statusArray;
+  private int invulnerable = 0;
+  private int invisible = 1;
 
 
   //Autoattacks
@@ -55,11 +57,7 @@ public class Character : MonoBehaviour {
   private AudioClip[] audioClips;
   private SkillManager skillManager;
   private SpritePosition spritePosition;
-
-  //Status, ignore by now...
-  private float[] status; //test
-  const int waitingForSkill = 0;
-  const int invulnerability = 1;
+  private SpriteRenderer spriteRenderer;
 
 
 
@@ -78,6 +76,7 @@ public class Character : MonoBehaviour {
 	    spritePosition = this.GetComponentInChildren<SpritePosition>();
 		audioSource = this.GetComponent<AudioSource>();
 		skillManager = GameObject.FindObjectOfType<SkillManager>();
+		spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
 
 	    //Read sprites and audio
 		sprites = (Sprite[]) Resources.LoadAll<Sprite>("Sprites/" + myFolder);
@@ -94,7 +93,7 @@ public class Character : MonoBehaviour {
 	    canMove = true;
 
 	    //Status
-	    status = new float[2];
+	    statusArray = new bool[statusNumber];
 	}
 
 	void createSpriteMatrix(){ //read all sprites and arrange them in a matrix [state][direction][frame]
@@ -189,18 +188,16 @@ public class Character : MonoBehaviour {
 		if (this.GetComponent<Player>() != null) cameraPosition.FollowPlayer(transform.position);
 	}
 
-	void UpdateStatus() { //waitingForSkill, poison, sleep, etc.
-		for (int i = 0; i < status.Length; ++i){
-			if (status[i] > 0){
-				status[i] -= Time.deltaTime;
-				if (status[i] <= 0){ //if some status finishes
-					status[i] = 0;
-					/*if (i == waitingForSkill){
-						skillManager.performSkill(this, currentSkill, this.transform.position);
-					}*/
-				}
+	public void UpdateStatus() { //waitingForSkill, poison, sleep, etc.
+		for (int i = 0; i < statusArray.Length; ++i) statusArray[i] = false;
+		Status[] status = this.GetComponentsInChildren<Status>();
+		foreach (Status st in status){
+			if (!st.isDestroyed()){
+				statusArray[st.getStatus()] = true;
 			}
 		}
+		if (statusArray[invisible]) spriteRenderer.enabled = false;
+		else spriteRenderer.enabled = true;
 	}
 
 	//STATUS FUNCTIONS!!
@@ -283,10 +280,6 @@ public class Character : MonoBehaviour {
 		SetCurrentState (casting, a == 1);
 	}
 
-	public void setStatus (int stat, float t){ //set the status timer to t
-		status[stat] = t; //ToDo maybe some stuff is revoked by other sources!
-	}	
-
 	public void finishCasting(){
 		castAllSkills();
 		setCasting(0);
@@ -294,16 +287,12 @@ public class Character : MonoBehaviour {
 	}
 
 	public void performSkill (int skill, Vector3 target){ //Performing skill
-		if (status[waitingForSkill] > 0 && skill != currentSkill) return;
 		//Which skill and where
 		currentSkill = skill;
 		targetSkill = target;
 
 		//Stop doing other stuff [same as casting]
-		enemy = null;
-		targetPosition = transform.position;
-		isChasing = false;
-		SetCurrentState(currentState, false);
+		stopChasing();
 
 		//Depending if we were waiting for the click or it was the first one
 		skillManager.performSkill(this, currentSkill, targetSkill);
@@ -316,6 +305,7 @@ public class Character : MonoBehaviour {
 	}
 
 	public void stopChasing() {
+		SetCurrentState(currentState, false);
 		isChasing = false;
 		targetPosition = this.transform.position;
 		enemy = null;
@@ -392,6 +382,10 @@ public class Character : MonoBehaviour {
 
   	public void setMove(bool b){
   		canMove = b;
+  	}
+
+  	public bool getStatus (int a){
+  		return statusArray[a];
   	}
 
 }

@@ -8,16 +8,19 @@ public class Health : MonoBehaviour {
 	private Character myCharacter;
 
 	public void decreaseHealth (int a, Character character){
-		HP -= a;
-		if (a > 0)
+		if (a > 0){
+			if (myCharacter.getStatus(0)) return;
+			HP -= a;
 			myCharacter.isHit ();
-		if (enemy != null && HP <= 0){ //now player is immortal!
-			myCharacter.die();
-			//Destroy(this.gameObject);
+			if (enemy != null && HP <= 0){ //now player is immortal!
+				myCharacter.die();
+				//Destroy(this.gameObject);
+			}
+			if (enemy != null && character != null){
+				enemy.beingAttacked(character);
+			}
 		}
-		if (enemy != null && character != null){
-			enemy.beingAttacked(character);
-		}
+		else HP -= a;
 	}
 
 	// Use this for initialization

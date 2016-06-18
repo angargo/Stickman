@@ -12,12 +12,10 @@ public class SmokeTeleport : MonoBehaviour {
 	Skill mySkill;
 	Vector3 direction;
 
+	public GameObject effect;
+
 
 	public void cancelSkill(){
-		SpriteRenderer sr = myCharacter.GetComponentInChildren<SpriteRenderer>();
-		//myCharacter.setStatus(0,0);
-		//myCharacter.setStatus(1,0);
-		sr.enabled = true;
 		Instantiate(smokePrefab, myCharacter.transform.position, Quaternion.identity);
 		myCharacter.setMove(true);
 		Destroy(this.gameObject);
@@ -25,11 +23,23 @@ public class SmokeTeleport : MonoBehaviour {
 
 	public void startSkill(){
 		moving = false;
-		SpriteRenderer sr = myCharacter.GetComponentInChildren<SpriteRenderer>();
-		//myCharacter.setStatus(0,3);
-		//myCharacter.setStatus(1,3);
-		sr.enabled = false;
+
+		//Invisible status associated to this skill
+		GameObject statusObject = Instantiate(effect, myCharacter.transform.position, Quaternion.identity) as GameObject;
+		statusObject.transform.parent = myCharacter.transform;
+		Status status = statusObject.GetComponent<Status>();
+		status.setParameters(mySkill, 3, false, 1);
+
+		//Invulnerable status associated to this skill
+		GameObject statusObject2 = Instantiate(effect, myCharacter.transform.position, Quaternion.identity) as GameObject;
+		statusObject2.transform.parent = myCharacter.transform;
+		Status status2 = statusObject2.GetComponent<Status>();
+		status.setParameters(mySkill, 3, false, 0);
+
+		//Smoke prefab
 		Instantiate(smokePrefab, myCharacter.transform.position, Quaternion.identity);
+
+		//Can cancel this skill
 		mySkill.setCancel(true);
 	}
 

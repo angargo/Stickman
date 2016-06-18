@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FireballSkill.cs" />
      <Compile Include="Assets\Scripts\CameraPosition.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\Cursorr.cs" />
@@ -53,6 +52,7 @@
      <Compile Include="Assets\Scripts\Explosion.cs" />
      <Compile Include="Assets\Scripts\ExplosionCollider.cs" />
      <Compile Include="Assets\Scripts\Fireball.cs" />
+     <Compile Include="Assets\Scripts\FireballSkill.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\Keyboard.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\SkillManager.cs" />
      <Compile Include="Assets\Scripts\SmokeTeleport.cs" />
      <Compile Include="Assets\Scripts\SpritePosition.cs" />
+     <Compile Include="Assets\Scripts\Status.cs" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

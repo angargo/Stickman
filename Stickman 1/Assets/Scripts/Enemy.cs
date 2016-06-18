@@ -10,10 +10,12 @@ public class Enemy : MonoBehaviour {
 
   private Character myCharacter;
   private Character myTarget;
+  private bool isChasing;
 
 	// Use this for initialization
 	void Start () {
 		myCharacter = this.GetComponent<Character>();
+		isChasing = false;
 	}
 
 	void setNewTarget(){ //Choose uniformely a poing inside a circle of radius r.
@@ -38,6 +40,7 @@ public class Enemy : MonoBehaviour {
 	void startChasing(){
 		if (myTarget == null) return;
 		myCharacter.chaseEnemy(myTarget);
+		isChasing = true;
 	}
 
 	public void beingAttacked(Character character){  //If I'm hit let's teach this guy a lesson! (It takes 0.25s to react)
@@ -46,19 +49,24 @@ public class Enemy : MonoBehaviour {
 		Invoke ("startChasing", 0.25f); //Reaction time = 0.25s, not xploitable.
 	}
 
-	void checkIfStopPursuing(){ //If enemy is too far let's give up
-		if (myTarget != null){
-			Vector3 diff = myTarget.transform.position - this.transform.position;
-			if (diff.sqrMagnitude > maxPursueRadius*maxPursueRadius){
-				myCharacter.stopChasing();
-				myTarget = null;
-			}
-		}
+	bool shouldStopPursuing(){
+		if (!isChasing) return false;
+		if (myTarget == null) return true;
+		if (myTarget.getStatus(1)) return true;
+		Vector3 diff = myTarget.transform.position - this.transform.position;
+		if (diff.sqrMagnitude > maxPursueRadius*maxPursueRadius) return true;
+		return false;
+	}
+
+	void stopPursuing(){
+		myCharacter.stopChasing();
+		myTarget = null;
+		isChasing = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		decideIfMoving();
-		checkIfStopPursuing();
+		if (shouldStopPursuing()) stopPursuing();
 	}
 }
