@@ -117,7 +117,7 @@ public class Character : MonoBehaviour {
 		if (canMove) UpdateCurrentState ();
 		UpdateSprite();
 	    if (canMove) UpdatePosition(); // Consider moving this to FixedUpdate
-		UpdateCamera ();
+		//UpdateCamera ();
 		//UpdateStatus ();
 	}
 
@@ -189,6 +189,7 @@ public class Character : MonoBehaviour {
 	}
 
 	public void UpdateStatus() { //waitingForSkill, poison, sleep, etc.
+		//Debug.Log ("HOLA!");
 		for (int i = 0; i < statusArray.Length; ++i) statusArray[i] = false;
 		Status[] status = this.GetComponentsInChildren<Status>();
 		foreach (Status st in status){
@@ -355,7 +356,7 @@ public class Character : MonoBehaviour {
   		audioSource.Play();
   	}
 
-  	private void cancelAllSkills(){
+  	public void cancelAllSkills(){
   		Skill[] S = GetComponentsInChildren<Skill>();
   		foreach (Skill skill in S){
   			if (skill.canCancel()){

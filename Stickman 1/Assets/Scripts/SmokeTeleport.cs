@@ -24,6 +24,10 @@ public class SmokeTeleport : MonoBehaviour {
 	public void startSkill(){
 		moving = false;
 
+		//Cancel all other skills
+		SkillManager skillManager = GameObject.FindObjectOfType<SkillManager>();
+		skillManager.cancelAllOtherSkills(myCharacter, mySkill);
+
 		//Invisible status associated to this skill
 		GameObject statusObject = Instantiate(effect, myCharacter.transform.position, Quaternion.identity) as GameObject;
 		statusObject.transform.parent = myCharacter.transform;
@@ -34,7 +38,7 @@ public class SmokeTeleport : MonoBehaviour {
 		GameObject statusObject2 = Instantiate(effect, myCharacter.transform.position, Quaternion.identity) as GameObject;
 		statusObject2.transform.parent = myCharacter.transform;
 		Status status2 = statusObject2.GetComponent<Status>();
-		status.setParameters(mySkill, 3, false, 0);
+		status2.setParameters(mySkill, 3, false, 0);
 
 		//Smoke prefab
 		Instantiate(smokePrefab, myCharacter.transform.position, Quaternion.identity);

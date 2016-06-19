@@ -13,6 +13,8 @@ public class FireballSkill : MonoBehaviour {
 	}
 
 	public void startSkill(){
+		SkillManager skillManager = GameObject.FindObjectOfType<SkillManager>();
+		skillManager.cancelAllOtherSkills(myCharacter, mySkill);
 		mySkill.setCancel(false);
 		myCharacter.setCasting(1);
 		mySkill.SetCasting(true);

@@ -55,4 +55,11 @@ public class SkillManager : MonoBehaviour {
 		}
 		if (n == smokeTeleport) return;
 	}
+
+	public void cancelAllOtherSkills (Character character, Skill skill){
+		skill.setCancel(false);
+		character.cancelAllSkills();
+		skill.setCancel(true);
+	}
+
 }

@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Status : MonoBehaviour {
 
+	//EFFICIENCY: DO SUBROUTINES & STATUSMANAGER
+
 	private float time;
 	private bool countDown = false;
 	private bool destroyed = false;
@@ -47,5 +49,6 @@ public class Status : MonoBehaviour {
 			Character myCharacter = GetComponentInParent<Character>();
 			myCharacter.UpdateStatus();
 		}
+		if (destroyed) Destroy(this.gameObject);
 	}
 }

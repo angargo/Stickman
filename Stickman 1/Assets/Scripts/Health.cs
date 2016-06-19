@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Health : MonoBehaviour {
 
-	public int HP = 50;
+	public int MaxHP = 50;
+	private int HP = 50;
 	private Enemy enemy;
 	private Character myCharacter;
 
@@ -21,6 +22,14 @@ public class Health : MonoBehaviour {
 			}
 		}
 		else HP -= a;
+	}
+
+	public int getCurrentHP(){
+		return HP;
+	}
+
+	public int getMaxHP(){
+		return MaxHP;
 	}
 
 	// Use this for initialization
