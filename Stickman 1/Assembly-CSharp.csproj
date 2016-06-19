@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\SmokeTeleport.cs" />
      <Compile Include="Assets\Scripts\SpritePosition.cs" />
      <Compile Include="Assets\Scripts\Status.cs" />
+     <Compile Include="Assets\SkillButton.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
