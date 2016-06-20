@@ -1,13 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Keyboard : MonoBehaviour {
 
 	private Player player;
+	private GameObject mainMenu;
+
+	void Awake() {
+		player = GameObject.FindObjectOfType<Player>();
+		mainMenu = GameObject.Find("Main Menu");
+	}
   
 	// Use this for initialization
 	void Start () {
-    	player = GameObject.FindObjectOfType<Player>();
+		mainMenu.GetComponent<MainMenu>().startRun();
+    	mainMenu.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -32,12 +40,21 @@ public class Keyboard : MonoBehaviour {
 		    }
 		}
 
-
-
+		if (Input.GetKeyDown(KeyCode.Escape)){
+			switchMainMenu();
+		}
 	}
 
-	bool isFloor(RaycastHit2D rc){
-    return rc.collider.gameObject.tag == "Floor";
-  }
+
+	public void switchMainMenu(){
+		bool b = mainMenu.activeSelf;
+		mainMenu.SetActive(!b);
+	}
+
+
+
+  	bool isFloor(RaycastHit2D rc){
+    	return rc.collider.gameObject.tag == "Floor";
+  	}
 
 }
