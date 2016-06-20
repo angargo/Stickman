@@ -9,8 +9,10 @@ public class SkillButton : MonoBehaviour {
 
 	Player player;
 	public int skillNumber;
+	public char c;
 	Image image;
 	Color initialColor, inviColor;
+	private Keyboard keyboard;
 
 	UISkill mySkill;
 
@@ -19,6 +21,7 @@ public class SkillButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		keyboard = GameObject.FindObjectOfType<Keyboard>();
 		player = GameObject.FindObjectOfType<Player>();
 		image = this.GetComponent<Image>();
 		initialColor = image.color;
@@ -32,7 +35,6 @@ public class SkillButton : MonoBehaviour {
 	}
 
 	public void entering(){
-		Debug.Log ("ola k ase)");
 		if (movedSkills != null) auxSkill = movedSkills.GetComponentInChildren<UISkill>();
 	}
 
@@ -49,38 +51,26 @@ public class SkillButton : MonoBehaviour {
 	void detectNewSkill(){
 		if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)){
 			if (auxSkill != null){
-				Debug.Log ("wowowoow");
 				auxSkill.setMovable(false);
 				eliminateSkillsInParent();
 				auxSkill.gameObject.GetComponent<RectTransform>().SetParent(this.transform.parent);
 				auxSkill.transform.position = this.transform.position;
 				mySkill = auxSkill;
 				skillNumber = auxSkill.skillNumber;
+				keyboard.setSkill(c, this.mySkill);
 			}
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-		if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)){
-			if (auxSkill != null){
-				Debug.Log ("wowowoow");
-				auxSkill.setMovable(false);
-				eliminateSkillsInParent();
-				auxSkill.gameObject.GetComponent<RectTransform>().SetParent(this.transform.parent);
-				auxSkill.transform.position = this.transform.position;
-				mySkill = auxSkill;
-				skillNumber = auxSkill.skillNumber;
-			}
-		}
-
-		//Skill[] skills = player.GetComponentsInChildren<Skill>();
+		detectNewSkill();
+		Skill[] skills = player.GetComponentsInChildren<Skill>();
 		bool usingSkill = false;
 		if (mySkill == null) usingSkill = true;
-		/*foreach (Skill skill in skills){
+		foreach (Skill skill in skills){
 			if (skill.getSkillNumber() == skillNumber) usingSkill = true;
-		}*/
+		}
 		if (usingSkill) image.color = initialColor;
 		else image.color = inviColor;
 	}
