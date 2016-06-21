@@ -57,7 +57,8 @@ public class Character : MonoBehaviour {
   private AudioClip[] audioClips;
   private SkillManager skillManager;
   private SpritePosition spritePosition;
-  private SpriteRenderer spriteRenderer;
+  private BodyRenderer bodyRenderer;
+  private CastBar castBar;
 
 
 
@@ -76,7 +77,7 @@ public class Character : MonoBehaviour {
 	    spritePosition = this.GetComponentInChildren<SpritePosition>();
 		audioSource = this.GetComponent<AudioSource>();
 		skillManager = GameObject.FindObjectOfType<SkillManager>();
-		spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
+		bodyRenderer = this.GetComponentInChildren<BodyRenderer>();
 
 	    //Read sprites and audio
 		sprites = (Sprite[]) Resources.LoadAll<Sprite>("Sprites/" + myFolder);
@@ -145,15 +146,19 @@ public class Character : MonoBehaviour {
 
 		//Check if we have to apply symmetry!
 		float sign = Vector3.Dot(normalVector, Vector3.Cross(camToPlayer, direction));
-		if (sign < 0 && (directions[currentState] == 2 || (spriteDirection > 0 && spriteDirection < 4))) spritePosition.transform.localScale = new Vector3(-1,1,1);
-		else spritePosition.transform.localScale = new Vector3(1,1,1);
+		if (sign < 0 && (directions[currentState] == 2 || (spriteDirection > 0 && spriteDirection < 4))){
+			bodyRenderer.transform.localScale = new Vector3(-1,1,1);
+		}
+		else{ 
+			bodyRenderer.transform.localScale = new Vector3(1,1,1);
+		}
 
 		//Get the correct frame from the animator
 		int j = (int) Mathf.Floor (spriteIndex);
 		j %= stateLengths[currentState];
 
 		//Put all together.
-		spritePosition.setSprite(spriteMatrix[currentState][spriteDirection][j]);
+		bodyRenderer.setSprite(spriteMatrix[currentState][spriteDirection][j]);
 	}
 
 
@@ -197,8 +202,7 @@ public class Character : MonoBehaviour {
 				statusArray[st.getStatus()] = true;
 			}
 		}
-		if (statusArray[invisible]) spriteRenderer.enabled = false;
-		else spriteRenderer.enabled = true;
+		bodyRenderer.setInvisible(statusArray[invisible]);
 	}
 
 	//STATUS FUNCTIONS!!
@@ -231,10 +235,8 @@ public class Character : MonoBehaviour {
 	}
 
 	void SetCurrentState(int state, bool b = true) {
-		/*if (b && status[waitingForSkill] > 0){ //if we interrupt a skill we send -1
-			skillManager.performSkill(this, currentSkill, false, -1, this.transform.position); 
-		}*/
 		if (b) cancelAllSkills();
+		if (currentState == dying) return;
 		if (state == currentState && state == casting){
 			animator.SetTrigger("newCast");
 			direction = targetSkill - this.transform.position;

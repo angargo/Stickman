@@ -45,6 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BodyRenderer.cs" />
+     <Compile Include="Assets\CastBar.cs" />
      <Compile Include="Assets\Scripts\CameraPosition.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\Cursorr.cs" />
