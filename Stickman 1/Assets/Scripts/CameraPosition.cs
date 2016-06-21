@@ -8,19 +8,24 @@ public class CameraPosition : MonoBehaviour {
   private Vector3 offset;
   public const float minAngle = 25, maxAngle = 50;
   private float midAngle, maxDiff;
+    private GameObject mainMenu;
 
+    void Awake()
+    {
+        mainMenu = GameObject.Find("Main Menu");
+    }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
       player = GameObject.FindObjectOfType<Player>();
       midAngle = (minAngle + maxAngle)/2;
       maxDiff = 179 - (maxAngle - minAngle)/2;
       initializeOffset();
       offset = transform.position - player.transform.position;
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update () {
       CheckCustomEvents();
 	}
 
@@ -55,19 +60,21 @@ public class CameraPosition : MonoBehaviour {
   }
   
   void OnMouseLeftDrag() {
-    Vector3 diff = Input.mousePosition - drag;
-    if (Input.GetKey(KeyCode.LeftShift)) {
-      //Debug.Log("Vertical drag");
-      if (diff.y > maxDiff) diff.y = maxDiff;
-      if (diff.y < -maxDiff) diff.y = -maxDiff;
-      transform.RotateAround(player.transform.position, transform.TransformDirection(Vector3.right), diff.y);
-    } else {
-      transform.RotateAround(player.transform.position, Vector3.forward, diff.x);
-    }
-    correctPosition();
-    offset = transform.position - player.transform.position;
-    
-    drag = Input.mousePosition;
+        if (!mainMenu.activeSelf) {
+            Vector3 diff = Input.mousePosition - drag;
+            if (Input.GetKey(KeyCode.LeftShift)) {
+                //Debug.Log("Vertical drag");
+                if (diff.y > maxDiff) diff.y = maxDiff;
+                if (diff.y < -maxDiff) diff.y = -maxDiff;
+                transform.RotateAround(player.transform.position, transform.TransformDirection(Vector3.right), diff.y);
+            } else {
+                transform.RotateAround(player.transform.position, Vector3.forward, diff.x);
+            }
+            correctPosition();
+            offset = transform.position - player.transform.position;
+
+            drag = Input.mousePosition;
+        }
   }
   
   void OnMouseLeftDown() {

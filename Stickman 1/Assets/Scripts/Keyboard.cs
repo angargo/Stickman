@@ -6,12 +6,18 @@ public class Keyboard : MonoBehaviour {
 
 	private Player player;
 	private GameObject mainMenu;
-	private UISkill QSkill = null;
+    /*private UISkill QSkill = null;
 	private UISkill WSkill = null;
+    private UISkill ESkill = null;
+    private UISkill RSkill = null;
+    private UISkill TSkill = null;*/
+    private UISkill[] Skill = null;
 
 	void Awake() {
 		player = GameObject.FindObjectOfType<Player>();
 		mainMenu = GameObject.Find("Main Menu");
+        Skill = new UISkill[5];
+        //foreach (UISkill a in Skill) a=null;
 	}
   
 	// Use this for initialization
@@ -21,31 +27,31 @@ public class Keyboard : MonoBehaviour {
 	}
 
 	public void setSkill(char c, UISkill skill){
-		if (c == 'Q') QSkill = skill;
-		if (c == 'W') WSkill = skill;
+		if (c == 'Q') Skill[0] = skill;
+		if (c == 'W') Skill[1] = skill;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.Q)){
-			if (QSkill != null){
+			if (Skill[0] != null){
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
 			    foreach (RaycastHit2D rc in rcArray){
 			    	if (isFloor(rc)){
-			    		player.castSkill(QSkill.skillNumber, rc.point);
+			    		player.castSkill(Skill[0].skillNumber, rc.point);
 			    	}
 			    }
 			}
 		}
 
 		if (Input.GetKeyDown(KeyCode.W)){
-			if (WSkill != null){
+			if (Skill[1] != null){
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
 			    foreach (RaycastHit2D rc in rcArray){
 			    	if (isFloor(rc)){
-			    		player.castSkill(WSkill.skillNumber, rc.point);
+			    		player.castSkill(Skill[1].skillNumber, rc.point);
 			    	}
 			    }
 			}
