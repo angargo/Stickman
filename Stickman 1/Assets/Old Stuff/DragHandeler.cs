@@ -6,7 +6,7 @@ using System;
 
 public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler{
 
-    public static GameObject itemBeingDragged;
+    static public  GameObject itemBeingDragged;
     Vector3 startPosition;
     Transform startParent;
     Keyboard k;

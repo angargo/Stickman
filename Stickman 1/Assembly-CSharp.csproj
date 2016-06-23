@@ -45,9 +45,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\BodyRenderer.cs" />
-     <Compile Include="Assets\CastBar.cs" />
+     <Compile Include="Assets\Old Stuff\DragHandeler.cs" />
+     <Compile Include="Assets\Old Stuff\GameobjectDragAndDrop.cs" />
+     <Compile Include="Assets\Old Stuff\SkillButton.cs" />
+     <Compile Include="Assets\Old Stuff\SkillbarPanels.cs" />
+     <Compile Include="Assets\Old Stuff\inventory.cs" />
+     <Compile Include="Assets\Old Stuff\slot.cs" />
+     <Compile Include="Assets\Scripts\BodyRenderer.cs" />
      <Compile Include="Assets\Scripts\CameraPosition.cs" />
+     <Compile Include="Assets\Scripts\CastBar.cs" />
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\Cursorr.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
@@ -61,14 +67,13 @@
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MusicManager.cs" />
+     <Compile Include="Assets\Scripts\MySkillButton.cs" />
      <Compile Include="Assets\Scripts\OptionsMenu.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Portal.cs" />
      <Compile Include="Assets\Scripts\Skill.cs" />
-     <Compile Include="Assets\Scripts\SkillButton.cs" />
      <Compile Include="Assets\Scripts\SkillManager.cs" />
      <Compile Include="Assets\Scripts\SkillbarPanel.cs" />
-     <Compile Include="Assets\Scripts\SkillbarPanels.cs" />
      <Compile Include="Assets\Scripts\SmokeTeleport.cs" />
      <Compile Include="Assets\Scripts\SpritePosition.cs" />
      <Compile Include="Assets\Scripts\Status.cs" />

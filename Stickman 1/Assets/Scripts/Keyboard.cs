@@ -6,11 +6,6 @@ public class Keyboard : MonoBehaviour {
 
 	private Player player;
 	private GameObject mainMenu;
-    /*private UISkill QSkill = null;
-	private UISkill WSkill = null;
-    private UISkill ESkill = null;
-    private UISkill RSkill = null;
-    private UISkill TSkill = null;*/
     private UISkill[] Skill = null;
 
 	void Awake() {
@@ -29,6 +24,9 @@ public class Keyboard : MonoBehaviour {
 	public void setSkill(char c, UISkill skill){
 		if (c == 'Q') Skill[0] = skill;
 		if (c == 'W') Skill[1] = skill;
+		if (c == 'E') Skill[2] = skill;
+		if (c == 'R') Skill[3] = skill;
+		if (c == 'T') Skill[4] = skill;
 	}
 	
 	// Update is called once per frame
@@ -52,6 +50,42 @@ public class Keyboard : MonoBehaviour {
 			    foreach (RaycastHit2D rc in rcArray){
 			    	if (isFloor(rc)){
 			    		player.castSkill(Skill[1].skillNumber, rc.point);
+			    	}
+			    }
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.E)){
+			if (Skill[2] != null){
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
+			    foreach (RaycastHit2D rc in rcArray){
+			    	if (isFloor(rc)){
+			    		player.castSkill(Skill[2].skillNumber, rc.point);
+			    	}
+			    }
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.R)){
+			if (Skill[3] != null){
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
+			    foreach (RaycastHit2D rc in rcArray){
+			    	if (isFloor(rc)){
+			    		player.castSkill(Skill[3].skillNumber, rc.point);
+			    	}
+			    }
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.T)){
+			if (Skill[4] != null){
+				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
+			    foreach (RaycastHit2D rc in rcArray){
+			    	if (isFloor(rc)){
+			    		player.castSkill(Skill[4].skillNumber, rc.point);
 			    	}
 			    }
 			}

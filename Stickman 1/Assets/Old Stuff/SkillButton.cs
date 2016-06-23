@@ -51,7 +51,7 @@ public class SkillButton : MonoBehaviour {
 	void detectNewSkill(){
 		if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)){
 			if (auxSkill != null){
-				auxSkill.setMovable(false);
+				//auxSkill.setMovable(false);
 				eliminateSkillsInParent();
 				auxSkill.gameObject.GetComponent<RectTransform>().SetParent(this.transform.parent);
 				auxSkill.transform.position = this.transform.position;

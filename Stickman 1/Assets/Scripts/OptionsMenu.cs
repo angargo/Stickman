@@ -19,9 +19,6 @@ public class OptionsMenu : MonoBehaviour {
 	}
 
 	void destroyAllMovableSkills(){
-		UISkill[] skills = GameObject.Find("Moved Skills").GetComponentsInChildren<UISkill>();
-		foreach (UISkill skill in skills){
-			if (skill.isMovable()) Destroy(skill.gameObject);
-		}
+		if (MySkillButton.draggedItem != null) Destroy (MySkillButton.draggedItem);
 	}
 }

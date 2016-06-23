@@ -11,8 +11,8 @@ public class BodyRenderer : MonoBehaviour {
 	}
 
 	public void setInvisible(bool b){
-		if (b) spriteRenderer.enabled = true;
-		else spriteRenderer.enabled = false;
+		if (b) spriteRenderer.enabled = false;
+		else spriteRenderer.enabled = true;
 	}
 
 	public void setSprite(Sprite s){
