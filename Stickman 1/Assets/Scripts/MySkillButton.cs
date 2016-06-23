@@ -99,7 +99,9 @@ public class MySkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		SkillbarPanel[] panels = GameObject.FindObjectsOfType<SkillbarPanel>();
 		foreach (SkillbarPanel panel in panels){
 			UISkill skill = panel.GetComponentInChildren<UISkill>();
-			if (skill != null && skill.skillNumber == mySkill.skillNumber) Destroy (skill.gameObject);
+			if (skill != null && skill.gameObject != this.gameObject && skill.skillNumber == mySkill.skillNumber){
+				Destroy (skill.gameObject);
+			}
 		}
 	}
 

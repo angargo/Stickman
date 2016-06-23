@@ -57,7 +57,7 @@ public class SkillButton : MonoBehaviour {
 				auxSkill.transform.position = this.transform.position;
 				mySkill = auxSkill;
 				skillNumber = auxSkill.skillNumber;
-				keyboard.setSkill(c, this.mySkill);
+				//keyboard.setSkill(c, this.mySkill);
 			}
 		}
 	}

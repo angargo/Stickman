@@ -41,12 +41,10 @@ public class SkillbarPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		MySkillButton skill = o.GetComponent<MySkillButton>();
 		if (skill == null) return;
 
+		Debug.Log("hola amigo");
+
 		//We make a copy of the skill and attach it here
 		skill.putInBar(this);
-
-		//We tell the keyboard that a new skill has been assigned
-		UISkill uiSkill = this.GetComponentInChildren<UISkill>();
-		keyboard.setSkill(c, uiSkill);
 	}
 
 	void destroyAllMyChildren(){

@@ -6,12 +6,13 @@ public class Keyboard : MonoBehaviour {
 
 	private Player player;
 	private GameObject mainMenu;
-    private UISkill[] Skill = null;
+    //private UISkill[] Skill = null;
+    private SkillbarPanel[] panels;
 
 	void Awake() {
 		player = GameObject.FindObjectOfType<Player>();
 		mainMenu = GameObject.Find("Main Menu");
-        Skill = new UISkill[5];
+        //Skill = new UISkill[5];
         //foreach (UISkill a in Skill) a=null;
 	}
   
@@ -19,19 +20,38 @@ public class Keyboard : MonoBehaviour {
 	void Start () {
 		mainMenu.GetComponent<MainMenu>().startRun();
     	mainMenu.SetActive(false);
+    	panels = GameObject.FindObjectsOfType<SkillbarPanel>();
 	}
 
-	public void setSkill(char c, UISkill skill){
+	/*public void setSkill(char c, UISkill skill){
 		if (c == 'Q') Skill[0] = skill;
 		if (c == 'W') Skill[1] = skill;
 		if (c == 'E') Skill[2] = skill;
 		if (c == 'R') Skill[3] = skill;
 		if (c == 'T') Skill[4] = skill;
-	}
+	}*/
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Q)){
+		string s = Input.inputString;
+		foreach (char c in s){
+			foreach (SkillbarPanel panel in panels){
+				if (panel.c == c){
+					UISkill skill = panel.GetComponentInChildren<UISkill>();
+					if (skill != null){
+						int a = skill.skillNumber;
+						Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+						RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
+			    		foreach (RaycastHit2D rc in rcArray){
+					    	if (isFloor(rc)){
+					    		player.castSkill(a, rc.point);
+					    	}
+					    }
+					}
+				}
+			}
+		}
+		/*if (Input.GetKeyDown(KeyCode.Q)){
 			if (Skill[0] != null){
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
@@ -41,55 +61,8 @@ public class Keyboard : MonoBehaviour {
 			    	}
 			    }
 			}
-		}
+		}*/
 
-		if (Input.GetKeyDown(KeyCode.W)){
-			if (Skill[1] != null){
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
-			    foreach (RaycastHit2D rc in rcArray){
-			    	if (isFloor(rc)){
-			    		player.castSkill(Skill[1].skillNumber, rc.point);
-			    	}
-			    }
-			}
-		}
-
-		if (Input.GetKeyDown(KeyCode.E)){
-			if (Skill[2] != null){
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
-			    foreach (RaycastHit2D rc in rcArray){
-			    	if (isFloor(rc)){
-			    		player.castSkill(Skill[2].skillNumber, rc.point);
-			    	}
-			    }
-			}
-		}
-
-		if (Input.GetKeyDown(KeyCode.R)){
-			if (Skill[3] != null){
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
-			    foreach (RaycastHit2D rc in rcArray){
-			    	if (isFloor(rc)){
-			    		player.castSkill(Skill[3].skillNumber, rc.point);
-			    	}
-			    }
-			}
-		}
-
-		if (Input.GetKeyDown(KeyCode.T)){
-			if (Skill[4] != null){
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
-			    foreach (RaycastHit2D rc in rcArray){
-			    	if (isFloor(rc)){
-			    		player.castSkill(Skill[4].skillNumber, rc.point);
-			    	}
-			    }
-			}
-		}
 
 		if (Input.GetKeyDown(KeyCode.Escape)){
 			switchMainMenu();
