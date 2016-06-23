@@ -21,14 +21,22 @@ public class MySkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	const int dragged = 1;
 	const int inSkillBar = 2;
 
-	//Button stuff!
+	public SkillbarPanel myParent = null;
+	private UISkill mySkill;
+	private Player player;
+	private bool wasBeingUsed;
+
 
 	public void copyMyself(){ //We instantiate this object, set it to 'dragged', and attach it to movedSkills
 		draggedItem = Instantiate(this.gameObject , this.transform.position, Quaternion.identity) as GameObject;
 		draggedItem.transform.SetParent(movedSkills.transform);
-		draggedItem.GetComponent<MySkillButton>().setParameters(dragged);
+		myParent = this.GetComponentInParent<SkillbarPanel>();
+		draggedItem.GetComponent<MySkillButton>().setParameters(dragged, myParent);
 		draggedItem.name = this.gameObject.name; //To avoid the extra '(copy)' in its name.
+
 	}
+
+	//Button Stuff
 
 	public void OnPointerDown (PointerEventData eventData) { //When I press the skill [with any button]
 
@@ -63,8 +71,9 @@ public class MySkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		isMouseOverMe = false;
 	}
 
-	public void setParameters(int state){ //set myState to state (+ consequences)
+	public void setParameters(int state, SkillbarPanel panel){ //set myState to state (+ consequences)
 		myState = state;
+		myParent = panel;
 		if (myState == dragged){
 			//aesthetics
 			myImage = this.GetComponent<Image>();
@@ -79,10 +88,19 @@ public class MySkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	}
 
 	public void putInBar (SkillbarPanel panel){ //We instantiate the object and put it as a child of the panel
+		eliminateOtherSkills(); //We eliminate all other skills in the bar with the same skillNumber
 		GameObject newChildren = Instantiate(this.gameObject, panel.transform.position, Quaternion.identity) as GameObject;
 		newChildren.transform.SetParent(panel.transform);
-		newChildren.GetComponent<MySkillButton>().setParameters(inSkillBar);
+		newChildren.GetComponent<MySkillButton>().setParameters(inSkillBar, null);
 		newChildren.name = this.gameObject.name;
+	}
+
+	private void eliminateOtherSkills(){
+		SkillbarPanel[] panels = GameObject.FindObjectsOfType<SkillbarPanel>();
+		foreach (SkillbarPanel panel in panels){
+			UISkill skill = panel.GetComponentInChildren<UISkill>();
+			if (skill != null && skill.skillNumber == mySkill.skillNumber) Destroy (skill.gameObject);
+		}
 	}
 
 
@@ -95,7 +113,10 @@ public class MySkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		if (myImage == null) myImage = this.GetComponent<Image>();
 		myImage.color = defaultColor;
 		movedSkills = GameObject.Find("Moved Skills");
+		mySkill = GetComponent<UISkill>();
+		player = GameObject.FindObjectOfType<Player>();
 		isMouseOverMe = false;
+		wasBeingUsed = false;
 	}
 	
 	// Update is called once per frame
@@ -104,6 +125,25 @@ public class MySkillButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 		if (Input.GetMouseButtonUp(0)){
 			//The SkillbarPanel script is executed first, and thus it will be cloned before destroying itself whenever we drag it to a panel
 			if (myState == dragged) Destroy(this.gameObject);
+		}
+
+		if (myState == inSkillBar){
+
+			Skill[] skills = player.GetComponentsInChildren<Skill>();
+
+			bool usingMyself = false;
+			foreach (Skill skill in skills){
+				if (skill.getSkillNumber() == mySkill.skillNumber){
+					myImage.color = pressedColor;
+					usingMyself = true;
+					wasBeingUsed = true;
+				}
+			}
+			if (!usingMyself && wasBeingUsed){
+				wasBeingUsed = false;
+				if (isMouseOverMe) myImage.color = highlightedColor;
+				else myImage.color = defaultColor;
+			}
 		}
 	}
 }

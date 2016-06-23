@@ -27,6 +27,14 @@ public class SkillbarPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	}
 
 	void setMySkill(GameObject o){
+
+		//If the dragged item comes from another position of the bar, swap!
+		MySkillButton mySkill = this.GetComponentInChildren<MySkillButton>();
+		if (mySkill != null){
+			SkillbarPanel panel = o.GetComponent<MySkillButton>().myParent;
+			if (panel != null) mySkill.putInBar(panel);
+		}
+
 		destroyAllMyChildren(); //Whenever we drag a new skill, we destroy the previous one
 
 		//Just in case
