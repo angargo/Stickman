@@ -6,30 +6,24 @@ public class Keyboard : MonoBehaviour {
 
 	private Player player;
 	private GameObject mainMenu;
-    //private UISkill[] Skill = null;
+	private GameObject optionsMenu;
+	private GameObject skillsMenu;
     private SkillbarPanel[] panels;
 
 	void Awake() {
 		player = GameObject.FindObjectOfType<Player>();
 		mainMenu = GameObject.Find("Main Menu");
-        //Skill = new UISkill[5];
-        //foreach (UISkill a in Skill) a=null;
+		optionsMenu = GameObject.Find("Options Menu");
+		skillsMenu = GameObject.Find("Skills Menu");
 	}
   
 	// Use this for initialization
 	void Start () {
-		mainMenu.GetComponent<MainMenu>().startRun();
     	mainMenu.SetActive(false);
+    	optionsMenu.SetActive(false);
+    	skillsMenu.SetActive(false);
     	panels = GameObject.FindObjectsOfType<SkillbarPanel>();
 	}
-
-	/*public void setSkill(char c, UISkill skill){
-		if (c == 'Q') Skill[0] = skill;
-		if (c == 'W') Skill[1] = skill;
-		if (c == 'E') Skill[2] = skill;
-		if (c == 'R') Skill[3] = skill;
-		if (c == 'T') Skill[4] = skill;
-	}*/
 	
 	// Update is called once per frame
 	void Update () {
@@ -51,28 +45,27 @@ public class Keyboard : MonoBehaviour {
 				}
 			}
 		}
-		/*if (Input.GetKeyDown(KeyCode.Q)){
-			if (Skill[0] != null){
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
-			    foreach (RaycastHit2D rc in rcArray){
-			    	if (isFloor(rc)){
-			    		player.castSkill(Skill[0].skillNumber, rc.point);
-			    	}
-			    }
-			}
-		}*/
-
-
 		if (Input.GetKeyDown(KeyCode.Escape)){
-			switchMainMenu();
+			Menu[] menus = GameObject.FindObjectsOfType<Menu>();
+			bool noMenus = true;
+			foreach (Menu menu in menus){
+				noMenus = false;
+				menu.close();
+			}
+			if (noMenus) openMainMenu();
 		}
 	}
 
+	public void openMainMenu(){
+		mainMenu.SetActive(true);
+	}
 
-	public void switchMainMenu(){
-		bool b = mainMenu.activeSelf;
-		mainMenu.SetActive(!b);
+	public void openOptionsMenu(){
+		optionsMenu.SetActive(true);
+	}
+
+	public void openSkillsMenu(){
+		skillsMenu.SetActive(true);
 	}
 
 

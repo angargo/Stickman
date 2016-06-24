@@ -8,12 +8,6 @@ public class CameraPosition : MonoBehaviour {
   private Vector3 offset;
   public const float minAngle = 25, maxAngle = 50;
   private float midAngle, maxDiff;
-    private GameObject mainMenu;
-
-    void Awake()
-    {
-        mainMenu = GameObject.Find("Main Menu");
-    }
 
     // Use this for initialization
     void Start () {
@@ -60,7 +54,7 @@ public class CameraPosition : MonoBehaviour {
   }
   
   void OnMouseLeftDrag() {
-        if (!mainMenu.activeSelf) {
+        if (GameObject.FindObjectsOfType<Menu>() == null) {
             Vector3 diff = Input.mousePosition - drag;
             if (Input.GetKey(KeyCode.LeftShift)) {
                 //Debug.Log("Vertical drag");
@@ -73,8 +67,8 @@ public class CameraPosition : MonoBehaviour {
             correctPosition();
             offset = transform.position - player.transform.position;
 
-            drag = Input.mousePosition;
         }
+		drag = Input.mousePosition;
   }
   
   void OnMouseLeftDown() {

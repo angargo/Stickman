@@ -45,8 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Menu.cs" />
      <Compile Include="Assets\Old Stuff\DragHandeler.cs" />
      <Compile Include="Assets\Old Stuff\GameobjectDragAndDrop.cs" />
+     <Compile Include="Assets\Old Stuff\MainMenu.cs" />
+     <Compile Include="Assets\Old Stuff\OptionsMenu.cs" />
      <Compile Include="Assets\Old Stuff\SkillButton.cs" />
      <Compile Include="Assets\Old Stuff\SkillbarPanels.cs" />
      <Compile Include="Assets\Old Stuff\inventory.cs" />
@@ -65,10 +68,8 @@
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\Keyboard.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
-     <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\MusicManager.cs" />
      <Compile Include="Assets\Scripts\MySkillButton.cs" />
-     <Compile Include="Assets\Scripts\OptionsMenu.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Portal.cs" />
      <Compile Include="Assets\Scripts\Skill.cs" />
