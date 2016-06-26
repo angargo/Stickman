@@ -5,9 +5,10 @@ public class Status : MonoBehaviour {
 
 	//EFFICIENCY: DO SUBROUTINES & STATUSMANAGER
 
-	private float time;
-	private bool countDown = false;
+	private float time = 10;
+	private bool countDown = true;
 	private bool destroyed = false;
+	private bool depending = true;
 	private int status;
 	private Skill parent;
 
@@ -20,11 +21,12 @@ public class Status : MonoBehaviour {
 	}
 
 
-	public void setParameters (Skill sk, float t, bool b, int st){
+	public void setParameters (Skill sk, float t, bool b, int st, bool d){
 		time = t;
 		countDown = b;
 		status = st;
 		parent = sk;
+		depending = d;
 		Character myCharacter = GetComponentInParent<Character>();
 		myCharacter.UpdateStatus();
 	}
@@ -44,7 +46,7 @@ public class Status : MonoBehaviour {
 				myCharacter.UpdateStatus();
 			}
 		}
-		if (parent == null){
+		if (depending && parent == null){
 			destroyed = true;
 			Character myCharacter = GetComponentInParent<Character>();
 			myCharacter.UpdateStatus();

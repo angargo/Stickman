@@ -17,7 +17,7 @@ public class Health : MonoBehaviour {
 				myCharacter.die();
 				//Destroy(this.gameObject);
 			}
-			if (enemy != null && character != null){
+			if (enemy != null && character != null && character.GetComponent<Enemy>() == null){
 				enemy.beingAttacked(character);
 			}
 		}

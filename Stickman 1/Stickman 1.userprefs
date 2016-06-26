@@ -1,14 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Old Stuff\SkillButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Character.cs">
     <Files>
-      <File FileName="Assets\Scripts\MySkillButton.cs" Line="95" Column="43" />
-      <File FileName="Assets\Scripts\Keyboard.cs" Line="64" Column="6" />
-      <File FileName="Assets\Scripts\SkillbarPanel.cs" Line="48" Column="3" />
+      <File FileName="Assets\Scripts\Character.cs" Line="215" Column="29" />
+      <File FileName="Assets\Scripts\Keyboard.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MySkillButton.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UISkill.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\OptionsMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SkillManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Old Stuff\SkillButton.cs" Line="60" Column="7" />
+      <File FileName="Assets\Old Stuff\SkillButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\Menu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Cursorr.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraPosition.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Health.cs" Line="17" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

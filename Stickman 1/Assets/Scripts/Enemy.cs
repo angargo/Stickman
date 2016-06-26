@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour {
   private Character myTarget;
   private bool isChasing;
 
+  public int[] aggressiveSkills;
+  public float[] aggressiveSkillsExpectedTime;
+
 	// Use this for initialization
 	void Start () {
 		myCharacter = this.GetComponent<Character>();
@@ -28,8 +31,22 @@ public class Enemy : MonoBehaviour {
 		myCharacter.SetTargetPosition(targetPosition);
 	}
 
+	private bool tryCast (int a){
+		if (Random.value < Time.deltaTime/aggressiveSkillsExpectedTime[a]){
+			myCharacter.performSkill(a, myTarget.transform.position);
+			return true;
+		}
+		return false;
+	}
+
+
 	// Unimportant
 	void decideIfMoving(){ //If I'm not doing shit, we may move
+		if (isChasing && myCharacter.canPerformSkill()){
+			foreach (int a in aggressiveSkills){
+				if (tryCast(a)) break;
+			}
+		}
 		if (myCharacter.IsIdle()){
 			if (Random.value < Time.deltaTime/expectedMoveTime){
 				setNewTarget();
@@ -52,9 +69,16 @@ public class Enemy : MonoBehaviour {
 	bool shouldStopPursuing(){
 		if (!isChasing) return false;
 		if (myTarget == null) return true;
-		if (myTarget.getStatus(1)) return true;
+		else if (myCharacter.IsIdle()) startChasing();
+		if (myTarget.getStatus(1)){
+			myTarget = null;
+			return true;
+		}
 		Vector3 diff = myTarget.transform.position - this.transform.position;
-		if (diff.sqrMagnitude > maxPursueRadius*maxPursueRadius) return true;
+		if (diff.sqrMagnitude > maxPursueRadius*maxPursueRadius){
+			myTarget = null;
+			return true;
+		}
 		return false;
 	}
 
@@ -66,7 +90,7 @@ public class Enemy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		decideIfMoving();
 		if (shouldStopPursuing()) stopPursuing();
+		decideIfMoving();
 	}
 }

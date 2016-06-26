@@ -29,20 +29,22 @@ public class Character : MonoBehaviour {
   private const int beinghit = 3;
   private const int attacking = 4;
   private const int dying = 5;
-  private int currentState;
+  public int currentState;
 
   //State conditioners
   private bool isChasing;
   private Character enemy;
   private Vector3 targetSkill;
   private int currentSkill;
+  private bool isMoving;
   private bool canMove; //not being moved by an exterior source
 
   //Status
-  private const int statusNumber = 2;
+  private const int statusNumber = 3;
   private bool[] statusArray;
   private int invulnerable = 0;
   private int invisible = 1;
+  private int controlled = 2;
 
 
   //Autoattacks
@@ -91,6 +93,7 @@ public class Character : MonoBehaviour {
 	    direction = Vector3.down;
 	    currentState = idle;
 	    isChasing = false;
+	    isMoving = false;
 	    canMove = true;
 
 	    //Status
@@ -164,7 +167,7 @@ public class Character : MonoBehaviour {
 
 	void UpdatePosition(){
 
-	  if (currentState > walking) return; //We have to be walking!
+	  if (currentState > walking || !isMoving) return; //We have to be walking!
 
 	  Vector3 newPosition;
 	  //if we are close enough to our target or not
@@ -184,7 +187,7 @@ public class Character : MonoBehaviour {
 
       //Stop if collision of close enough to target.
       if (collision || Vector3.Dot(targetPosition - this.transform.position, direction) < Mathf.Epsilon) {
-			targetPosition = transform.position;
+			isMoving = false;
 			SetCurrentState (walking, false);
       }
 	}
@@ -203,6 +206,7 @@ public class Character : MonoBehaviour {
 			}
 		}
 		bodyRenderer.setInvisible(statusArray[invisible]);
+		canMove = !statusArray[controlled];
 	}
 
 	//STATUS FUNCTIONS!!
@@ -213,7 +217,7 @@ public class Character : MonoBehaviour {
 			if (enemy == null || enemy.isDead()) {
 				// If the enemy disappears, cry.
 				isChasing = false;
-				targetPosition = transform.position;
+				isMoving = false;
 				SetCurrentState (attacking, false);
 				SetCurrentState (walking, false);
 			} else if (IsObjectInRange (enemy.gameObject)) {
@@ -237,22 +241,22 @@ public class Character : MonoBehaviour {
 	void SetCurrentState(int state, bool b = true) {
 		if (b) cancelAllSkills();
 		if (currentState == dying) return;
-		if (state == currentState && state == casting){
+		if (b && state == currentState && state == casting){
 			animator.SetTrigger("newCast");
 			direction = targetSkill - this.transform.position;
 		}
 		if (!b && state == currentState){
 			// If we stop what we are doing --> idle.
-			if (state == walking) targetPosition = transform.position;
+			if (state == walking) isMoving = false;
 			currentState = idle;
 		}
 		if (b) {
-			//Order: '>' except walking, > attacking and casting
+			//Order: '>' except walking > attacking and casting
 			if (state > currentState || ((currentState == attacking || currentState == casting) && state == walking)) {
 				currentState = state;
 				if (state == casting){
 					enemy = null;
-					targetPosition = transform.position;
+					isMoving = false;
 					isChasing = false;
 				}
 				if (state == casting && (targetSkill - this.transform.position).magnitude > Mathf.Epsilon){
@@ -268,6 +272,7 @@ public class Character : MonoBehaviour {
 		    targetPosition = position;
 		    direction = (targetPosition - this.transform.position);
 		    direction.Normalize();
+		    isMoving = true;
 		}
 	}
 
@@ -310,7 +315,7 @@ public class Character : MonoBehaviour {
 	public void stopChasing() {
 		SetCurrentState(currentState, false);
 		isChasing = false;
-		targetPosition = this.transform.position;
+		isMoving = false;
 		enemy = null;
 	}
 
@@ -338,7 +343,7 @@ public class Character : MonoBehaviour {
 	}
 
 	bool HasTargetPosition() {
-		return transform.position != targetPosition;
+		return isMoving;
 	}
 
 	public bool IsIdle() {
@@ -347,6 +352,10 @@ public class Character : MonoBehaviour {
 
 	public bool isDead(){
 		return currentState == dying;
+	}
+
+	public bool isChasingNow(){
+		return isChasing;
 	}
 
 	public bool IsObjectInRange(GameObject obj) {
@@ -377,18 +386,19 @@ public class Character : MonoBehaviour {
   	}
 
   	public void moveTo (Vector3 v){
-  		bool b = HasTargetPosition();
+  		//bool b = HasTargetPosition();
   		this.transform.position = v;
-  		if (!b) this.targetPosition = this.transform.position;
+  		//if (!b) isMoving = false;
   		UpdateCamera();
-  	}
-
-  	public void setMove(bool b){
-  		canMove = b;
   	}
 
   	public bool getStatus (int a){
   		return statusArray[a];
+  	}
+
+  	public bool canPerformSkill(){
+  		if (currentState != casting && currentState != beinghit) return true;
+  		return false;
   	}
 
 }
