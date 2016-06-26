@@ -3,22 +3,13 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler {
+public class Menu : MonoBehaviour, IPointerDownHandler {
 
-	bool inside = false;
 	Vector3 offset = Vector3.zero;
 
 	int myState;
 	const int fix = 0;
 	const int movable = 1;
-
-	public void OnPointerEnter (PointerEventData eventData){
-		inside = true;
-	}
-
-	public void OnPointerExit (PointerEventData eventData){
-		inside = false;
-	}
 
 	public void OnPointerDown (PointerEventData eventData) { //When I press the skill [with any button]
 		if (!Input.GetMouseButtonDown(0)) return;

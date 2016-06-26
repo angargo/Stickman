@@ -31,20 +31,19 @@ public class SmokeTeleport : MonoBehaviour {
 		GameObject statusObject = Instantiate(effect, myCharacter.transform.position, Quaternion.identity) as GameObject;
 		statusObject.transform.parent = myCharacter.transform;
 		Status status = statusObject.GetComponent<Status>();
-		status.setParameters(mySkill, 3, false, 1, true);
+		status.setParameters(mySkill, 0, false, Constants.invisible, true);
 
 		//Invulnerable status associated to this skill
 		GameObject statusObject2 = Instantiate(effect, myCharacter.transform.position, Quaternion.identity) as GameObject;
 		statusObject2.transform.parent = myCharacter.transform;
 		Status status2 = statusObject2.GetComponent<Status>();
-		status2.setParameters(mySkill, 3, false, 0, true);
+		status2.setParameters(mySkill, 0, false, Constants.invulnerable, true);
 
 		//Smoke prefab
 		Instantiate(smokePrefab, myCharacter.transform.position, Quaternion.identity);
 
 		//Can cancel this skill
 		mySkill.setCancel(true);
-		mySkill.SetParameters(myCharacter, false);
 	}
 
 	public void secondCast(){
@@ -54,7 +53,7 @@ public class SmokeTeleport : MonoBehaviour {
 		GameObject statusObject = Instantiate(effect, myCharacter.transform.position, Quaternion.identity) as GameObject;
 		statusObject.transform.parent = myCharacter.transform;
 		Status status = statusObject.GetComponent<Status>();
-		status.setParameters(mySkill, 3, false, 2, true);
+		status.setParameters(mySkill, 0, false, Constants.controlled, true);
 		myCharacter.SetTargetPosition(targetPosition);
 	}
 
@@ -81,7 +80,7 @@ public class SmokeTeleport : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		mySkill = this.GetComponent<Skill>();
-		mySkill.setSkillNumber(1);
+		mySkill.setSkillNumber(Constants.smokeTeleport);
 	}
 	
 	// Update is called once per frame

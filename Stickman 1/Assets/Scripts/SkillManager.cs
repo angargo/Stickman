@@ -3,25 +3,20 @@ using System.Collections;
 
 public class SkillManager : MonoBehaviour {
 
-	const int fireball = 0;
 	public GameObject fireballPrefab;
-	const int smokeTeleport = 1;
 	public GameObject smokePrefab;
-	const int magicMirror = 4;
 	public GameObject magicMirrorPrefab;
-
-
 
 	//clickNumber: some skills need to be used more than once [for instance 'smokeTeleport']
 	public void performSkill(Character character, int skill, Vector3 mousePos){
-		if (skill == fireball){
+		if (skill == Constants.fireball){
 			GameObject newFireball = Instantiate(fireballPrefab, character.transform.position, Quaternion.identity) as GameObject;
 			newFireball.transform.parent = character.transform;
 			FireballSkill fireb = newFireball.GetComponent<FireballSkill>();
 			fireb.setParameters(character, mousePos);
 			fireb.startSkill();
 		}
-		else if (skill == smokeTeleport){
+		else if (skill == Constants.smokeTeleport){
 			SmokeTeleport smoke = character.GetComponentInChildren<SmokeTeleport>();
 			if (smoke == null){
 				GameObject newSmoke = Instantiate(smokePrefab, character.transform.position, Quaternion.identity) as GameObject;
@@ -35,7 +30,7 @@ public class SkillManager : MonoBehaviour {
 				smoke.secondCast();
 			}
 		}
-		else if (skill == magicMirror){
+		else if (skill == Constants.magicMirror){
 			GameObject newMagicMirror = Instantiate(magicMirrorPrefab, character.transform.position, Quaternion.identity) as GameObject;
 			newMagicMirror.transform.parent = character.transform;
 		    MagicMirror mm = newMagicMirror.GetComponent<MagicMirror>();
@@ -46,15 +41,15 @@ public class SkillManager : MonoBehaviour {
 
 	public void cancelSkill(Skill skill){
 		int n = skill.getSkillNumber();
-		if (n == fireball){
+		if (n == Constants.fireball){
 			FireballSkill fireb = skill.GetComponent<FireballSkill>();
 			fireb.cancelSkill();
 		}
-		if (n == smokeTeleport){
+		if (n == Constants.smokeTeleport){
 			SmokeTeleport smoke = skill.GetComponent<SmokeTeleport>();
 			smoke.cancelSkill();
 		}
-		if (n == magicMirror){
+		if (n == Constants.magicMirror){
 			MagicMirror magic = skill.GetComponent<MagicMirror>();
 			magic.cancelSkill();
 		}
@@ -62,12 +57,12 @@ public class SkillManager : MonoBehaviour {
 
 	public void finishSkill(Skill skill){
 		int n = skill.getSkillNumber();
-		if (n == fireball){
+		if (n == Constants.fireball){
 			FireballSkill fireb = skill.GetComponent<FireballSkill>();
 			fireb.finishSkill();
 		}
-		if (n == smokeTeleport) return;
-		if (n == magicMirror) return;
+		if (n == Constants.smokeTeleport) return;
+		if (n == Constants.magicMirror) return;
 	}
 
 	public void cancelAllOtherSkills (Character character, Skill skill){

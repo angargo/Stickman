@@ -5,7 +5,6 @@ public class Fireball : MonoBehaviour {
 
 	private Vector3 targetPosition, direction;
 	public GameObject explosion;
-	private Character myCharacter;
 	private Projectile myProjectile;
 	public float speed = 8;
 
@@ -16,7 +15,7 @@ public class Fireball : MonoBehaviour {
 
 	private void explode(){
 		GameObject expl = Instantiate (explosion, this.transform.position, Quaternion.identity) as GameObject;
-		expl.GetComponentInChildren<ExplosionCollider>().setOwner(myCharacter); 
+		expl.GetComponentInChildren<ExplosionCollider>().setOwner(myProjectile.getCharacter()); 
 		Destroy (this.gameObject);
 	}
 	
@@ -27,7 +26,5 @@ public class Fireball : MonoBehaviour {
 
 	public void setParameters(Vector3 v, Character character){
 		myProjectile.SetParameters(v, speed, character);
-		myCharacter = character;
-		//Debug.Log("Target set to " + v);
 	}
 }

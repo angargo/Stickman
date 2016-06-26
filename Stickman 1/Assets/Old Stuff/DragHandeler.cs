@@ -9,11 +9,9 @@ public class DragHandeler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     static public  GameObject itemBeingDragged;
     Vector3 startPosition;
     Transform startParent;
-    Keyboard k;
     
     void Start()
     {
-        k = GameObject.FindObjectOfType<Keyboard>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)

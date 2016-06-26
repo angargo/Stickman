@@ -7,7 +7,6 @@ public class SkillbarPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
 	private bool inside;
 	public char c;
-	private Keyboard keyboard;
 
 	//Same stuff as in MySkillButton
 
@@ -23,7 +22,6 @@ public class SkillbarPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 	void Start () {
 		//Initializing stuff
 		inside = false;
-		keyboard = GameObject.FindObjectOfType<Keyboard>();
 	}
 
 	void setMySkill(GameObject o){

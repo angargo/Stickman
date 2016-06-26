@@ -12,7 +12,6 @@ public class SkillButton : MonoBehaviour {
 	public char c;
 	Image image;
 	Color initialColor, inviColor;
-	private Keyboard keyboard;
 
 	UISkill mySkill;
 
@@ -21,7 +20,6 @@ public class SkillButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		keyboard = GameObject.FindObjectOfType<Keyboard>();
 		player = GameObject.FindObjectOfType<Player>();
 		image = this.GetComponent<Image>();
 		initialColor = image.color;

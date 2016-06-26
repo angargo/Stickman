@@ -6,9 +6,7 @@ public class Skill : MonoBehaviour {
 	private bool canBeCanceled;
 	private int skillNumber;
 	private bool casting;
-	private Character myCharacter;
-	private Vector3 startingPos;
-	private bool projectile;
+
 
 	public void setCancel(bool b){
 		canBeCanceled = b;
@@ -34,14 +32,6 @@ public class Skill : MonoBehaviour {
 		skillNumber = a;
 	}
 
-	public void SetParameters(Character character, bool p){
-		myCharacter = character;
-		projectile = p;
-	}
-
-	void Awake(){
-		startingPos = this.transform.position;
-	}
 	// Use this for initialization
 	void Start () {
 	}

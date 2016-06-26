@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour {
 		if (!isChasing) return false;
 		if (myTarget == null) return true;
 		else if (myCharacter.IsIdle()) startChasing();
-		if (myTarget.getStatus(1)){
+		if (myTarget.getStatus(Constants.invisible)){
 			myTarget = null;
 			return true;
 		}

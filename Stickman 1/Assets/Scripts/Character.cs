@@ -21,6 +21,8 @@ public class Character : MonoBehaviour {
   public float spriteIndex;
   private int spriteDirection;
 
+  //Status
+  private bool[] statusArray;
 
   //States
   private const int idle = 0;
@@ -39,13 +41,6 @@ public class Character : MonoBehaviour {
   private bool isMoving;
   private bool canMove; //not being moved by an exterior source
 
-  //Status
-  private const int statusNumber = 3;
-  private bool[] statusArray;
-  private int invulnerable = 0;
-  private int invisible = 1;
-  private int controlled = 2;
-
 
   //Autoattacks
   public int minAttack = 7;
@@ -58,7 +53,6 @@ public class Character : MonoBehaviour {
   private AudioSource audioSource;
   private AudioClip[] audioClips;
   private SkillManager skillManager;
-  private SpritePosition spritePosition;
   private BodyRenderer bodyRenderer;
   private CastBar castBar;
 
@@ -76,7 +70,6 @@ public class Character : MonoBehaviour {
 		//Get components
 		animator = this.GetComponent<Animator>();
 	    cameraPosition = GameObject.FindObjectOfType<CameraPosition>();
-	    spritePosition = this.GetComponentInChildren<SpritePosition>();
 		audioSource = this.GetComponent<AudioSource>();
 		skillManager = GameObject.FindObjectOfType<SkillManager>();
 		bodyRenderer = this.GetComponentInChildren<BodyRenderer>();
@@ -97,7 +90,7 @@ public class Character : MonoBehaviour {
 	    canMove = true;
 
 	    //Status
-	    statusArray = new bool[statusNumber];
+	    statusArray = new bool[Constants.statusNumber];
 	}
 
 	void createSpriteMatrix(){ //read all sprites and arrange them in a matrix [state][direction][frame]
@@ -205,8 +198,8 @@ public class Character : MonoBehaviour {
 				statusArray[st.getStatus()] = true;
 			}
 		}
-		bodyRenderer.setInvisible(statusArray[invisible]);
-		canMove = !statusArray[controlled];
+		bodyRenderer.setInvisible(statusArray[Constants.invisible]);
+		canMove = !statusArray[Constants.controlled];
 	}
 
 	//STATUS FUNCTIONS!!
@@ -341,7 +334,7 @@ public class Character : MonoBehaviour {
 		Debug.Assert (health != null);
 		int extraAttack = (int) Mathf.Floor(Random.value * (float)(maxAttack - minAttack + 1));
 		int attack = minAttack + extraAttack;
-		health.decreaseHealth(attack, this);
+		health.decreaseHealth(attack, this, Constants.physical, Constants.neutral);
 	}
 
 	bool HasTargetPosition() {
@@ -388,9 +381,7 @@ public class Character : MonoBehaviour {
   	}
 
   	public void moveTo (Vector3 v){
-  		//bool b = HasTargetPosition();
   		this.transform.position = v;
-  		//if (!b) isMoving = false;
   		UpdateCamera();
   	}
 

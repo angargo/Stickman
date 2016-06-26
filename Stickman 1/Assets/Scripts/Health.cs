@@ -8,9 +8,9 @@ public class Health : MonoBehaviour {
 	private Enemy enemy;
 	private Character myCharacter;
 
-	public void decreaseHealth (int a, Character character){
+	public void decreaseHealth (int x, Character character, int damageType, int element){
+		int a = computeDamage(x, character , damageType, element);
 		if (a > 0){
-			if (myCharacter.getStatus(0)) return;
 			HP -= a;
 			myCharacter.isHit ();
 			if (enemy != null && HP <= 0){ //now player is immortal!
@@ -22,6 +22,13 @@ public class Health : MonoBehaviour {
 			}
 		}
 		else HP -= a;
+	}
+
+	private int computeDamage(int x, Character c, int dT, int e){
+		if (myCharacter.getStatus(Constants.invulnerable)) return 0;
+		if (myCharacter.getStatus(Constants.invulnerableMagic) && dT == Constants.magical) return 0;
+		//more stuff
+		return x;
 	}
 
 	public int getCurrentHP(){
@@ -36,6 +43,7 @@ public class Health : MonoBehaviour {
 	void Start () {
 		enemy = this.GetComponent<Enemy>();
 		myCharacter = this.GetComponent<Character>();
+		HP = MaxHP;
 	}
 	
 	// Update is called once per frame

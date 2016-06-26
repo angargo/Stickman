@@ -19,7 +19,6 @@ public class FireballSkill : MonoBehaviour {
 		myCharacter.setCasting(1);
 		mySkill.SetCasting(true);
 		mySkill.setCancel(true);
-		mySkill.SetParameters(myCharacter, true);
 	}
 
 	public void finishSkill(){
@@ -37,7 +36,7 @@ public class FireballSkill : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		mySkill = this.GetComponent<Skill>();
-		mySkill.setSkillNumber(0);
+		mySkill.setSkillNumber(Constants.fireball);
 	}
 	
 	// Update is called once per frame

@@ -18,11 +18,11 @@ public class ExplosionCollider : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col){
 		Health health = col.gameObject.GetComponentInParent<Health>();
 		if (health == null) return;
-		health.decreaseHealth(20, myCharacter);
+		health.decreaseHealth(20, myCharacter, Constants.magical, Constants.neutral);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Time.time - timeWhenCreated > 0.5) Destroy(this.gameObject);
+		if (Time.time - timeWhenCreated > 0.1) Destroy(this.gameObject);
 	}
 }

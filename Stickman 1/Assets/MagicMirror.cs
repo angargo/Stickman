@@ -4,14 +4,15 @@ using System.Collections;
 public class MagicMirror : MonoBehaviour {
 
 	private Character myCharacter;
-	public float t = 1;
+	public float t = 0.25f;
 	private bool countDown = false;
 	//private Vector3 offset = new Vector3 (0,0, 0);
 	Skill mySkill;
+	public GameObject effect;
 
 	void Awake () {
 		mySkill = this.GetComponent<Skill>();
-		mySkill.setSkillNumber(4);
+		mySkill.setSkillNumber(Constants.magicMirror);
 	}
 
 	public void cancelSkill(){
@@ -26,9 +27,13 @@ public class MagicMirror : MonoBehaviour {
 	public void startSkill(){
 		countDown = true;
 		mySkill.setCancel(true);
-		mySkill.SetParameters(myCharacter, false);
 		SkillManager skillManager = GameObject.FindObjectOfType<SkillManager>();
 		skillManager.cancelAllOtherSkills(myCharacter, mySkill);
+
+		GameObject statusObject = Instantiate(effect, myCharacter.transform.position, Quaternion.identity) as GameObject;
+		statusObject.transform.parent = myCharacter.transform;
+		Status status = statusObject.GetComponent<Status>();
+		status.setParameters(mySkill, 0, false, Constants.invulnerableMagic, true);
 	}
 
 	// Use this for initialization

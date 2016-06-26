@@ -18,6 +18,10 @@ public class Projectile : MonoBehaviour {
 		myCharacter = character;
 	}
 
+	public Character getCharacter(){
+		return myCharacter;
+	}
+
 	public bool hasArrived(){
 		return arrived;
 	}
