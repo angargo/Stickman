@@ -45,7 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Menu.cs" />
+     <Compile Include="Assets\MagicMirror.cs" />
+     <Compile Include="Assets\MagicMirrorCollider.cs" />
      <Compile Include="Assets\Old Stuff\DragHandeler.cs" />
      <Compile Include="Assets\Old Stuff\GameobjectDragAndDrop.cs" />
      <Compile Include="Assets\Old Stuff\MainMenu.cs" />
@@ -54,6 +55,7 @@
      <Compile Include="Assets\Old Stuff\SkillbarPanels.cs" />
      <Compile Include="Assets\Old Stuff\inventory.cs" />
      <Compile Include="Assets\Old Stuff\slot.cs" />
+     <Compile Include="Assets\Projectile.cs" />
      <Compile Include="Assets\Scripts\BodyRenderer.cs" />
      <Compile Include="Assets\Scripts\CameraPosition.cs" />
      <Compile Include="Assets\Scripts\CastBar.cs" />
@@ -68,6 +70,7 @@
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\Keyboard.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\MusicManager.cs" />
      <Compile Include="Assets\Scripts\MySkillButton.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
@@ -79,6 +82,7 @@
      <Compile Include="Assets\Scripts\SpritePosition.cs" />
      <Compile Include="Assets\Scripts\Status.cs" />
      <Compile Include="Assets\Scripts\UISkill.cs" />
+     <None Include="Assets\Glass.shader" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />

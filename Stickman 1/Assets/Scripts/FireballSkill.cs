@@ -19,12 +19,13 @@ public class FireballSkill : MonoBehaviour {
 		myCharacter.setCasting(1);
 		mySkill.SetCasting(true);
 		mySkill.setCancel(true);
+		mySkill.SetParameters(myCharacter, true);
 	}
 
 	public void finishSkill(){
 		GameObject fireb = Instantiate(fireballPrefab, myCharacter.transform.position, Quaternion.identity) as GameObject;
 		Fireball fire = fireb.GetComponent<Fireball>();
-		fire.setTarget(targetPosition, myCharacter);
+		fire.setParameters(targetPosition, myCharacter);
 		Destroy(this.gameObject);
 	}
 

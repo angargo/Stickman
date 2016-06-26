@@ -241,7 +241,7 @@ public class Character : MonoBehaviour {
 	void SetCurrentState(int state, bool b = true) {
 		if (b) cancelAllSkills();
 		if (currentState == dying) return;
-		if (b && state == currentState && state == casting){
+		if (state == currentState && state == casting){
 			animator.SetTrigger("newCast");
 			direction = targetSkill - this.transform.position;
 		}
@@ -295,6 +295,8 @@ public class Character : MonoBehaviour {
 	}
 
 	public void performSkill (int skill, Vector3 target){ //Performing skill
+		//skillManager.cancelAllOtherSkills
+
 		//Which skill and where
 		currentSkill = skill;
 		targetSkill = target;

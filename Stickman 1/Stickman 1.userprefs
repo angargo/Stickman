@@ -1,17 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Character.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MagicMirrorCollider.cs">
     <Files>
-      <File FileName="Assets\Scripts\Character.cs" Line="215" Column="29" />
-      <File FileName="Assets\Scripts\Keyboard.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MySkillButton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UISkill.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SkillManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Old Stuff\SkillButton.cs" Line="1" Column="1" />
-      <File FileName="Assets\Menu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Cursorr.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraPosition.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Health.cs" Line="17" Column="23" />
+      <File FileName="Assets\Scripts\Character.cs" Line="164" Column="1" />
+      <File FileName="Assets\Scripts\SmokeTeleport.cs" Line="47" Column="3" />
+      <File FileName="Assets\Scripts\SpritePosition.cs" Line="6" Column="2" />
+      <File FileName="Assets\MagicMirrorCollider.cs" Line="9" Column="48" />
+      <File FileName="Assets\Scripts\Skill.cs" Line="39" Column="18" />
+      <File FileName="Assets\Scripts\Portal.cs" Line="10" Column="41" />
+      <File FileName="Assets\Scripts\ExplosionCollider.cs" Line="19" Column="1" />
+      <File FileName="Assets\Scripts\Menu.cs" Line="8" Column="1" />
+      <File FileName="Assets\Scripts\Fireball.cs" Line="13" Column="17" />
+      <File FileName="Assets\Projectile.cs" Line="29" Column="3" />
+      <File FileName="Assets\Scripts\FireballSkill.cs" Line="31" Column="2" />
+      <File FileName="Assets\Scripts\SkillManager.cs" Line="43" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

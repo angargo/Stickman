@@ -8,9 +8,7 @@ public class Portal : MonoBehaviour {
 	public int goToLevel = 1;
 
 	void OnTriggerEnter2D (Collider2D col){
-		Debug.Log (col.gameObject.tag);
 		if(col.gameObject.tag == "Player") levelManager.LoadLevelWithIndex(goToLevel);
-		Debug.Log ("Collided with " + col);
 	}
 
 	// Use this for initialization

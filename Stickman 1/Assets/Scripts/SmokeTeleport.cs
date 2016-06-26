@@ -17,7 +17,6 @@ public class SmokeTeleport : MonoBehaviour {
 
 	public void cancelSkill(){
 		Instantiate(smokePrefab, myCharacter.transform.position, Quaternion.identity);
-		//myCharacter.setMove(true);
 		Destroy(this.gameObject);
 	}
 
@@ -45,6 +44,7 @@ public class SmokeTeleport : MonoBehaviour {
 
 		//Can cancel this skill
 		mySkill.setCancel(true);
+		mySkill.SetParameters(myCharacter, false);
 	}
 
 	public void secondCast(){

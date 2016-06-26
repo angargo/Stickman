@@ -16,7 +16,6 @@ public class ExplosionCollider : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D (Collider2D col){
-		Debug.Log(col.gameObject);
 		Health health = col.gameObject.GetComponentInParent<Health>();
 		if (health == null) return;
 		health.decreaseHealth(20, myCharacter);

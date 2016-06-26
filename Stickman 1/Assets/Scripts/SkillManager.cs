@@ -7,6 +7,8 @@ public class SkillManager : MonoBehaviour {
 	public GameObject fireballPrefab;
 	const int smokeTeleport = 1;
 	public GameObject smokePrefab;
+	const int magicMirror = 4;
+	public GameObject magicMirrorPrefab;
 
 
 
@@ -33,6 +35,13 @@ public class SkillManager : MonoBehaviour {
 				smoke.secondCast();
 			}
 		}
+		else if (skill == magicMirror){
+			GameObject newMagicMirror = Instantiate(magicMirrorPrefab, character.transform.position, Quaternion.identity) as GameObject;
+			newMagicMirror.transform.parent = character.transform;
+		    MagicMirror mm = newMagicMirror.GetComponent<MagicMirror>();
+			mm.setParameters(character);
+			mm.startSkill();
+		}
 	}
 
 	public void cancelSkill(Skill skill){
@@ -45,6 +54,10 @@ public class SkillManager : MonoBehaviour {
 			SmokeTeleport smoke = skill.GetComponent<SmokeTeleport>();
 			smoke.cancelSkill();
 		}
+		if (n == magicMirror){
+			MagicMirror magic = skill.GetComponent<MagicMirror>();
+			magic.cancelSkill();
+		}
 	}
 
 	public void finishSkill(Skill skill){
@@ -54,6 +67,7 @@ public class SkillManager : MonoBehaviour {
 			fireb.finishSkill();
 		}
 		if (n == smokeTeleport) return;
+		if (n == magicMirror) return;
 	}
 
 	public void cancelAllOtherSkills (Character character, Skill skill){

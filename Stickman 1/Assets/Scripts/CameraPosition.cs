@@ -52,9 +52,15 @@ public class CameraPosition : MonoBehaviour {
     if (Input.GetMouseButtonUp(0)) OnMouseLeftUp();
 	//player.changeSprite();
   }
+
+  bool noMenus(){
+  	Menu[] menus = GameObject.FindObjectsOfType<Menu>();
+  	foreach (Menu menu in menus) if (menu.isActiveAndEnabled) return false;
+  	return true;
+  }
   
   void OnMouseLeftDrag() {
-        if (GameObject.FindObjectsOfType<Menu>() == null) {
+        if (noMenus()) {
             Vector3 diff = Input.mousePosition - drag;
             if (Input.GetKey(KeyCode.LeftShift)) {
                 //Debug.Log("Vertical drag");
