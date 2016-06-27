@@ -4,7 +4,7 @@ using System.Collections;
 public class MagicMirror : MonoBehaviour {
 
 	private Character myCharacter;
-	public float t = 0.25f;
+	public float t = 15;
 	private bool countDown = false;
 	//private Vector3 offset = new Vector3 (0,0, 0);
 	Skill mySkill;
@@ -25,6 +25,7 @@ public class MagicMirror : MonoBehaviour {
 	}
 
 	public void startSkill(){
+		t = 15;
 		countDown = true;
 		mySkill.setCancel(true);
 		SkillManager skillManager = GameObject.FindObjectOfType<SkillManager>();

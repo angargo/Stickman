@@ -10,6 +10,8 @@ public class Projectile : MonoBehaviour {
 	private Character myCharacter;
 	private Vector3 originalPosition;
 
+	public GameObject Body;
+
 	public void SetParameters(Vector3 v, float s, Character character){
 		targetPosition = v;
 		speed = s;
