@@ -127,6 +127,14 @@
     <Compile Include="Assets\Standard Assets\Utility\WaypointProgressTracker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Glass.shader" />
+    <None Include="Assets\Prefabs\ForceField\AlphaSelfIllum.shader" />
+    <None Include="Assets\Prefabs\ForceField\Bubble.shader" />
+    <None Include="Assets\Prefabs\ForceField\Shieldeffect.shader" />
+    <None Include="Assets\Prefabs\ForceField\shieldeffect.compute" />
+    <None Include="Assets\Prefabs\ForceField\theOne\Composite.shader" />
+    <None Include="Assets\Prefabs\ForceField\theOne\Shaders\Shield NoDistortion.shader" />
+    <None Include="Assets\Prefabs\ForceField\theOne\Shaders\ShieldEffect.cginc" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
@@ -140,6 +148,7 @@
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+    <None Include="Assets\bubble\Bubble.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

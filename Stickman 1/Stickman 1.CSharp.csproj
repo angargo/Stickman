@@ -69,40 +69,60 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\BodyRenderer.cs" />
-    <Compile Include="Assets\CastBar.cs" />
-    <Compile Include="Assets\DragHandeler.cs" />
-    <Compile Include="Assets\Scripts\CameraPosition.cs" />
+    <Compile Include="Assets\MagicMirror.cs" />
+    <Compile Include="Assets\MagicMirrorCollider.cs" />
+    <Compile Include="Assets\Old Stuff\DragHandeler.cs" />
+    <Compile Include="Assets\Old Stuff\GameobjectDragAndDrop.cs" />
+    <Compile Include="Assets\Old Stuff\MainMenu.cs" />
+    <Compile Include="Assets\Old Stuff\OptionsMenu.cs" />
+    <Compile Include="Assets\Old Stuff\SkillButton.cs" />
+    <Compile Include="Assets\Old Stuff\SkillbarPanels.cs" />
+    <Compile Include="Assets\Old Stuff\inventory.cs" />
+    <Compile Include="Assets\Old Stuff\slot.cs" />
+    <Compile Include="Assets\Prefabs\ForceField\EnergyShield.cs" />
+    <Compile Include="Assets\Prefabs\ForceField\ForceFieldAnimate.cs" />
+    <Compile Include="Assets\Prefabs\ForceField\theOne\Scripts\FireShotsFromVerts.cs" />
+    <Compile Include="Assets\Prefabs\ForceField\theOne\Scripts\ShieldEffect.cs" />
+    <Compile Include="Assets\Prefabs\ForceField\theOne\Scripts\ToShieldProjectile.cs" />
+    <Compile Include="Assets\Projectile.cs" />
+    <Compile Include="Assets\Scripts\BodyRenderer.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraPosition.cs" />
+    <Compile Include="Assets\Scripts\Camera\ScreenSpaceDistortionEffect.cs" />
+    <Compile Include="Assets\Scripts\CastBar.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\Constants.cs" />
     <Compile Include="Assets\Scripts\Cursorr.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Explosion.cs" />
     <Compile Include="Assets\Scripts\ExplosionCollider.cs" />
     <Compile Include="Assets\Scripts\Fireball.cs" />
     <Compile Include="Assets\Scripts\FireballSkill.cs" />
-    <Compile Include="Assets\Scripts\GameobjectDragAndDrop.cs" />
     <Compile Include="Assets\Scripts\HPBar.cs" />
     <Compile Include="Assets\Scripts\Health.cs" />
     <Compile Include="Assets\Scripts\Keyboard.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\MusicManager.cs" />
-    <Compile Include="Assets\Scripts\OptionsMenu.cs" />
+    <Compile Include="Assets\Scripts\MySkillButton.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Portal.cs" />
     <Compile Include="Assets\Scripts\Skill.cs" />
-    <Compile Include="Assets\Scripts\SkillButton.cs" />
     <Compile Include="Assets\Scripts\SkillManager.cs" />
     <Compile Include="Assets\Scripts\SkillbarPanel.cs" />
-    <Compile Include="Assets\Scripts\SkillbarPanels.cs" />
     <Compile Include="Assets\Scripts\SmokeTeleport.cs" />
     <Compile Include="Assets\Scripts\SpritePosition.cs" />
     <Compile Include="Assets\Scripts\Status.cs" />
     <Compile Include="Assets\Scripts\UISkill.cs" />
-    <Compile Include="Assets\inventory.cs" />
-    <Compile Include="Assets\slot.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Glass.shader" />
+    <None Include="Assets\Prefabs\ForceField\AlphaSelfIllum.shader" />
+    <None Include="Assets\Prefabs\ForceField\Bubble.shader" />
+    <None Include="Assets\Prefabs\ForceField\Shieldeffect.shader" />
+    <None Include="Assets\Prefabs\ForceField\shieldeffect.compute" />
+    <None Include="Assets\Prefabs\ForceField\theOne\Composite.shader" />
+    <None Include="Assets\Prefabs\ForceField\theOne\Shaders\Shield NoDistortion.shader" />
+    <None Include="Assets\Prefabs\ForceField\theOne\Shaders\ShieldEffect.cginc" />
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
@@ -116,6 +136,7 @@
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
     <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+    <None Include="Assets\bubble\Bubble.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
