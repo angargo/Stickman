@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SmokeTeleport : MonoBehaviour {
 
-	private float speed = 40;
+	private float speed = 2;
 	private Character myCharacter;
 	private Vector3 targetPosition;
 	private float waitingTime = 3;

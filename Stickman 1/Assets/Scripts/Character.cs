@@ -111,9 +111,9 @@ public class Character : MonoBehaviour {
   	//UPDATE FUNCTIONS!!!
 
 	void Update () {
-		if (canMove) UpdateCurrentState ();
+		UpdateCurrentState ();
 		UpdateSprite();
-	    if (canMove) UpdatePosition(); // Consider moving this to FixedUpdate
+	    UpdatePosition(); // Consider moving this to FixedUpdate
 		//UpdateCamera ();
 		//UpdateStatus ();
 	}
@@ -159,6 +159,8 @@ public class Character : MonoBehaviour {
 
 
 	void UpdatePosition(){
+
+	  if (!canMove) return;
 
 	  if (currentState > walking || !isMoving) return; //We have to be walking!
 
@@ -206,6 +208,7 @@ public class Character : MonoBehaviour {
 
 
 	void UpdateCurrentState() {
+		if (!canMove) return;
 		if (isChasing) {
 			if (enemy == null || enemy.isDead()) {
 				// If the enemy disappears, cry.
@@ -232,6 +235,7 @@ public class Character : MonoBehaviour {
 	}
 
 	void SetCurrentState(int state, bool b = true) {
+		if (!canMove) return;
 		if (b) cancelAllSkills();
 		if (currentState == dying) return;
 		if (state == currentState && state == casting){
@@ -261,6 +265,7 @@ public class Character : MonoBehaviour {
 	}
 
 	public void SetTargetPosition(Vector3 position) {
+		//if (!canMove) return;
 	  	if (position != targetPosition){ //We don't want to compute everything again
 		    targetPosition = position;
 		    direction = (targetPosition - this.transform.position);
@@ -288,7 +293,7 @@ public class Character : MonoBehaviour {
 	}
 
 	public void performSkill (int skill, Vector3 target){ //Performing skill
-		//skillManager.cancelAllOtherSkills
+		if (!canMove) return;
 
 		//Which skill and where
 		currentSkill = skill;
@@ -302,6 +307,7 @@ public class Character : MonoBehaviour {
 	}
 
 	public void chaseEnemy(Character givenEnemy){
+		//if (!canMove) return;
 		isChasing = true;
 		enemy = givenEnemy;
 		SetTargetPosition(givenEnemy.transform.position);
