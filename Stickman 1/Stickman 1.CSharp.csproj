@@ -79,6 +79,7 @@
     <Compile Include="Assets\Old Stuff\SkillbarPanels.cs" />
     <Compile Include="Assets\Old Stuff\inventory.cs" />
     <Compile Include="Assets\Old Stuff\slot.cs" />
+    <Compile Include="Assets\Prefabs\EarthQuake\rotate.cs" />
     <Compile Include="Assets\Prefabs\ForceField\EnergyShield.cs" />
     <Compile Include="Assets\Prefabs\ForceField\ForceFieldAnimate.cs" />
     <Compile Include="Assets\Prefabs\ForceField\theOne\Scripts\FireShotsFromVerts.cs" />
