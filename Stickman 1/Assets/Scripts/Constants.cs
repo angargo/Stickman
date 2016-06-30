@@ -5,16 +5,19 @@ public class Constants : MonoBehaviour {
 
 
 	//Status
-	static public int statusNumber = 5;
+	static public int statusNumber = 7;
 	static public int invulnerable = 0;
 	static public int invisible = 1;
 	static public int controlled = 2;
 	static public int invulnerableMagic = 3;
 	static public int invulnerablePhysical = 4;
+	static public int quake = 5;
+	static public int crippled = 6;
 
 	//Skills
 	static public int fireball = 0;
 	static public int smokeTeleport = 1;
+	static public int earthquake = 2;
 	static public int magicMirror = 4;
 
 	//AttackTypes

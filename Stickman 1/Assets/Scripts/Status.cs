@@ -20,6 +20,10 @@ public class Status : MonoBehaviour {
 		return destroyed;
 	}
 
+	public float getTime(){
+		return time;
+	}
+
 
 	public void setParameters (Skill sk, float t, bool b, int st, bool d){
 		time = t;

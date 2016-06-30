@@ -8,6 +8,10 @@ public class CameraPosition : MonoBehaviour {
   private Vector3 offset;
   public const float minAngle = 25, maxAngle = 50;
   private float midAngle, maxDiff;
+  bool quake;
+  public const float quakeMax = 0.2f;
+
+  private Vector3 quakeOffset = Vector3.zero;
 
     // Use this for initialization
     void Start () {
@@ -16,17 +20,34 @@ public class CameraPosition : MonoBehaviour {
       maxDiff = 179 - (maxAngle - minAngle)/2;
       initializeOffset();
       offset = transform.position - player.transform.position;
+      quake = false;
     }
 
     // Update is called once per frame
     void Update () {
       CheckCustomEvents();
+      quakeEffect();
 	}
 
   void initializeOffset(){
   	offset = new Vector3(0,0, -7.5f);
   	this.transform.position = player.transform.position + offset;
   	correctPosition();
+  }
+
+  public void setQuake(bool b){
+  	quake = b;
+  }
+
+  void quakeEffect(){
+  		this.transform.localPosition -= quakeOffset;
+  		quakeOffset = Vector3.zero;
+  		if (quake){
+			quakeOffset.x = Random.value*quakeMax;
+			quakeOffset.y = Random.value*quakeMax;
+			quakeOffset.z = 0;
+			this.transform.localPosition += quakeOffset;
+		}
   }
 
   void correctPosition(){ //Super cutre, ya lo cambiare. Mantiene la cam entre minAngle y maxAngle respecto a la vertical.

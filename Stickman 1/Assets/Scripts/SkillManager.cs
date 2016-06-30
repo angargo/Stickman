@@ -6,6 +6,7 @@ public class SkillManager : MonoBehaviour {
 	public GameObject fireballPrefab;
 	public GameObject smokePrefab;
 	public GameObject magicMirrorPrefab;
+	public GameObject earthquakePrefab;
 
 	//clickNumber: some skills need to be used more than once [for instance 'smokeTeleport']
 	public void performSkill(Character character, int skill, Vector3 mousePos){
@@ -37,6 +38,13 @@ public class SkillManager : MonoBehaviour {
 			mm.setParameters(character);
 			mm.startSkill();
 		}
+		else if (skill == Constants.earthquake){
+			GameObject newEarthquake = Instantiate(earthquakePrefab, character.transform.position, Quaternion.identity) as GameObject;
+			newEarthquake.transform.parent = character.transform;
+			EarthquakeSkill earthquake = newEarthquake.GetComponent<EarthquakeSkill>();
+			earthquake.setParameters(character, mousePos);
+			earthquake.startSkill();
+		}
 	}
 
 	public void cancelSkill(Skill skill){
@@ -53,6 +61,10 @@ public class SkillManager : MonoBehaviour {
 			MagicMirror magic = skill.GetComponent<MagicMirror>();
 			magic.cancelSkill();
 		}
+		if (n == Constants.earthquake){
+			EarthquakeSkill earthquake = skill.GetComponent<EarthquakeSkill>();
+			earthquake.cancelSkill();
+		}
 	}
 
 	public void finishSkill(Skill skill){
@@ -63,6 +75,10 @@ public class SkillManager : MonoBehaviour {
 		}
 		if (n == Constants.smokeTeleport) return;
 		if (n == Constants.magicMirror) return;
+		if (n == Constants.earthquake){
+			EarthquakeSkill earthquake = skill.GetComponent<EarthquakeSkill>();
+			earthquake.finishSkill();
+		}
 	}
 
 	public void cancelAllOtherSkills (Character character, Skill skill){

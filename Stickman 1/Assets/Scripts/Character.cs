@@ -202,6 +202,8 @@ public class Character : MonoBehaviour {
 		}
 		bodyRenderer.setInvisible(statusArray[Constants.invisible]);
 		canMove = !statusArray[Constants.controlled];
+		if (statusArray[Constants.quake]) cameraPosition.setQuake(true);
+		else cameraPosition.setQuake(false);
 	}
 
 	//STATUS FUNCTIONS!!
