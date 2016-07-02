@@ -3,23 +3,40 @@ using System.Collections;
 
 public class QuakeCollider : MonoBehaviour {
 
-	public GameObject quakeStatus;
-	private const float duration = 0.2f;
-	private const float renew = 0.1f;
+	public GameObject Status;
+	private const float duration = 0.5f;
+	private const float renew = 0.03f;
+	private const float crippleEffectiveness = 0.25f;
+	Character myCharacter;
+
+	public void setParameters (Character character){
+		myCharacter = character;
+	}
 
 	public void updateCharacter(Character character){
 		Status[] statusArray = character.GetComponentsInChildren<Status>();
 		float maxTime = 0;
 		foreach (Status status in statusArray){
 			if (status.getStatus() == Constants.quake){
-				maxTime = Mathf.Max(maxTime, status.getTime());
+				maxTime = Mathf.Max(maxTime, status.getParameter(Constants.duration));
 			}
 		}
 		if (maxTime < duration){
-			GameObject statusObject = Instantiate(quakeStatus, character.transform.position, Quaternion.identity) as GameObject;
+			//renew quake status
+			GameObject statusObject = Instantiate(Status, character.transform.position, Quaternion.identity) as GameObject;
 			statusObject.transform.parent = character.transform;
 			Status status = statusObject.GetComponent<Status>();
-			status.setParameters(null, renew, true, Constants.quake, false);
+			float[] parameters = {renew};
+			status.setParameters(null, parameters, true, Constants.quake, false);
+			//slow
+			GameObject statusObject2 = Instantiate(Status, character.transform.position, Quaternion.identity) as GameObject;
+			statusObject2.transform.parent = character.transform;
+			Status status2 = statusObject2.GetComponent<Status>();
+			float[] parameters2 = {renew, crippleEffectiveness};
+			status2.setParameters(null, parameters2, true, Constants.crippled, false);
+			//deal damage
+			Health health = character.GetComponent<Health>();
+			health.decreaseHealthPassively(1, myCharacter, Constants.magical, Constants.neutral);
 		}
 	}
 

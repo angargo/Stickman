@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Earthquake : MonoBehaviour {
 
-	Character myCharacter;
 	private float time = 10;
 
 	public void setParameters (Character character){
-		myCharacter = character;
+		QuakeCollider qc = GetComponentInChildren<QuakeCollider>();
+		qc.setParameters(character);
 	}
 
 	void Update(){

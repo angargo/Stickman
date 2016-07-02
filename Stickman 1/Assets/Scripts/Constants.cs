@@ -28,6 +28,11 @@ public class Constants : MonoBehaviour {
 	//Elements
 	static public int neutral = 0;
 
+	//Parameters
+
+	static public int duration = 0;
+	static public int effectiveness = 1; 
+
 
 	// Use this for initialization
 	void Start () {

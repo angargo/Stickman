@@ -34,7 +34,7 @@ public class MagicMirror : MonoBehaviour {
 		GameObject statusObject = Instantiate(effect, myCharacter.transform.position, Quaternion.identity) as GameObject;
 		statusObject.transform.parent = myCharacter.transform;
 		Status status = statusObject.GetComponent<Status>();
-		status.setParameters(mySkill, 0, false, Constants.invulnerableMagic, true);
+		status.setParameters(mySkill, new float[1], false, Constants.invulnerableMagic, true);
 	}
 
 	// Use this for initialization

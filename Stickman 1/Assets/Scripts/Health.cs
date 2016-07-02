@@ -24,6 +24,21 @@ public class Health : MonoBehaviour {
 		else HP -= a;
 	}
 
+	public void decreaseHealthPassively (int x, Character character, int damageType, int element){
+		int a = computeDamage(x, character , damageType, element);
+		if (a > 0){
+			HP -= a;
+			if (enemy != null && HP <= 0){ //now player is immortal!
+				myCharacter.die();
+				//Destroy(this.gameObject);
+			}
+			if (enemy != null && character != null && character.GetComponent<Enemy>() == null){
+				enemy.beingAttacked(character);
+			}
+		}
+		else HP -= a;
+	}
+
 	private int computeDamage(int x, Character c, int dT, int e){
 		if (myCharacter.getStatus(Constants.invulnerable)) return 0;
 		if (myCharacter.getStatus(Constants.invulnerableMagic) && dT == Constants.magical) return 0;

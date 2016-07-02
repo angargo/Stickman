@@ -9,6 +9,7 @@ public class Character : MonoBehaviour {
   public int[] directions;
   public int[] stateLengths;
   public int totalStates;
+  public float speedMult;
 
   //Movement stuff
   private Vector3 direction;
@@ -91,6 +92,7 @@ public class Character : MonoBehaviour {
 
 	    //Status
 	    statusArray = new bool[Constants.statusNumber];
+	   	speedMult = 1;
 	}
 
 	void createSpriteMatrix(){ //read all sprites and arrange them in a matrix [state][direction][frame]
@@ -160,14 +162,16 @@ public class Character : MonoBehaviour {
 
 	void UpdatePosition(){
 
+	  float s = speed*speedMult;
+
 	  if (!canMove) return;
 
 	  if (currentState > walking || !isMoving) return; //We have to be walking!
 
 	  Vector3 newPosition;
 	  //if we are close enough to our target or not
-	  if ((this.transform.position - targetPosition).magnitude <= speed * Time.deltaTime) newPosition = targetPosition;
-      else  newPosition = this.transform.position + direction * speed * Time.deltaTime;
+	  if ((this.transform.position - targetPosition).magnitude <= s * Time.deltaTime) newPosition = targetPosition;
+      else  newPosition = this.transform.position + direction * s * Time.deltaTime;
 
       //finding obstacles (collisions).
       RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(newPosition)));
@@ -192,14 +196,19 @@ public class Character : MonoBehaviour {
 	}
 
 	public void UpdateStatus() { //waitingForSkill, poison, sleep, etc.
-		//Debug.Log ("HOLA!");
+		speedMult = 1;
+		float aux = 0;
 		for (int i = 0; i < statusArray.Length; ++i) statusArray[i] = false;
 		Status[] status = this.GetComponentsInChildren<Status>();
 		foreach (Status st in status){
 			if (!st.isDestroyed()){
 				statusArray[st.getStatus()] = true;
+				if (st.getStatus() == Constants.crippled){
+					aux = Mathf.Max(aux, st.getParameter(Constants.effectiveness));
+				}
 			}
 		}
+		speedMult -= aux;
 		bodyRenderer.setInvisible(statusArray[Constants.invisible]);
 		canMove = !statusArray[Constants.controlled];
 		if (statusArray[Constants.quake]) cameraPosition.setQuake(true);

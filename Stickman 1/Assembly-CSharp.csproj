@@ -93,6 +93,7 @@
      <Compile Include="Assets\Scripts\Status.cs" />
      <Compile Include="Assets\Scripts\UISkill.cs" />
      <Compile Include="Assets\Scripts\sSkill\Shake.cs" />
+     <Compile Include="Assets\Scripts\sSkill\move.cs" />
      <Compile Include="Assets\Scripts\sSkill\rotate.cs" />
      <None Include="Assets\Prefabs\ForceField\shieldeffect.compute" />
      <None Include="Assets\Glass.shader" />
