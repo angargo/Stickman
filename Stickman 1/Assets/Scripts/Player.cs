@@ -25,9 +25,9 @@ public class Player : MonoBehaviour {
 		myCharacter.chaseEnemy(givenEnemy);
 	}
 
-	public void castSkill(int skill, Vector3 position){
+	public void castSkill(int skill, Vector3 position, Character character){
 		//myCharacter.performDefaultSkill(position);
-		myCharacter.performSkill(skill , position);
+		myCharacter.performSkill(skill, position, character);
 	}
 }
 

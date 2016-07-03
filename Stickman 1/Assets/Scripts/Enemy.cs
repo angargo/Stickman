@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour {
 
 	private bool tryCast (int a){
 		if (Random.value < Time.deltaTime/aggressiveSkillsExpectedTime[a]){
-			myCharacter.performSkill(a, myTarget.transform.position);
+			myCharacter.performSkill(a, myTarget.transform.position, null);
 			return true;
 		}
 		return false;

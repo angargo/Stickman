@@ -18,6 +18,7 @@ public class Constants : MonoBehaviour {
 	static public int fireball = 0;
 	static public int smokeTeleport = 1;
 	static public int earthquake = 2;
+	static public int heal = 5;
 	static public int magicMirror = 4;
 
 	//AttackTypes

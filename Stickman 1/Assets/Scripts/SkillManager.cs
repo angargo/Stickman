@@ -7,9 +7,10 @@ public class SkillManager : MonoBehaviour {
 	public GameObject smokePrefab;
 	public GameObject magicMirrorPrefab;
 	public GameObject earthquakePrefab;
+	public GameObject healPrefab;
 
 	//clickNumber: some skills need to be used more than once [for instance 'smokeTeleport']
-	public void performSkill(Character character, int skill, Vector3 mousePos){
+	public void performSkill(Character character, int skill, Vector3 mousePos, Character targetCharacter){
 		if (skill == Constants.fireball){
 			GameObject newFireball = Instantiate(fireballPrefab, character.transform.position, Quaternion.identity) as GameObject;
 			newFireball.transform.parent = character.transform;
@@ -44,6 +45,13 @@ public class SkillManager : MonoBehaviour {
 			EarthquakeSkill earthquake = newEarthquake.GetComponent<EarthquakeSkill>();
 			earthquake.setParameters(character, mousePos);
 			earthquake.startSkill();
+		}
+		else if (skill == Constants.heal){
+			GameObject newHeal = Instantiate(healPrefab, character.transform.position, Quaternion.identity) as GameObject;
+			newHeal.transform.parent = character.transform;
+			HealSkill heal = newHeal.GetComponent<HealSkill>();
+			heal.setParameters(character, targetCharacter);
+			heal.startSkill();
 		}
 	}
 

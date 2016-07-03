@@ -22,6 +22,7 @@ public class Health : MonoBehaviour {
 			}
 		}
 		else HP -= a;
+		HP = Mathf.Min(MaxHP, HP);
 	}
 
 	public void decreaseHealthPassively (int x, Character character, int damageType, int element){

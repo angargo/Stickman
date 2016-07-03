@@ -303,7 +303,7 @@ public class Character : MonoBehaviour {
 		//skillManager.performSkill(this, currentSkill, true, 0, targetSkill);
 	}
 
-	public void performSkill (int skill, Vector3 target){ //Performing skill
+	public void performSkill (int skill, Vector3 target, Character character){ //Performing skill
 		if (!canMove) return;
 
 		//Which skill and where
@@ -314,7 +314,7 @@ public class Character : MonoBehaviour {
 		stopChasing();
 
 		//Depending if we were waiting for the click or it was the first one
-		skillManager.performSkill(this, currentSkill, targetSkill);
+		skillManager.performSkill(this, currentSkill, targetSkill, character);
 	}
 
 	public void chaseEnemy(Character givenEnemy){

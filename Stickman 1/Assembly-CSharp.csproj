@@ -47,6 +47,8 @@
   <ItemGroup>
      <Compile Include="Assets\Earthquake.cs" />
      <Compile Include="Assets\EarthquakeSkill.cs" />
+     <Compile Include="Assets\Heal.cs" />
+     <Compile Include="Assets\HealSkill.cs" />
      <Compile Include="Assets\MagicMirror.cs" />
      <Compile Include="Assets\MagicMirrorCollider.cs" />
      <Compile Include="Assets\Old Stuff\DragHandeler.cs" />
