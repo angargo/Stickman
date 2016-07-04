@@ -17,7 +17,11 @@ public class Projectile : MonoBehaviour {
 		speed = s;
 		direction = targetPosition - this.transform.position;
 		if (direction.magnitude > Mathf.Epsilon) direction.Normalize();
+		else Destroy(this.gameObject);
 		myCharacter = character;
+		float angle = Mathf.Atan2(direction.y, direction.x);
+		this.transform.Rotate(new Vector3(0,0,angle*180/Mathf.PI));
+
 	}
 
 	public Character getCharacter(){

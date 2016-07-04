@@ -6,7 +6,7 @@ public class FireballSkill : MonoBehaviour {
 	private Skill mySkill;
 	private Character myCharacter;
 	private Vector3 targetPosition;
-	public GameObject fireballPrefab;
+	public GameObject firePrefab;
 
 	public void cancelSkill(){
 		Destroy (this.gameObject);
@@ -22,8 +22,8 @@ public class FireballSkill : MonoBehaviour {
 	}
 
 	public void finishSkill(){
-		GameObject fireb = Instantiate(fireballPrefab, myCharacter.transform.position, Quaternion.identity) as GameObject;
-		Fireball fire = fireb.GetComponent<Fireball>();
+		GameObject fireObject = Instantiate(firePrefab, myCharacter.transform.position, Quaternion.identity) as GameObject;
+		Fireball fire = fireObject.GetComponent<Fireball>();
 		fire.setParameters(targetPosition, myCharacter);
 		Destroy(this.gameObject);
 	}

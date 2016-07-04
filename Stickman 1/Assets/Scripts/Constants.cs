@@ -15,11 +15,12 @@ public class Constants : MonoBehaviour {
 	static public int crippled = 6;
 
 	//Skills
-	static public int fireball = 0;
+	static public int bomb = 0;
 	static public int smokeTeleport = 1;
 	static public int earthquake = 2;
-	static public int heal = 5;
+	static public int fireball = 3;
 	static public int magicMirror = 4;
+	static public int heal = 5;
 
 	//AttackTypes
 	static public int physical = 0;
