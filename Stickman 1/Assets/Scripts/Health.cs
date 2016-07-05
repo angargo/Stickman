@@ -7,9 +7,12 @@ public class Health : MonoBehaviour {
 	private int HP = 50;
 	private Enemy enemy;
 	private Character myCharacter;
+    public GameObject dmgin;
 
 	public void decreaseHealth (int x, Character character, int damageType, int element){
-		int a = computeDamage(x, character , damageType, element);
+        
+
+        int a = computeDamage(x, character , damageType, element);
 		if (a > 0){
 			HP -= a;
 			myCharacter.isHit ();
@@ -23,6 +26,11 @@ public class Health : MonoBehaviour {
 		}
 		else HP -= a;
 		HP = Mathf.Min(MaxHP, HP);
+        if (enemy != null) {
+            GameObject dmg = Instantiate(dmgin, enemy.transform.position, Quaternion.identity) as GameObject;
+            TextMesh info = dmg.GetComponentInChildren<TextMesh>();
+            info.text = x.ToString();
+        }
 	}
 
 	public void decreaseHealthPassively (int x, Character character, int damageType, int element){
@@ -38,7 +46,13 @@ public class Health : MonoBehaviour {
 			}
 		}
 		else HP -= a;
-	}
+        if (enemy != null)
+        {
+            GameObject dmg = Instantiate(dmgin, enemy.transform.position, Quaternion.identity) as GameObject;
+            TextMesh info = dmg.GetComponentInChildren<TextMesh>();
+            info.text = x.ToString();
+        }
+    }
 
 	private int computeDamage(int x, Character c, int dT, int e){
 		if (myCharacter.getStatus(Constants.invulnerable)) return 0;

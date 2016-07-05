@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: 80893f32312357b4ba54e3f1a4d5db3c
-timeCreated: 1464704556
+timeCreated: 1467669297
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - dmginfo: {fileID: 180590, guid: 73f9a00ca570a0a4daa48549c5fe5f51, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
