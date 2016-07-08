@@ -66,6 +66,7 @@
      <Compile Include="Assets\Prefabs\ForceField\theOne\Scripts\FireShotsFromVerts.cs" />
      <Compile Include="Assets\Prefabs\ForceField\theOne\Scripts\ShieldEffect.cs" />
      <Compile Include="Assets\Prefabs\ForceField\theOne\Scripts\ToShieldProjectile.cs" />
+     <Compile Include="Assets\Prefabs\atack\dmg.cs" />
      <Compile Include="Assets\Projectile.cs" />
      <Compile Include="Assets\QuakeCollider.cs" />
      <Compile Include="Assets\Scripts\BodyRenderer.cs" />

@@ -347,6 +347,7 @@ public class Character : MonoBehaviour {
 
 	public void autoAttack(){ //compute a value between minAttack and maxAttack, and tell the enemy that it is being hurt!
 		Debug.Assert (enemy != null);
+		if (enemy == null) return;
 		Health health = enemy.gameObject.GetComponent<Health>();
 		Debug.Assert (health != null);
 		int extraAttack = (int) Mathf.Floor(Random.value * (float)(maxAttack - minAttack + 1));

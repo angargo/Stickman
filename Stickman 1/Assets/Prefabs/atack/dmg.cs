@@ -7,9 +7,8 @@ public class dmg : MonoBehaviour {
     public float fadespeed = 0.02f;
     public TextMesh col;
     public SpriteRenderer critic;
-    //public Camera cam;
-    //publi
     Color c;
+
     // Use this for initialization
 	void Start () {
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -vel);
@@ -18,8 +17,6 @@ public class dmg : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //transform.LookAt(cam.transform);
-
         c = critic.color;
         c.a = c.a - fadespeed; 
         critic.color = c;
