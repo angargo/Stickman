@@ -9,6 +9,7 @@ public class Health : MonoBehaviour {
 	private Character myCharacter;
 	private SpritePosition spritePosition;
     public GameObject dmgin;
+    private bool isBurning;
 
 	public void decreaseHealth (int x, Character character, int damageType, int element){
         
@@ -76,10 +77,26 @@ public class Health : MonoBehaviour {
 		myCharacter = this.GetComponent<Character>();
 		spritePosition = this.GetComponentInChildren<SpritePosition>();
 		HP = MaxHP;
+		isBurning = false;
+	}
+
+	public void BurnDmg(){
+		decreaseHealthPassively(2, myCharacter, Constants.magical, Constants.neutral);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (myCharacter.isDead()){
+			CancelInvoke();
+			return;
+		}
+		if (!isBurning && myCharacter.getStatus(Constants.burn)){
+			isBurning = true;
+			InvokeRepeating("BurnDmg", 0, 0.5f);
+		}
+		else if (isBurning && !myCharacter.getStatus(Constants.burn)){
+			isBurning = false;
+			CancelInvoke("BurnDmg");
+		}
 	}
 }

@@ -116,6 +116,7 @@ public class Character : MonoBehaviour {
 		UpdateCurrentState ();
 		UpdateSprite();
 	    UpdatePosition(); // Consider moving this to FixedUpdate
+	    CheckStatus();
 		//UpdateCamera ();
 		//UpdateStatus ();
 	}
@@ -213,6 +214,10 @@ public class Character : MonoBehaviour {
 		canMove = !statusArray[Constants.controlled];
 		if (statusArray[Constants.quake]) cameraPosition.setQuake(true);
 		else cameraPosition.setQuake(false);
+	}
+
+	private void CheckStatus(){
+		//nothing yet!
 	}
 
 	//STATUS FUNCTIONS!!

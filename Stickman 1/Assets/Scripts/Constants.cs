@@ -5,7 +5,7 @@ public class Constants : MonoBehaviour {
 
 
 	//Status
-	static public int statusNumber = 7;
+	static public int statusNumber = 8;
 	static public int invulnerable = 0;
 	static public int invisible = 1;
 	static public int controlled = 2;
@@ -13,6 +13,7 @@ public class Constants : MonoBehaviour {
 	static public int invulnerablePhysical = 4;
 	static public int quake = 5;
 	static public int crippled = 6;
+	static public int burn = 7;
 
 	//Skills
 	static public int bomb = 0;
