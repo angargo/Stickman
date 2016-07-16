@@ -11,6 +11,9 @@ public class Cursorr : MonoBehaviour
     private int cast = 2;
     private int talk = 3;
 
+    private float minDist = 3;
+    private float maxDist = 10;
+
     private Ray ray;
     private RaycastHit2D[] rcArray;
     private Enemy enemy;
@@ -69,6 +72,23 @@ public class Cursorr : MonoBehaviour
             changeCursor(def); status = def;
         }
 
+        checkZoom();
+
+    }
+
+    void checkZoom(){
+    	float d = Input.GetAxis("Mouse ScrollWheel");
+    	if (d != 0){
+    		Debug.Log(d);
+    		CameraPosition cameraPosition = player.GetComponentInChildren<CameraPosition>();
+    		Vector3 camVector = cameraPosition.transform.position - player.transform.position;
+    		float dist = camVector.magnitude + 4*d;
+    		dist = Mathf.Max(dist, minDist);
+    		dist = Mathf.Min(dist, maxDist);
+    		camVector.Normalize();
+    		camVector = camVector*dist;
+    		cameraPosition.transform.position = player.transform.position + camVector;
+    	}
     }
 
     void changeCursor(int st)
