@@ -56,6 +56,7 @@ public class Character : MonoBehaviour {
   private SkillManager skillManager;
   private BodyRenderer bodyRenderer;
   private CastBar castBar;
+  private SpriteRenderer spriteRenderer;
 
 
 
@@ -63,17 +64,19 @@ public class Character : MonoBehaviour {
 
 	void Start () {
 		initializeVariables();
-		createSpriteMatrix();
+		if (spriteRenderer != null) createSpriteMatrix();
 	}
 
 	void initializeVariables(){
 
 		//Get components
 		animator = this.GetComponent<Animator>();
+		if (animator == null) animator = this.GetComponentInChildren<Animator>();
 	    cameraPosition = GameObject.FindObjectOfType<CameraPosition>();
 		audioSource = this.GetComponent<AudioSource>();
 		skillManager = GameObject.FindObjectOfType<SkillManager>();
 		bodyRenderer = this.GetComponentInChildren<BodyRenderer>();
+		spriteRenderer = bodyRenderer.GetComponent<SpriteRenderer>();
 
 	    //Read sprites and audio
 		sprites = (Sprite[]) Resources.LoadAll<Sprite>("Sprites/" + myFolder);
@@ -113,51 +116,63 @@ public class Character : MonoBehaviour {
   	//UPDATE FUNCTIONS!!!
 
 	void Update () {
+		if (bodyRenderer == null) Debug.Log (this.gameObject.name);
 		UpdateCurrentState ();
 		UpdateSprite();
+		UpdateRotation(); // ToDo Can be more efficient!
 	    UpdatePosition(); // Consider moving this to FixedUpdate
 	    CheckStatus();
 		//UpdateCamera ();
 		//UpdateStatus ();
 	}
 
+	public void UpdateRotation(){
+		if (spriteRenderer == null){
+			bodyRenderer.lookTo(direction);
+		}
+	}
+
 
 	public void UpdateSprite(){ //Updates the sprite in the renderer. Only works for plain surfaces!
+
+		if (spriteRenderer != null){
 		
-		Vector3 camToPlayer = transform.position - cameraPosition.transform.position; //Cam --> Player
-		Vector3 normalVector = Vector3.forward; //(0,0,1) [only for plain surfaces]
-		camToPlayer.z = 0; // we project it to z = 0.
+			Vector3 camToPlayer = transform.position - cameraPosition.transform.position; //Cam --> Player
+			Vector3 normalVector = Vector3.forward; //(0,0,1) [only for plain surfaces]
+			camToPlayer.z = 0; // we project it to z = 0.
 
-		float angle = Vector3.Angle(camToPlayer, direction); //shortest angle
+			float angle = Vector3.Angle(camToPlayer, direction); //shortest angle
 
-		//Check the sprite direction depending on the angle and the total number of directions the sprite has.
-		if (directions[currentState] == 5){
-			if (angle < 22.5) spriteDirection = 4;
-			else if (angle < 67.5) spriteDirection = 3;
-			else if (angle < 112.5) spriteDirection = 2;
-			else if (angle < 157.5) spriteDirection = 1;
-			else spriteDirection = 0;
+			//Check the sprite direction depending on the angle and the total number of directions the sprite has.
+			if (directions[currentState] == 5){
+				if (angle < 22.5) spriteDirection = 4;
+				else if (angle < 67.5) spriteDirection = 3;
+				else if (angle < 112.5) spriteDirection = 2;
+				else if (angle < 157.5) spriteDirection = 1;
+				else spriteDirection = 0;
+			}
+			else if (directions[currentState] == 2){
+				if (angle < 90) spriteDirection = 1;
+				else spriteDirection = 0;
+			}
+
+			//Check if we have to apply symmetry!
+			float sign = Vector3.Dot(normalVector, Vector3.Cross(camToPlayer, direction));
+			if (sign < 0 && (directions[currentState] == 2 || (spriteDirection > 0 && spriteDirection < 4))){
+				bodyRenderer.transform.localScale = new Vector3(-1,1,1);
+			}
+			else{ 
+				bodyRenderer.transform.localScale = new Vector3(1,1,1);
+			}
+
+			//Get the correct frame from the animator
+			int j = (int) Mathf.Floor (spriteIndex);
+			j %= stateLengths[currentState];
+
+			//Put all together.
+			bodyRenderer.setSprite(spriteMatrix[currentState][spriteDirection][j]);
+
 		}
-		else if (directions[currentState] == 2){
-			if (angle < 90) spriteDirection = 1;
-			else spriteDirection = 0;
-		}
-
-		//Check if we have to apply symmetry!
-		float sign = Vector3.Dot(normalVector, Vector3.Cross(camToPlayer, direction));
-		if (sign < 0 && (directions[currentState] == 2 || (spriteDirection > 0 && spriteDirection < 4))){
-			bodyRenderer.transform.localScale = new Vector3(-1,1,1);
-		}
-		else{ 
-			bodyRenderer.transform.localScale = new Vector3(1,1,1);
-		}
-
-		//Get the correct frame from the animator
-		int j = (int) Mathf.Floor (spriteIndex);
-		j %= stateLengths[currentState];
-
-		//Put all together.
-		bodyRenderer.setSprite(spriteMatrix[currentState][spriteDirection][j]);
 	}
 
 

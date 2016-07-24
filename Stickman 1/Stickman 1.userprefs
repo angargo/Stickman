@@ -1,22 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Cursorr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Character.cs">
     <Files>
-      <File FileName="Assets\Scripts\Health.cs" Line="1" Column="1" />
-      <File FileName="Assets\Prefabs\atack\dmg.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SkillManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Character.cs" Line="349" Column="1" />
-      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Keyboard.cs" Line="1" Column="1" />
-      <File FileName="Assets\Heal.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Constants.cs" Line="1" Column="1" />
-      <File FileName="Assets\Fireball.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Bomb.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BombSkill.cs" Line="1" Column="1" />
-      <File FileName="Assets\FireballSkill.cs" Line="1" Column="1" />
-      <File FileName="Assets\Projectile.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Cursorr.cs" Line="85" Column="44" />
+      <File FileName="Assets\Scripts\Character.cs" Line="308" Column="1" />
+      <File FileName="Assets\AnimatorFunctions.cs" Line="15" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

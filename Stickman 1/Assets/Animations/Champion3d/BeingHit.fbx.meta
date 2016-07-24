@@ -97,7 +97,7 @@ ModelImporter:
     4300002: Cube.002
     4300004: Cube.001
     4300006: Knee
-    7400000: Character|CharacterAction
+    7400000: Being Hit
     9500000: //RootNode
     13700000: Cube.001
   materials:
@@ -120,7 +120,117 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Being Hit
+      takeName: Character|CharacterAction
+      firstFrame: 0
+      lastFrame: 5
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Character
+        weight: 1
+      - path: Character/Bone
+        weight: 1
+      - path: Character/Bone/Arm Control.L
+        weight: 1
+      - path: Character/Bone/Arm Control.L/Arm Control.L_end
+        weight: 1
+      - path: Character/Bone/Arm Control.R
+        weight: 1
+      - path: Character/Bone/Arm Control.R/Arm Control.R_end
+        weight: 1
+      - path: Character/Bone/Elbow.L
+        weight: 1
+      - path: Character/Bone/Elbow.L/Elbow.L_end
+        weight: 1
+      - path: Character/Bone/Elbow.R
+        weight: 1
+      - path: Character/Bone/Elbow.R/Elbow.R_end
+        weight: 1
+      - path: Character/Bone/Knee.L
+        weight: 1
+      - path: Character/Bone/Knee.L/Knee.L_end
+        weight: 1
+      - path: Character/Bone/Knee.R
+        weight: 1
+      - path: Character/Bone/Knee.R/Knee.R_end
+        weight: 1
+      - path: Character/Bone/Leg Control.L
+        weight: 1
+      - path: Character/Bone/Leg Control.L/Foot.L
+        weight: 1
+      - path: Character/Bone/Leg Control.L/Foot.L/Foot.L_end
+        weight: 1
+      - path: Character/Bone/Leg Control.R
+        weight: 1
+      - path: Character/Bone/Leg Control.R/Foot.R
+        weight: 1
+      - path: Character/Bone/Leg Control.R/Foot.R/Foot.R_end
+        weight: 1
+      - path: Character/Bone/Stomach
+        weight: 1
+      - path: Character/Bone/Stomach/Chest
+        weight: 1
+      - path: Character/Bone/Stomach/Chest/Arm Upper.L
+        weight: 1
+      - path: Character/Bone/Stomach/Chest/Arm Upper.L/Arm Lower.L
+        weight: 1
+      - path: Character/Bone/Stomach/Chest/Arm Upper.L/Arm Lower.L/Arm Lower.L_end
+        weight: 1
+      - path: Character/Bone/Stomach/Chest/Arm Upper.R
+        weight: 1
+      - path: Character/Bone/Stomach/Chest/Arm Upper.R/Arm Lower.R
+        weight: 1
+      - path: Character/Bone/Stomach/Chest/Arm Upper.R/Arm Lower.R/Arm Lower.R_end
+        weight: 1
+      - path: Character/Bone/Stomach/Chest/Head
+        weight: 1
+      - path: Character/Bone/Stomach/Chest/Head/Cube.002
+        weight: 1
+      - path: Character/Bone/Stomach/Chest/Head/Head_end
+        weight: 1
+      - path: Character/Bone/Stomach/Leg Upper.L
+        weight: 1
+      - path: Character/Bone/Stomach/Leg Upper.L/Leg Lower.L
+        weight: 1
+      - path: Character/Bone/Stomach/Leg Upper.L/Leg Lower.L/Leg Lower.L_end
+        weight: 1
+      - path: Character/Bone/Stomach/Leg Upper.R
+        weight: 1
+      - path: Character/Bone/Stomach/Leg Upper.R/Leg Lower.R
+        weight: 1
+      - path: Character/Bone/Stomach/Leg Upper.R/Leg Lower.R/Leg Lower.R_end
+        weight: 1
+      - path: Control
+        weight: 1
+      - path: Cube.001
+        weight: 1
+      - path: Knee
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

@@ -39,10 +39,18 @@ public class CameraPosition : MonoBehaviour {
   	quake = b;
   }
 
+  bool isQuake(){
+  	Status[] statusArray = player.GetComponentsInChildren<Status>();
+  	foreach (Status status in statusArray){
+  	  if(status.getStatus() == Constants.quake) return true;
+  	}
+  	return false;
+  }
+
   void quakeEffect(){
   		this.transform.localPosition -= quakeOffset;
   		quakeOffset = Vector3.zero;
-  		if (quake){
+  		if (isQuake()){
 			quakeOffset.x = Random.value*quakeMax;
 			quakeOffset.y = Random.value*quakeMax;
 			quakeOffset.z = 0;

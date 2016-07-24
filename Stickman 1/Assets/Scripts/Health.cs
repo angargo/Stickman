@@ -30,7 +30,7 @@ public class Health : MonoBehaviour {
 		HP = Mathf.Min(MaxHP, HP);
 
 		//Dmg text
-		putDmgText(a);
+		if (!myCharacter.isDead() && !myCharacter.getStatus(Constants.invulnerable)) putDmgText(a);
 	}
 
 	public void decreaseHealthPassively (int x, Character character, int damageType, int element){
@@ -46,7 +46,7 @@ public class Health : MonoBehaviour {
 			}
 		}
 		else HP -= a;
-        putDmgText(a);
+		if (!myCharacter.isDead() && !myCharacter.getStatus(Constants.invulnerable)) putDmgText(a);
     }
 
     void putDmgText(int a){
