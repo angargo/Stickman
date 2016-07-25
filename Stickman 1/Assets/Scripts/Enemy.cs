@@ -83,7 +83,8 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void stopPursuing(){
-		myCharacter.stopChasing();
+		if (myCharacter.currentState != Character.beinghit) myCharacter.resetActions();
+		else myCharacter.stopChasing();
 		myTarget = null;
 		isChasing = false;
 	}

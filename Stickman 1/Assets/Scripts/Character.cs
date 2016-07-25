@@ -26,12 +26,12 @@ public class Character : MonoBehaviour {
   private bool[] statusArray;
 
   //States
-  private const int idle = 0;
-  private const int walking = 1;
-  private const int casting = 2;
-  private const int beinghit = 3;
-  private const int attacking = 4;
-  private const int dying = 5;
+  public const int idle = 0;
+  public const int walking = 1;
+  public const int casting = 2;
+  public const int beinghit = 3;
+  public const int attacking = 4;
+  public const int dying = 5;
   public int currentState;
 
   //State conditioners
@@ -50,6 +50,7 @@ public class Character : MonoBehaviour {
 
   //Other components
   private Animator animator;
+  private Animator castBarAnimator;
   private CameraPosition cameraPosition;
   private AudioSource audioSource;
   private AudioClip[] audioClips;
@@ -71,11 +72,14 @@ public class Character : MonoBehaviour {
 
 		//Get components
 		animator = this.GetComponent<Animator>();
-		if (animator == null) animator = this.GetComponentInChildren<Animator>();
 	    cameraPosition = GameObject.FindObjectOfType<CameraPosition>();
 		audioSource = this.GetComponent<AudioSource>();
 		skillManager = GameObject.FindObjectOfType<SkillManager>();
 		bodyRenderer = this.GetComponentInChildren<BodyRenderer>();
+		if (animator == null){
+			animator = bodyRenderer.GetComponentInChildren<Animator>();
+			castBarAnimator = GetComponentInChildren<SpritePosition>().GetComponent<Animator>();
+		}
 		spriteRenderer = bodyRenderer.GetComponent<SpriteRenderer>();
 
 	    //Read sprites and audio
@@ -116,7 +120,7 @@ public class Character : MonoBehaviour {
   	//UPDATE FUNCTIONS!!!
 
 	void Update () {
-		if (bodyRenderer == null) Debug.Log (this.gameObject.name);
+		//if (GetComponent<Player>()) Debug.Log (currentState);
 		UpdateCurrentState ();
 		UpdateSprite();
 		UpdateRotation(); // ToDo Can be more efficient!
@@ -263,14 +267,17 @@ public class Character : MonoBehaviour {
 		//Update state to walking if needed and update animator.
 		if (HasTargetPosition()) SetCurrentState (walking);
 		animator.SetInteger("currentState", currentState);
+		if (castBarAnimator != null) castBarAnimator.SetInteger("currentState", currentState);
 	}
 
 	void SetCurrentState(int state, bool b = true) {
+		//if (GetComponent<Player>()) Debug.Log(state);
 		if (!canMove) return;
 		if (b) cancelAllSkills();
 		if (currentState == dying) return;
 		if (state == currentState && state == casting){
 			animator.SetTrigger("newCast");
+			if (castBarAnimator != null) castBarAnimator.SetTrigger("newCast");
 			direction = targetSkill - this.transform.position;
 		}
 		if (!b && state == currentState){
@@ -281,6 +288,7 @@ public class Character : MonoBehaviour {
 		if (b) {
 			//Order: '>' except walking > attacking and casting
 			if (state > currentState || ((currentState == attacking || currentState == casting) && state == walking)) {
+				if (GetComponent<Player>()) Debug.Log("Changing State: " + state + " from " + currentState);
 				currentState = state;
 				if (state == casting){
 					enemy = null;
@@ -293,16 +301,17 @@ public class Character : MonoBehaviour {
 			}
 		}
 		animator.SetInteger("currentState", currentState); //There are functions called in the animator!
+		if (castBarAnimator != null) castBarAnimator.SetInteger("currentState", currentState);
 	}
 
 	public void SetTargetPosition(Vector3 position) {
 		//if (!canMove) return;
-	  	if (position != targetPosition){ //We don't want to compute everything again
+	  	//if (position != targetPosition){ //We don't want to compute everything again
 		    targetPosition = position;
 		    direction = (targetPosition - this.transform.position);
 		    direction.Normalize();
 		    isMoving = true;
-		}
+		//}
 	}
 
 	public void setAttacking (int a){ //1 = attacking, 0 = not attacking
@@ -331,7 +340,7 @@ public class Character : MonoBehaviour {
 		targetSkill = target;
 
 		//Stop doing other stuff [same as casting]
-		stopChasing();
+		resetActions();
 
 		//Depending if we were waiting for the click or it was the first one
 		skillManager.performSkill(this, currentSkill, targetSkill, character);
@@ -345,6 +354,12 @@ public class Character : MonoBehaviour {
 	}
 
 	public void stopChasing() {
+		isChasing = false;
+		isMoving = false;
+		enemy = null;
+	}
+
+	public void resetActions(){
 		SetCurrentState(currentState, false);
 		isChasing = false;
 		isMoving = false;

@@ -79,7 +79,7 @@ public class Cursorr : MonoBehaviour
     void checkZoom(){
     	float d = Input.GetAxis("Mouse ScrollWheel");
     	if (d != 0){
-    		Debug.Log(d);
+    		//Debug.Log(d);
     		CameraPosition cameraPosition = player.GetComponentInChildren<CameraPosition>();
     		Vector3 camVector = cameraPosition.transform.position - player.transform.position;
     		float dist = camVector.magnitude + 4*d;

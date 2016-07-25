@@ -17,7 +17,8 @@ public class Player : MonoBehaviour {
 	}
   
   	public void MoveToPosition(Vector3 position) {
-		myCharacter.stopChasing ();
+		if (myCharacter.currentState != Character.beinghit) myCharacter.resetActions();
+		else myCharacter.stopChasing();
   		myCharacter.SetTargetPosition(position);
   	}
 
