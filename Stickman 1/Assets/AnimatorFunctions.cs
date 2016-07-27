@@ -26,6 +26,10 @@ public class AnimatorFunctions : MonoBehaviour {
 		myCharacter.finishCasting();
 	}
 
+	public void playClip(int a){
+  		myCharacter.playClip(a);
+  	}
+
 	// Use this for initialization
 	void Start () {
 		myCharacter = this.GetComponentInParent<Character>();
