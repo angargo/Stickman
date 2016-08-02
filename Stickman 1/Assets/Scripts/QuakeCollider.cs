@@ -40,14 +40,14 @@ public class QuakeCollider : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter2D (Collider2D col){
+	void OnTriggerEnter (Collider col){
 		Character character = col.GetComponentInParent<Character>();
 		if (character != null){
 			updateCharacter(character);
 		}
 	}
 
-	void OnTriggerStay2D (Collider2D col){
+	void OnTriggerStay (Collider col){
 		Character character = col.GetComponentInParent<Character>();
 		if (character != null){
 			updateCharacter(character);

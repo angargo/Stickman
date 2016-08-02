@@ -15,7 +15,7 @@ public class Cursorr : MonoBehaviour
     private float maxDist = 10;
 
     private Ray ray;
-    private RaycastHit2D[] rcArray;
+    private RaycastHit[] rcArray;
     private Enemy enemy;
     private bool floorFound;
     private Vector3 point = Vector3.zero;
@@ -43,7 +43,7 @@ public class Cursorr : MonoBehaviour
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
+        RaycastHit[] rcArray = Physics.RaycastAll(ray);
         enemy = null;
         floorFound = false;
         point = Vector3.zero;
@@ -53,7 +53,7 @@ public class Cursorr : MonoBehaviour
             OnMouseRightDown();
         }
 
-        foreach (RaycastHit2D rc in rcArray)
+        foreach (RaycastHit rc in rcArray)
         {
             if (enemy == null) enemy = rc.collider.gameObject.GetComponentInParent<Enemy>();
             if (isFloor(rc) && enemy == null)
@@ -96,20 +96,22 @@ public class Cursorr : MonoBehaviour
         Cursor.SetCursor(cursorTexture[st], hotSpot, cursorMode);
     }
 
-    bool isFloor(RaycastHit2D rc)
+    bool isFloor(RaycastHit rc)
     {
         return rc.collider.gameObject.tag == "Floor";
     }
 
     void OnMouseRightDown()
     {
+    	Debug.Log("clicked");
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        rcArray = Physics2D.GetRayIntersectionAll(ray);
+        rcArray = Physics.RaycastAll(ray);
         enemy = null;
         floorFound = false;
         point = Vector3.zero;
-        foreach (RaycastHit2D rc in rcArray)
+        foreach (RaycastHit rc in rcArray)
         {
+        	Debug.Log(rc.collider.gameObject);
             if (enemy == null) enemy = rc.collider.gameObject.GetComponentInParent<Enemy>();
             if (isFloor(rc))
             {

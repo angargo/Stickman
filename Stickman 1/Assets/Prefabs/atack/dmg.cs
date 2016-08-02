@@ -11,7 +11,7 @@ public class dmg : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
-        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -vel);
+        GetComponent<Rigidbody>().velocity = new Vector3(0, vel, 0);
         
 	}
 	

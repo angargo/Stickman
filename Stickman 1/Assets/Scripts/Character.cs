@@ -137,7 +137,7 @@ public class Character : MonoBehaviour {
 	}
 
 
-	public void UpdateSprite(){ //Updates the sprite in the renderer. Only works for plain surfaces!
+	public void UpdateSprite(){ //Updates the sprite in the renderer. Only works for plain surfaces! [NOT CHANGED TO XZ YET]
 
 		if (spriteRenderer != null){
 		

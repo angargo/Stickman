@@ -19,8 +19,8 @@ public class Projectile : MonoBehaviour {
 		if (direction.magnitude > Mathf.Epsilon) direction.Normalize();
 		else Destroy(this.gameObject);
 		myCharacter = character;
-		float angle = Mathf.Atan2(direction.y, direction.x);
-		Body.transform.Rotate(new Vector3(0,0,angle*180/Mathf.PI));
+		float angle = Mathf.Atan2(direction.z, direction.x);
+		Body.transform.Rotate(new Vector3(0,angle*180/Mathf.PI,0));
 
 	}
 

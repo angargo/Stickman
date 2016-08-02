@@ -6,7 +6,7 @@ public class CameraPosition : MonoBehaviour {
   private Player player;
   private Vector3 drag;
   private Vector3 offset;
-  public const float minAngle = 25, maxAngle = 50;
+  public  float minAngle = 5, maxAngle = 70;
   private float midAngle, maxDiff;
   bool quake;
   public const float quakeMax = 0.2f;
@@ -30,7 +30,7 @@ public class CameraPosition : MonoBehaviour {
 	}
 
   void initializeOffset(){
-  	offset = new Vector3(0,0, -7.5f);
+  	offset = new Vector3(0, 7.5f, 0);
   	this.transform.position = player.transform.position + offset;
   	correctPosition();
   }
@@ -52,16 +52,16 @@ public class CameraPosition : MonoBehaviour {
   		quakeOffset = Vector3.zero;
   		if (isQuake()){
 			quakeOffset.x = Random.value*quakeMax;
-			quakeOffset.y = Random.value*quakeMax;
-			quakeOffset.z = 0;
+			quakeOffset.y = 0;
+			quakeOffset.z = Random.value*quakeMax;
 			this.transform.localPosition += quakeOffset;
 		}
   }
 
   void correctPosition(){ //Super cutre, ya lo cambiare. Mantiene la cam entre minAngle y maxAngle respecto a la vertical.
 		Vector3 normalVec = transform.TransformDirection(Vector3.forward);
-		float angle = Vector3.Angle(normalVec, Vector3.forward);
-		float sign = -Vector3.Dot(transform.TransformDirection(Vector3.right), Vector3.Cross(Vector3.forward, normalVec));
+		float angle = Vector3.Angle(normalVec, Vector3.down);
+		float sign = -Vector3.Dot(transform.TransformDirection(Vector3.right), Vector3.Cross(Vector3.down, normalVec));
 		if (sign < 0) angle = -angle;
 		float dif = 0;
 		if (angle < minAngle && angle > midAngle - 180){
@@ -95,9 +95,9 @@ public class CameraPosition : MonoBehaviour {
                 //Debug.Log("Vertical drag");
                 if (diff.y > maxDiff) diff.y = maxDiff;
                 if (diff.y < -maxDiff) diff.y = -maxDiff;
-                transform.RotateAround(player.transform.position, transform.TransformDirection(Vector3.right), diff.y);
+                transform.RotateAround(player.transform.position, transform.TransformDirection(Vector3.right), -diff.y);
             } else {
-                transform.RotateAround(player.transform.position, Vector3.forward, diff.x);
+                transform.RotateAround(player.transform.position, Vector3.up, diff.x);
             }
             correctPosition();
             offset = transform.position - player.transform.position;

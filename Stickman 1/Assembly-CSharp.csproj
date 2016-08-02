@@ -45,16 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AnimatorFunctions.cs" />
-     <Compile Include="Assets\Earthquake.cs" />
-     <Compile Include="Assets\EarthquakeSkill.cs" />
-     <Compile Include="Assets\Fireball.cs" />
-     <Compile Include="Assets\FireballCollider.cs" />
-     <Compile Include="Assets\FireballSkill.cs" />
-     <Compile Include="Assets\Heal.cs" />
-     <Compile Include="Assets\HealSkill.cs" />
-     <Compile Include="Assets\MagicMirror.cs" />
-     <Compile Include="Assets\MagicMirrorCollider.cs" />
      <Compile Include="Assets\Old Stuff\DragHandeler.cs" />
      <Compile Include="Assets\Old Stuff\GameobjectDragAndDrop.cs" />
      <Compile Include="Assets\Old Stuff\MainMenu.cs" />
@@ -69,8 +59,7 @@
      <Compile Include="Assets\Prefabs\ForceField\theOne\Scripts\ShieldEffect.cs" />
      <Compile Include="Assets\Prefabs\ForceField\theOne\Scripts\ToShieldProjectile.cs" />
      <Compile Include="Assets\Prefabs\atack\dmg.cs" />
-     <Compile Include="Assets\Projectile.cs" />
-     <Compile Include="Assets\QuakeCollider.cs" />
+     <Compile Include="Assets\Scripts\AnimatorFunctions.cs" />
      <Compile Include="Assets\Scripts\BodyRenderer.cs" />
      <Compile Include="Assets\Scripts\Bomb.cs" />
      <Compile Include="Assets\Scripts\BombSkill.cs" />
@@ -80,18 +69,29 @@
      <Compile Include="Assets\Scripts\Character.cs" />
      <Compile Include="Assets\Scripts\Constants.cs" />
      <Compile Include="Assets\Scripts\Cursorr.cs" />
+     <Compile Include="Assets\Scripts\Earthquake.cs" />
+     <Compile Include="Assets\Scripts\EarthquakeSkill.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\Explosion.cs" />
      <Compile Include="Assets\Scripts\ExplosionCollider.cs" />
+     <Compile Include="Assets\Scripts\Fireball.cs" />
+     <Compile Include="Assets\Scripts\FireballCollider.cs" />
+     <Compile Include="Assets\Scripts\FireballSkill.cs" />
      <Compile Include="Assets\Scripts\HPBar.cs" />
+     <Compile Include="Assets\Scripts\Heal.cs" />
+     <Compile Include="Assets\Scripts\HealSkill.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\Keyboard.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\MagicMirror.cs" />
+     <Compile Include="Assets\Scripts\MagicMirrorCollider.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\MusicManager.cs" />
      <Compile Include="Assets\Scripts\MySkillButton.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Portal.cs" />
+     <Compile Include="Assets\Scripts\Projectile.cs" />
+     <Compile Include="Assets\Scripts\QuakeCollider.cs" />
      <Compile Include="Assets\Scripts\Skill.cs" />
      <Compile Include="Assets\Scripts\SkillManager.cs" />
      <Compile Include="Assets\Scripts\SkillbarPanel.cs" />

@@ -44,11 +44,11 @@ public class BodyRenderer : MonoBehaviour {
 	public void lookTo (Vector3 dir){
 		if (dir != direction){
 			direction = dir;
-			float angle = Mathf.Atan2(direction.y, direction.x);
+			float angle = Mathf.Atan2(direction.z, direction.x);
 			angle *= 180/Mathf.PI;
 			angle -= 90;
 			this.transform.localRotation = Quaternion.identity;
-			this.transform.Rotate(new Vector3 (0,0,angle));
+			this.transform.Rotate(new Vector3 (0,-angle,0));
 		}
 	}
 	

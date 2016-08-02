@@ -50,7 +50,7 @@ public class Health : MonoBehaviour {
     }
 
     void putDmgText(int a){
-		GameObject dmg = Instantiate(dmgin, myCharacter.transform.position + new Vector3(0,0,-1), Camera.main.transform.rotation) as GameObject;
+		GameObject dmg = Instantiate(dmgin, myCharacter.transform.position + new Vector3(0,2,0), Camera.main.transform.rotation) as GameObject;
         TextMesh info = dmg.GetComponentInChildren<TextMesh>();
         info.text = a.ToString();
         dmg.transform.parent = spritePosition.transform;

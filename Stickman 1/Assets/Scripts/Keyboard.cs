@@ -35,10 +35,10 @@ public class Keyboard : MonoBehaviour {
 					if (skill != null){
 						int a = skill.skillNumber;
 						Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-						RaycastHit2D[] rcArray = Physics2D.GetRayIntersectionAll(ray);
+						RaycastHit[] rcArray = Physics.RaycastAll(ray);
 						Character character = null;
 						Vector3 floorPoint = Vector3.zero;
-			    		foreach (RaycastHit2D rc in rcArray){
+			    		foreach (RaycastHit rc in rcArray){
 					    	if (isFloor(rc)){
 					    		//player.castSkill(a, rc.point);
 					    		floorPoint = rc.point;
@@ -77,11 +77,11 @@ public class Keyboard : MonoBehaviour {
 
 
 
-  	bool isFloor(RaycastHit2D rc){
+  	bool isFloor(RaycastHit rc){
     	return rc.collider.gameObject.tag == "Floor";
   	}
 
-  	Character getCharacter(RaycastHit2D rc){
+  	Character getCharacter(RaycastHit rc){
   		return rc.collider.gameObject.GetComponentInParent<Character>();
   	}
 

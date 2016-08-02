@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour {
 		r *= Random.value;
 		float moveRad = Mathf.Sqrt(r);
 		float angle = Mathf.Sqrt(Random.value)*360.0f;
-		Vector3 direction = new Vector3(moveRad*Mathf.Cos(angle), moveRad*Mathf.Sin(angle),0);
+		Vector3 direction = new Vector3(moveRad*Mathf.Cos(angle), 0, moveRad*Mathf.Sin(angle));
 		Vector3 targetPosition = this.transform.position + direction;
 		myCharacter.SetTargetPosition(targetPosition);
 	}

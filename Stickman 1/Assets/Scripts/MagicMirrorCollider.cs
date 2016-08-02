@@ -8,11 +8,11 @@ public class MagicMirrorCollider : MonoBehaviour {
 	public float intensity = 50.0f;
 	public float radius = 0.1f;
 	public float lifetime = 2.5f;
-	public float R = 2.5f;
+	public float R = 2f;
 
 	public float shotSpeed = 3.0f;
 
-	void OnTriggerEnter2D (Collider2D col){
+	void OnTriggerEnter (Collider col){
 		Projectile p = col.gameObject.GetComponentInParent<Projectile>();
 		if (p != null){
 			p.reflect(GetComponentInParent<Character>());
@@ -22,7 +22,7 @@ public class MagicMirrorCollider : MonoBehaviour {
 				if (true)
 				//if (true)
 				{
-					effect.Add(computeNormalizedPosition(p.Body),intensity, radius, lifetime, shotSpeed);
+					effect.Add(computeNormalizedPosition(col.gameObject),intensity, radius, lifetime, shotSpeed);
 				}
 				/*else 
 				{
