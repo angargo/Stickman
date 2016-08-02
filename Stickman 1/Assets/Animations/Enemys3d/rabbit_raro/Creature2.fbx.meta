@@ -1,0 +1,328 @@
+fileFormatVersion: 2
+guid: 4d9c104d3eb4c14438f0b2b48e41144b
+timeCreated: 1470148686
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: B_Back roll.L
+    100002: B_Back roll.R
+    100004: B_Front roll.L
+    100006: B_Front roll.R
+    100008: back foot.L
+    100010: back foot.R
+    100012: back leg IK.L
+    100014: back leg IK.R
+    100016: back lower leg_L
+    100018: back lower leg_L_end
+    100020: back lower leg_R
+    100022: back lower leg_R_end
+    100024: Back Roll main.L
+    100026: Back Roll main.L_end
+    100028: Back Roll main.R
+    100030: Back Roll main.R_end
+    100032: back toes.L
+    100034: back toes.L_end
+    100036: back toes.R
+    100038: back toes.R_end
+    100040: back upper leg.L
+    100042: back upper leg.R
+    100044: Body
+    100046: //RootNode
+    100048: Ear_L.001
+    100050: Ear_L.002
+    100052: Ear_L.003
+    100054: Ear_L.004
+    100056: Ear_L.004_end
+    100058: Ear_R.001
+    100060: Ear_R.002
+    100062: Ear_R.003
+    100064: Ear_R.004
+    100066: Ear_R.004_end
+    100068: Eyes
+    100070: F_Back roll.L
+    100072: F_Back roll.R
+    100074: F_Front roll.L
+    100076: F_Front roll.R
+    100078: front foot.L
+    100080: front foot.R
+    100082: front leg IK.L
+    100084: front leg IK.R
+    100086: front lower leg_L
+    100088: front lower leg_L_end
+    100090: front lower leg_R
+    100092: front lower leg_R_end
+    100094: Front Roll main.L
+    100096: Front Roll main.L_end
+    100098: Front Roll main.R
+    100100: Front Roll main.R_end
+    100102: front toes.L
+    100104: front toes.L_end
+    100106: front toes.R
+    100108: front toes.R_end
+    100110: front upper leg.L
+    100112: front upper leg.R
+    100114: Gums
+    100116: Head
+    100118: Head.001
+    100120: Hips
+    100122: Jaw
+    100124: Jaw.001
+    100126: Jaw.001_end
+    100128: Nails
+    100130: Rip_L
+    100132: Rip_L.001
+    100134: Rip_L.002
+    100136: Rip_L.003
+    100138: Rip_L.004
+    100140: Rip_L.004_end
+    100142: Rip_L.005
+    100144: Rip_L.005_end
+    100146: Rip_L.006
+    100148: Rip_L.007
+    100150: Rip_L.008
+    100152: Rip_L.009
+    100154: Rip_L.009_end
+    100156: Rip_R
+    100158: Rip_R.001
+    100160: Rip_R.002
+    100162: Rip_R.003
+    100164: Rip_R.004
+    100166: Rip_R.004_end
+    100168: Rip_R.005
+    100170: Rip_R.005_end
+    100172: Rip_R.006
+    100174: Rip_R.007
+    100176: Rip_R.008
+    100178: Rip_R.009
+    100180: Rip_R.009_end
+    100182: Skeleton
+    100184: Skull_L
+    100186: Skull_L.001
+    100188: Skull_L.002
+    100190: Skull_L.003
+    100192: Skull_L.003_end
+    100194: Skull_L.004
+    100196: Skull_L.005
+    100198: Skull_L.006
+    100200: Skull_L.006_end
+    100202: Skull_L.007
+    100204: Skull_L.008
+    100206: Skull_R
+    100208: Skull_R.001
+    100210: Skull_R.002
+    100212: Skull_R.003
+    100214: Skull_R.003_end
+    100216: Skull_R.004
+    100218: Skull_R.005
+    100220: Skull_R.006
+    100222: Skull_R.006_end
+    100224: Skull_R.007
+    100226: Skull_R.008
+    100228: Spine
+    100230: Tail
+    100232: Tail.001
+    100234: Tail.002
+    100236: Tail.003
+    100238: Tail.004
+    100240: Tail.005
+    100242: Tail.005_end
+    100244: Teeth
+    400000: B_Back roll.L
+    400002: B_Back roll.R
+    400004: B_Front roll.L
+    400006: B_Front roll.R
+    400008: back foot.L
+    400010: back foot.R
+    400012: back leg IK.L
+    400014: back leg IK.R
+    400016: back lower leg_L
+    400018: back lower leg_L_end
+    400020: back lower leg_R
+    400022: back lower leg_R_end
+    400024: Back Roll main.L
+    400026: Back Roll main.L_end
+    400028: Back Roll main.R
+    400030: Back Roll main.R_end
+    400032: back toes.L
+    400034: back toes.L_end
+    400036: back toes.R
+    400038: back toes.R_end
+    400040: back upper leg.L
+    400042: back upper leg.R
+    400044: Body
+    400046: //RootNode
+    400048: Ear_L.001
+    400050: Ear_L.002
+    400052: Ear_L.003
+    400054: Ear_L.004
+    400056: Ear_L.004_end
+    400058: Ear_R.001
+    400060: Ear_R.002
+    400062: Ear_R.003
+    400064: Ear_R.004
+    400066: Ear_R.004_end
+    400068: Eyes
+    400070: F_Back roll.L
+    400072: F_Back roll.R
+    400074: F_Front roll.L
+    400076: F_Front roll.R
+    400078: front foot.L
+    400080: front foot.R
+    400082: front leg IK.L
+    400084: front leg IK.R
+    400086: front lower leg_L
+    400088: front lower leg_L_end
+    400090: front lower leg_R
+    400092: front lower leg_R_end
+    400094: Front Roll main.L
+    400096: Front Roll main.L_end
+    400098: Front Roll main.R
+    400100: Front Roll main.R_end
+    400102: front toes.L
+    400104: front toes.L_end
+    400106: front toes.R
+    400108: front toes.R_end
+    400110: front upper leg.L
+    400112: front upper leg.R
+    400114: Gums
+    400116: Head
+    400118: Head.001
+    400120: Hips
+    400122: Jaw
+    400124: Jaw.001
+    400126: Jaw.001_end
+    400128: Nails
+    400130: Rip_L
+    400132: Rip_L.001
+    400134: Rip_L.002
+    400136: Rip_L.003
+    400138: Rip_L.004
+    400140: Rip_L.004_end
+    400142: Rip_L.005
+    400144: Rip_L.005_end
+    400146: Rip_L.006
+    400148: Rip_L.007
+    400150: Rip_L.008
+    400152: Rip_L.009
+    400154: Rip_L.009_end
+    400156: Rip_R
+    400158: Rip_R.001
+    400160: Rip_R.002
+    400162: Rip_R.003
+    400164: Rip_R.004
+    400166: Rip_R.004_end
+    400168: Rip_R.005
+    400170: Rip_R.005_end
+    400172: Rip_R.006
+    400174: Rip_R.007
+    400176: Rip_R.008
+    400178: Rip_R.009
+    400180: Rip_R.009_end
+    400182: Skeleton
+    400184: Skull_L
+    400186: Skull_L.001
+    400188: Skull_L.002
+    400190: Skull_L.003
+    400192: Skull_L.003_end
+    400194: Skull_L.004
+    400196: Skull_L.005
+    400198: Skull_L.006
+    400200: Skull_L.006_end
+    400202: Skull_L.007
+    400204: Skull_L.008
+    400206: Skull_R
+    400208: Skull_R.001
+    400210: Skull_R.002
+    400212: Skull_R.003
+    400214: Skull_R.003_end
+    400216: Skull_R.004
+    400218: Skull_R.005
+    400220: Skull_R.006
+    400222: Skull_R.006_end
+    400224: Skull_R.007
+    400226: Skull_R.008
+    400228: Spine
+    400230: Tail
+    400232: Tail.001
+    400234: Tail.002
+    400236: Tail.003
+    400238: Tail.004
+    400240: Tail.005
+    400242: Tail.005_end
+    400244: Teeth
+    4300000: Teeth
+    4300002: Gums
+    4300004: Eyes
+    4300006: Nails
+    4300008: Body
+    9500000: //RootNode
+    13700000: Body
+    13700002: Eyes
+    13700004: Gums
+    13700006: Nails
+    13700008: Teeth
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
