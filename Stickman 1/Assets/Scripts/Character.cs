@@ -58,6 +58,7 @@ public class Character : MonoBehaviour {
   private BodyRenderer bodyRenderer;
   private CastBar castBar;
   private SpriteRenderer spriteRenderer;
+  private NavMeshAgent agent;
 
 
 
@@ -81,6 +82,12 @@ public class Character : MonoBehaviour {
 			castBarAnimator = GetComponentInChildren<SpritePosition>().GetComponent<Animator>();
 		}
 		spriteRenderer = bodyRenderer.GetComponent<SpriteRenderer>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+        agent.acceleration = 1000000000;
+        agent.angularSpeed = 1000000000;
+        agent.speed = speed;
 
 	    //Read sprites and audio
 		sprites = (Sprite[]) Resources.LoadAll<Sprite>("Sprites/" + myFolder);
@@ -123,9 +130,9 @@ public class Character : MonoBehaviour {
 		//if (GetComponent<Player>()) Debug.Log (currentState);
 		UpdateCurrentState ();
 		UpdateSprite();
-		UpdateRotation(); // ToDo Can be more efficient!
 	    UpdatePosition(); // Consider moving this to FixedUpdate
-	    CheckStatus();
+        UpdateRotation(); // ToDo Can be more efficient!
+        CheckStatus();
 		//UpdateCamera ();
 		//UpdateStatus ();
 	}
@@ -188,10 +195,23 @@ public class Character : MonoBehaviour {
 
 	  if (currentState > walking || !isMoving) return; //We have to be walking!
 
+        agent.speed = s;
+
 	  Vector3 newPosition;
-	  //if we are close enough to our target or not
-	  if ((this.transform.position - targetPosition).magnitude <= s * Time.deltaTime) newPosition = targetPosition;
-      else  newPosition = this.transform.position + direction * s * Time.deltaTime;
+        //if we are close enough to our target or not
+        if ((this.transform.position - targetPosition).magnitude <= s * Time.deltaTime) newPosition = targetPosition;
+        //else  newPosition = this.transform.position + direction * s * Time.deltaTime;
+        else
+        {
+            newPosition = agent.nextPosition;
+            Vector3 dir = newPosition - transform.position;
+            if (agent.velocity.magnitude > s - Mathf.Epsilon && dir.magnitude > 0.9 * s * Time.deltaTime)
+            {
+                direction = dir;
+                direction.Normalize();
+            }
+        }
+
 
       //finding obstacles (collisions).
       RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(newPosition)));
@@ -204,8 +224,10 @@ public class Character : MonoBehaviour {
       }
       if (!collision) this.transform.position = newPosition; //Everything goes smoothly.
 
-      //Stop if collision of close enough to target.
-      if (collision || Vector3.Dot(targetPosition - this.transform.position, direction) < Mathf.Epsilon) {
+        //Stop if collision of close enough to target.
+
+      Vector3 dif = targetPosition - this.transform.position;
+      if (collision || (dif.magnitude < 0.25 && Vector3.Dot(dif, direction) < Mathf.Epsilon)) {
 			isMoving = false;
 			SetCurrentState (walking, false);
       }
@@ -305,13 +327,12 @@ public class Character : MonoBehaviour {
 	}
 
 	public void SetTargetPosition(Vector3 position) {
-		//if (!canMove) return;
-	  	//if (position != targetPosition){ //We don't want to compute everything again
-		    targetPosition = position;
-		    direction = (targetPosition - this.transform.position);
-		    direction.Normalize();
-		    isMoving = true;
-		//}
+        //if (!canMove) return;
+        agent.destination = position;
+		targetPosition = position;
+		direction = (targetPosition - this.transform.position);
+		direction.Normalize();
+		isMoving = true;
 	}
 
 	public void setAttacking (int a){ //1 = attacking, 0 = not attacking
