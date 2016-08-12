@@ -8,6 +8,7 @@ public class Keyboard : MonoBehaviour {
 	private GameObject mainMenu;
 	private GameObject optionsMenu;
 	private GameObject skillsMenu;
+    private GameObject itemsMenu;
     private SkillbarPanel[] panels;
 
 	void Awake() {
@@ -15,14 +16,16 @@ public class Keyboard : MonoBehaviour {
 		mainMenu = GameObject.Find("Main Menu");
 		optionsMenu = GameObject.Find("Options Menu");
 		skillsMenu = GameObject.Find("Skills Menu");
-	}
+        itemsMenu = GameObject.Find("Items Menu");
+    }
   
 	// Use this for initialization
 	void Start () {
     	mainMenu.SetActive(false);
     	optionsMenu.SetActive(false);
     	skillsMenu.SetActive(false);
-    	panels = GameObject.FindObjectsOfType<SkillbarPanel>();
+        itemsMenu.SetActive(false);
+        panels = GameObject.FindObjectsOfType<SkillbarPanel>();
 	}
 	
 	// Update is called once per frame
@@ -75,9 +78,13 @@ public class Keyboard : MonoBehaviour {
 		skillsMenu.SetActive(true);
 	}
 
+    public void openItemsMenu() {
+        itemsMenu.SetActive(true);
+    }
 
 
-  	bool isFloor(RaycastHit rc){
+
+    bool isFloor(RaycastHit rc){
     	return rc.collider.gameObject.tag == "Floor";
   	}
 

@@ -88,8 +88,14 @@ public class CameraPosition : MonoBehaviour {
   	return true;
   }
   
+  bool noDraggedStuff()
+    {
+        GameObject DraggedSkills = GameObject.Find("Moved Skills");
+        return (DraggedSkills.transform.childCount <= 0);
+    }
+  
   void OnMouseLeftDrag() {
-        if (noMenus()) {
+        if (noMenus() && noDraggedStuff()) {
             Vector3 diff = Input.mousePosition - drag;
             if (Input.GetKey(KeyCode.LeftShift)) {
                 //Debug.Log("Vertical drag");
