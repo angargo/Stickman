@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Pathfinding;
 
 public class Character : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class Character : MonoBehaviour {
   public float speedMult;
 
   //Movement stuff
+  private Path path;
+  private int wayPointNumber;
   private Vector3 direction;
   private Vector3 targetPosition;
   private int dir;
@@ -58,7 +61,7 @@ public class Character : MonoBehaviour {
   private BodyRenderer bodyRenderer;
   private CastBar castBar;
   private SpriteRenderer spriteRenderer;
-  private NavMeshAgent agent;
+  private Seeker seeker;
 
 
 
@@ -77,17 +80,12 @@ public class Character : MonoBehaviour {
 		audioSource = this.GetComponent<AudioSource>();
 		skillManager = GameObject.FindObjectOfType<SkillManager>();
 		bodyRenderer = this.GetComponentInChildren<BodyRenderer>();
+        seeker = this.GetComponent<Seeker>();
 		if (animator == null){
 			animator = bodyRenderer.GetComponentInChildren<Animator>();
 			castBarAnimator = GetComponentInChildren<SpritePosition>().GetComponent<Animator>();
 		}
 		spriteRenderer = bodyRenderer.GetComponent<SpriteRenderer>();
-        agent = GetComponent<NavMeshAgent>();
-        agent.updatePosition = false;
-        agent.updateRotation = false;
-        agent.acceleration = 1000000000;
-        agent.angularSpeed = 1000000000;
-        agent.speed = speed;
 
 	    //Read sprites and audio
 		sprites = (Sprite[]) Resources.LoadAll<Sprite>("Sprites/" + myFolder);
@@ -195,22 +193,49 @@ public class Character : MonoBehaviour {
 
 	  if (currentState > walking || !isMoving) return; //We have to be walking!
 
-        agent.speed = s;
+      if (seeker.IsDone())
+      {
+        path = seeker.GetCurrentPath();
+        wayPointNumber = 0;
+      }
+      if (path == null || path.error) return;
 
-	  Vector3 newPosition;
+	  Vector3 newPosition = Vector3.zero;
         //if we are close enough to our target or not
-        if ((this.transform.position - targetPosition).magnitude <= s * Time.deltaTime) newPosition = targetPosition;
+        if ((this.transform.position - targetPosition).magnitude <= s * Time.deltaTime + 0.001f)
+        {
+            newPosition = targetPosition;
+            finishedPath();
+        }
         //else  newPosition = this.transform.position + direction * s * Time.deltaTime;
         else
         {
-            newPosition = agent.nextPosition;
-            Vector3 dir = newPosition - transform.position;
-            if (agent.velocity.magnitude > s - Mathf.Epsilon && dir.magnitude > 0.9 * s * Time.deltaTime)
+            float myDist = 0;
+            int myWayPoint = wayPointNumber;
+            while (myDist < s * Time.deltaTime)
             {
-                direction = dir;
-                direction.Normalize();
+                newPosition = path.vectorPath[wayPointNumber];
+                float d = (transform.position - newPosition).magnitude;
+                if (d < s * Time.deltaTime - myDist)
+                {
+                    Vector3 off = (newPosition - transform.position);
+                    off.Normalize();
+                    off *= d;
+                    newPosition = newPosition += off;
+                    wayPointNumber = myWayPoint;
+                }
+                else
+                {
+                    newPosition = path.vectorPath[myWayPoint];
+                    myDist += d;
+                    ++myWayPoint;
+                }
+
             }
         }
+      Vector3 dir = newPosition - transform.position;
+      direction = dir;
+      direction.Normalize();
 
 
       //finding obstacles (collisions).
@@ -232,6 +257,11 @@ public class Character : MonoBehaviour {
 			SetCurrentState (walking, false);
       }
 	}
+
+    void finishedPath()
+    {
+        
+    }
 
 	void UpdateCamera() { //Player always perpendicular to camera!
 		if (this.GetComponent<Player>() != null) cameraPosition.FollowPlayer(transform.position);
@@ -328,7 +358,7 @@ public class Character : MonoBehaviour {
 
 	public void SetTargetPosition(Vector3 position) {
         //if (!canMove) return;
-        agent.destination = position;
+        seeker.StartPath(transform.position, position);
 		targetPosition = position;
 		direction = (targetPosition - this.transform.position);
 		direction.Normalize();
